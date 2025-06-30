@@ -4,17 +4,11 @@ import '../../../core/widgets/custom_back_handler.dart';
 import '../../../core/widgets/custom_bottom_nav.dart';
 import '../../../core/widgets/custom_snackbar.dart';
 import '../../controllers/navigation_controller.dart';
-import '../home/home_page.dart';
-import '../manage_students/manage_students.dart';
-import '../online_webview/online_webview.dart';
-import '../register_student/register_student.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:provider/provider.dart';
 
 class MainApp extends StatefulWidget {
-  const MainApp({
-    super.key,
-  });
+  const MainApp({super.key});
 
   @override
   State<MainApp> createState() => _MainAppState();
@@ -51,13 +45,8 @@ class _MainAppState extends State<MainApp> with TickerProviderStateMixin {
       child: Scaffold(
         extendBody: true,
         body: SafeArea(
-          child: IndexedStack(
-            index: navController.selectedIndex,
-            children: [
-              const HomePage(),
-              RegisterStudent(syncingSchools: navController.setSyncingSchools),
-              const ManageStudents(),
-              const OnlineWebview(),
+          child: IndexedStack(index: navController.selectedIndex, children: [
+
             ],
           ),
         ),
