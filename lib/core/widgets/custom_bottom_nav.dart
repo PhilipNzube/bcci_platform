@@ -18,11 +18,7 @@ class CustomBottomNav extends StatelessWidget {
           topRight: Radius.circular(20.0),
         ),
         boxShadow: [
-          BoxShadow(
-            color: Colors.black26,
-            spreadRadius: 5,
-            blurRadius: 10,
-          ),
+          BoxShadow(color: Colors.black26, spreadRadius: 5, blurRadius: 10),
         ],
       ),
       child: ClipRRect(
@@ -35,16 +31,43 @@ class CustomBottomNav extends StatelessWidget {
           type: BottomNavigationBarType.fixed,
           items: [
             _buildNavItem(
-                Icons.home, "Home", notificationController.hasNotification(0)),
-            _buildNavItem(Icons.person_add, "Register",
-                notificationController.hasNotification(1)),
-            _buildNavItem(Icons.people, "Students",
-                notificationController.hasNotification(2)),
-            _buildNavItem(Icons.public, "Go Live",
-                notificationController.hasNotification(3)),
+              "images/Home-Active.png",
+              "images/Home.png",
+              "Home",
+              notificationController.hasNotification(0),
+              navController.selectedIndex == 0,
+            ),
+            _buildNavItem(
+              "images/Cluster-Active.png",
+              "images/Cluster.png",
+              "Cluster",
+              notificationController.hasNotification(1),
+              navController.selectedIndex == 1,
+            ),
+            _buildNavItem(
+              "images/Worship-Active.png",
+              "images/Worship.png",
+              "Worship",
+              notificationController.hasNotification(2),
+              navController.selectedIndex == 2,
+            ),
+            _buildNavItem(
+              "images/Messages-Active.png",
+              "images/Messages.png",
+              "Messages",
+              notificationController.hasNotification(3),
+              navController.selectedIndex == 3,
+            ),
+            _buildNavItem(
+              "images/User-Active.png",
+              "images/User.png",
+              "User",
+              notificationController.hasNotification(4),
+              navController.selectedIndex == 4,
+            ),
           ],
           currentIndex: navController.selectedIndex,
-          selectedItemColor: const Color(0xFF637725),
+          selectedItemColor: Colors.black,
           unselectedItemColor: Colors.grey,
           onTap: navController.changeTab,
         ),
@@ -53,22 +76,33 @@ class CustomBottomNav extends StatelessWidget {
   }
 
   BottomNavigationBarItem _buildNavItem(
-      IconData icon, String label, bool hasNotification) {
+    String activeAssetPath,
+    String inactiveAssetPath,
+    String label,
+    bool hasNotification,
+    bool isSelected,
+  ) {
     return BottomNavigationBarItem(
       icon: Stack(
         alignment: Alignment.center,
         children: [
-          Icon(icon),
+          Image.asset(
+            isSelected ? activeAssetPath : inactiveAssetPath,
+            width: 24,
+            height: 24,
+            fit: BoxFit.contain,
+          ),
           if (hasNotification)
             Positioned(
               bottom: 0,
+              right: 0,
               child: Container(
+                width: 8,
+                height: 8,
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                   color: Colors.red,
                 ),
-                width: 8,
-                height: 8,
               ),
             ),
         ],

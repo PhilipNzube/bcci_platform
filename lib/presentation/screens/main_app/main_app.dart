@@ -1,3 +1,4 @@
+import 'package:bcci_platform/presentation/screens/home_page/home_page.dart';
 import 'package:flutter/material.dart';
 import '../../../core/services/connectivity_service.dart';
 import '../../../core/widgets/custom_back_handler.dart';
@@ -45,9 +46,9 @@ class _MainAppState extends State<MainApp> with TickerProviderStateMixin {
       child: Scaffold(
         extendBody: true,
         body: SafeArea(
-          child: IndexedStack(index: navController.selectedIndex, children: [
-
-            ],
+          child: IndexedStack(
+            index: navController.selectedIndex,
+            children: [HomePage()],
           ),
         ),
         bottomNavigationBar: const CustomBottomNav(),
