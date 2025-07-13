@@ -34,14 +34,15 @@ class _ClusterPageState extends State<ClusterPage>
                       const Text(
                         "Cluster Management",
                         style: TextStyle(
-                          fontSize: 22,
+                          fontSize: 20,
+                          fontFamily: 'GolosText',
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       Gap(4),
                       const Text(
                         "Manage your regional clusters and cell groups",
-                        style: TextStyle(color: Colors.black54),
+                        style: TextStyle(color: Colors.black),
                       ),
                       Gap(20),
 

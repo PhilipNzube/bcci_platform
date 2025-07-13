@@ -127,6 +127,7 @@ flutter:
     - images/Help.png
     - images/Home-Active.png
     - images/Home.png
+    - images/Like.png
     - images/Live.png
     - images/Log-out.png
     - images/Menu.png
@@ -136,6 +137,7 @@ flutter:
     - images/notifications_active.png
     - images/Pastor_David_Convo.png
     - images/Pexels Photo by Pixabay.png
+    - images/Play.png
     - images/Prayer_Team.png
     - images/Prayer.png
     - images/Security.png
