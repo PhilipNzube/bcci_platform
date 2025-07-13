@@ -203,27 +203,51 @@ class _WorshipPageState extends State<WorshipPage>
                         ),
                       ),
                       Gap(20),
-                      Container(
-                        padding: const EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          color: Color(0xFFFF0000),
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black12,
-                              spreadRadius: 3,
-                              blurRadius: 6,
+                      Stack(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(16),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(5),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black12,
+                                  spreadRadius: 3,
+                                  blurRadius: 6,
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                        child: Text(
-                          "Join Live",
-                          style: const TextStyle(
-                            fontSize: 15,
-                            fontFamily: 'GolosText',
-                            fontWeight: FontWeight.bold,
+                            child: Text(
+                              "All",
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontFamily: 'GolosText',
+                              ),
+                            ),
                           ),
-                        ),
+                          Positioned(
+                            top: 0,
+                            right: 0,
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 4,
+                                horizontal: 8,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Color(0xFFFF0000),
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              child: const Text(
+                                "New",
+                                style: TextStyle(
+                                  fontSize: 8,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                       Gap(10),
                     ],
