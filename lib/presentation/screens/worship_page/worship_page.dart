@@ -214,11 +214,11 @@ class _WorshipPageState extends State<WorshipPage>
                         child: Row(
                           children: [
                             FilterChip(title: "All", badgeText: "New"),
-                            const SizedBox(width: 10),
+                            Gap(10, isHorizontal: true),
                             FilterChip(title: "Songs", badgeText: "New"),
-                            const SizedBox(width: 10),
+                            Gap(10, isHorizontal: true),
                             FilterChip(title: "Sermons", badgeText: "New"),
-                            const SizedBox(width: 10),
+                            Gap(10, isHorizontal: true),
                             FilterChip(title: "Prayers", badgeText: "New"),
                           ],
                         ),

@@ -4,6 +4,7 @@ import 'package:bcci_platform/presentation/screens/home_page/widgets/action_card
 import 'package:bcci_platform/presentation/screens/home_page/widgets/goal_card.dart';
 import 'package:bcci_platform/presentation/screens/home_page/widgets/info_card.dart';
 import 'package:bcci_platform/presentation/screens/home_page/widgets/upcoming_events_card.dart';
+import 'package:bcci_platform/presentation/screens/notification_page/notification_page.dart';
 import 'package:bcci_platform/presentation/screens/settings_page/settings_page.dart';
 import 'package:flutter/material.dart' hide CarouselController;
 import 'package:provider/provider.dart';
@@ -52,7 +53,15 @@ class _HomePageState extends State<HomePage>
                       ),
                       const Spacer(),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  NotificationPage(key: UniqueKey()),
+                            ),
+                          );
+                        },
                         child: Image.asset(
                           'images/notifications_active.png',
                           height: 25,
