@@ -1,5 +1,6 @@
 import 'package:bcci_platform/presentation/screens/cluster_page/cluster_page.dart';
 import 'package:bcci_platform/presentation/screens/home_page/home_page.dart';
+import 'package:bcci_platform/presentation/screens/main_app/widgets/app_side_bar.dart';
 import 'package:bcci_platform/presentation/screens/messages_page/messages_page.dart';
 import 'package:bcci_platform/presentation/screens/user_page/user_page.dart';
 import 'package:bcci_platform/presentation/screens/worship_page/worship_page.dart';
@@ -48,12 +49,26 @@ class _MainAppState extends State<MainApp> with TickerProviderStateMixin {
 
     return CustomBackHandler(
       child: Scaffold(
+        key: _scaffoldKey,
+        drawer: AppSidebar(
+          onItemTap: (label) {
+            Navigator.pop(context); // Always close the drawer first
+            /*
+  if (label == "Analytics Dashboard") {
+    // Navigate to analytics dashboard page
+    Navigator.pushNamed(context, '/analytics');
+  } else if (label == "CV Recognition") {
+  This is how you map the functions for each item, make sure the labels rhyme though.
+  */
+            print('Tapped on $label');
+          },
+        ),
         extendBody: true,
         body: SafeArea(
           child: IndexedStack(
             index: navController.selectedIndex,
             children: [
-              HomePage(),
+              HomePage(scaffoldKey: _scaffoldKey),
               ClusterPage(),
               WorshipPage(),
               MessagesPage(),

@@ -8,7 +8,8 @@ import 'package:flutter/material.dart' hide CarouselController;
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final GlobalKey<ScaffoldState> scaffoldKey;
+  const HomePage({super.key, required this.scaffoldKey});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -33,9 +34,11 @@ class _HomePageState extends State<HomePage>
                   child: Row(
                     children: [
                       InkWell(
-                        onTap: () {},
+                        onTap: () =>
+                            widget.scaffoldKey.currentState?.openDrawer(),
                         child: Image.asset('images/Menu.png', height: 35),
                       ),
+
                       Gap(20, isHorizontal: true),
                       Text(
                         'Welcome',
