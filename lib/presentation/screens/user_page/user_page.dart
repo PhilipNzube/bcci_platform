@@ -1,5 +1,8 @@
 import 'package:bcci_platform/core/widgets/custom_gap.dart';
 import 'package:bcci_platform/presentation/controllers/user_page_controller.dart';
+import 'package:bcci_platform/presentation/screens/acheivement_page/acheivement_page.dart';
+import 'package:bcci_platform/presentation/screens/privacy_page/privacy_page.dart';
+import 'package:bcci_platform/presentation/screens/profile_notification_page/profile_notification_page.dart';
 import 'package:bcci_platform/presentation/screens/user_page/widgets/settings_item.dart';
 import 'package:flutter/material.dart' hide CarouselController;
 import 'package:provider/provider.dart';
@@ -197,26 +200,56 @@ class _UserPageState extends State<UserPage>
                           SettingsItem(
                             icon: "images/Spiritual_Goal_Settings.png",
                             title: "Spiritual Goals",
+                            onTap: () {},
                           ),
                           SettingsItem(
                             icon: "images/Notification_Settings.png",
                             title: "Notification",
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      ProfileNotificationPage(key: UniqueKey()),
+                                ),
+                              );
+                            },
                           ),
                           SettingsItem(
                             icon: "images/Privacy_Settings.png",
                             title: "Privacy & Visibility",
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      PrivacyPage(key: UniqueKey()),
+                                ),
+                              );
+                            },
                           ),
                           SettingsItem(
                             icon: "images/Security_Settings.png",
                             title: "Security",
+                            onTap: () {},
                           ),
                           SettingsItem(
                             icon: "images/Acheivement_Settings.png",
                             title: "Achievement & Goals",
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      AcheivementPage(key: UniqueKey()),
+                                ),
+                              );
+                            },
                           ),
                           SettingsItem(
                             icon: "images/Data_Management_Settings.png",
                             title: "Data Management",
+                            onTap: () {},
                           ),
                         ],
                       ),

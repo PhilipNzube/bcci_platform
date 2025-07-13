@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 
 class SettingsOptions extends StatelessWidget {
   final String title;
-  final String subTitle;
+  final String? subTitle;
   final bool? value;
   final void Function(bool)? onChanged;
 
   const SettingsOptions({
     super.key,
     required this.title,
-    required this.subTitle,
+    this.subTitle,
     this.value,
     this.onChanged,
   });
@@ -37,15 +37,16 @@ class SettingsOptions extends StatelessWidget {
                   maxLines: 1,
                   softWrap: false,
                 ),
-                Text(
-                  subTitle,
-                  style: TextStyle(
-                    fontSize: 15,
-                    fontFamily: 'GolosText',
-                    color: Colors.grey,
+                if (subTitle != null)
+                  Text(
+                    subTitle!,
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontFamily: 'GolosText',
+                      color: Colors.grey,
+                    ),
+                    softWrap: true,
                   ),
-                  softWrap: true,
-                ),
               ],
             ),
           ),
