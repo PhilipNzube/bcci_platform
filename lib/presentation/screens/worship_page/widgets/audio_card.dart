@@ -60,8 +60,8 @@ class AudioCard extends StatelessWidget {
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text(
+                children: [
+                  const Text(
                     "Amazing Grace",
                     style: TextStyle(
                       fontSize: 25,
@@ -72,7 +72,7 @@ class AudioCard extends StatelessWidget {
                     maxLines: 1,
                     softWrap: false,
                   ),
-                  Text(
+                  const Text(
                     "Worship Team",
                     style: TextStyle(
                       fontSize: 18,
@@ -83,10 +83,10 @@ class AudioCard extends StatelessWidget {
                     maxLines: 1,
                     softWrap: false,
                   ),
-                  Gap(10),
+                  const Gap(10),
                   Text(
-                    "Song (4:00)",
-                    style: TextStyle(
+                    "Song ($duration)",
+                    style: const TextStyle(
                       fontSize: 10,
                       fontFamily: 'GolosText',
                       color: Colors.black,
