@@ -84,17 +84,18 @@ class RecentChatCard extends StatelessWidget {
                               maxLines: 1,
                             ),
                           ),
-                          const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 4),
-                            child: Text(
-                              '|',
-                              style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black45,
+                          if (members != null)
+                            const Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 4),
+                              child: Text(
+                                '|',
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black45,
+                                ),
                               ),
                             ),
-                          ),
                           Text(
                             timeStamp,
                             style: const TextStyle(

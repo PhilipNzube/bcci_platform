@@ -101,6 +101,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - images/Acheivement_Settings.png  
     - images/AppLogo.png
     - images/icons/AppIcon.png
     - images/Add.png
@@ -117,8 +118,9 @@ flutter:
     - images/CV_Recognition.png
     - images/Daily_Prayer.png
     - images/Daily_Reading.png
+    - images/Data_Management_Settings.png
     - images/Digital_Transformation.png
-    - images/export.png
+    - images/Edit_Profile.png
     - images/Fellowship.png
     - images/filter.png
     - images/Gamification.png
@@ -134,16 +136,20 @@ flutter:
     - images/Messages-Active.png
     - images/Messages.png
     - images/Music.png
+    - images/Notification_Settings.png
     - images/notifications_active.png
     - images/Pastor_David_Convo.png
     - images/Pexels Photo by Pixabay.png
     - images/Play.png
     - images/Prayer_Team.png
     - images/Prayer.png
+    - images/Privacy_Settings.png
+    - images/Security_Settings.png
     - images/Security.png
     - images/settings-2.png
     - images/settings.png
     - images/Share.png
+    - images/Spiritual_Goal_Settings.png
     - images/Spiritual_Goal.png
     - images/Star.png
     - images/Trophy.png

@@ -1,9 +1,10 @@
 import 'package:bcci_platform/core/widgets/custom_gap.dart';
 import 'package:bcci_platform/presentation/controllers/messages_page_controller.dart';
+import 'package:bcci_platform/presentation/screens/messages_page/widgets/new_info_card.dart';
 import 'package:bcci_platform/presentation/screens/messages_page/widgets/recent_chat_card.dart';
 import 'package:bcci_platform/presentation/screens/worship_page/widgets/audio_card.dart';
 import 'package:bcci_platform/presentation/screens/worship_page/widgets/filter_chip.dart';
-import 'package:flutter/material.dart' hide CarouselController, FilterChip;
+import 'package:flutter/material.dart' hide CarouselController, NewInfoCard;
 import 'package:provider/provider.dart';
 
 class MessagesPage extends StatefulWidget {
@@ -77,6 +78,28 @@ class _MessagesPageState extends State<MessagesPage>
                         ),
                       ),
                       Gap(20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: NewInfoCard(
+                              title: "Announcement",
+                              message: "Church updates",
+                              badgeText: "New",
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: NewInfoCard(
+                              title: "Prayer Request",
+                              message: "Community Prayers",
+                              badgeText: "New",
+                            ),
+                          ),
+                        ],
+                      ),
+
+                      Gap(20),
                       const Text(
                         "Recent Conversations",
                         style: TextStyle(
@@ -95,9 +118,35 @@ class _MessagesPageState extends State<MessagesPage>
                         timeStamp: "2 days ago",
                         count: 1,
                       ),
+                      RecentChatCard(
+                        img: "images/Pastor_David_Convo.png",
+                        name: "Akatsuki",
+                        chat: "Feel Pain",
+                        members: "Pain, Itachi",
+                        timeStamp: "2 days ago",
+                      ),
+                      RecentChatCard(
+                        img: "images/Pastor_David_Convo.png",
+                        name: "Soul Society",
+                        chat: "Get ready shinigamis!!!",
+                        members: "Ichigo, Aizen",
+                        timeStamp: "2 days ago",
+                        count: 1,
+                      ),
                       Gap(10),
                     ],
                   ),
+                ),
+              ),
+              floatingActionButton: FloatingActionButton(
+                heroTag: 'message_fab',
+                onPressed: () {},
+                backgroundColor: const Color(0xFF000000),
+                shape: const CircleBorder(),
+                child: Image.asset(
+                  'images/Write_Message.png',
+                  height: 30,
+                  fit: BoxFit.cover,
                 ),
               ),
             ),
