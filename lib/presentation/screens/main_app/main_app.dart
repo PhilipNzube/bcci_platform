@@ -1,3 +1,4 @@
+import 'package:bcci_platform/presentation/screens/cluster_page/cluster_page.dart';
 import 'package:bcci_platform/presentation/screens/home_page/home_page.dart';
 import 'package:flutter/material.dart';
 import '../../../core/services/connectivity_service.dart';
@@ -48,7 +49,7 @@ class _MainAppState extends State<MainApp> with TickerProviderStateMixin {
         body: SafeArea(
           child: IndexedStack(
             index: navController.selectedIndex,
-            children: [HomePage()],
+            children: [HomePage(), ClusterPage()],
           ),
         ),
         bottomNavigationBar: const CustomBottomNav(),

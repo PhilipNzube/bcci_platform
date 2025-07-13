@@ -6,7 +6,6 @@ import 'package:bcci_platform/presentation/screens/home_page/widgets/info_card.d
 import 'package:bcci_platform/presentation/screens/home_page/widgets/upcoming_events_card.dart';
 import 'package:flutter/material.dart' hide CarouselController;
 import 'package:provider/provider.dart';
-import '../../../main.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
