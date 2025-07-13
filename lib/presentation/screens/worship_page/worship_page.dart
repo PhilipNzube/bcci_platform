@@ -1,8 +1,8 @@
 import 'package:bcci_platform/core/widgets/custom_gap.dart';
 import 'package:bcci_platform/presentation/controllers/worship_page_controller.dart';
-import 'package:bcci_platform/presentation/screens/cluster_page/widgets/cluster_card.dart';
-import 'package:bcci_platform/presentation/screens/cluster_page/widgets/summary_card.dart';
-import 'package:flutter/material.dart' hide CarouselController;
+import 'package:bcci_platform/presentation/screens/worship_page/widgets/audio_card.dart';
+import 'package:bcci_platform/presentation/screens/worship_page/widgets/filter_chip.dart';
+import 'package:flutter/material.dart' hide CarouselController, FilterChip;
 import 'package:provider/provider.dart';
 
 class WorshipPage extends StatefulWidget {
@@ -202,52 +202,51 @@ class _WorshipPageState extends State<WorshipPage>
                           ],
                         ),
                       ),
+                      Gap(30),
+                      SingleChildScrollView(
+                        padding: const EdgeInsets.only(
+                          left: 1,
+                          right: 1,
+                          top: 2,
+                          bottom: 2,
+                        ),
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            FilterChip(title: "All", badgeText: "New"),
+                            const SizedBox(width: 10),
+                            FilterChip(title: "Songs", badgeText: "New"),
+                            const SizedBox(width: 10),
+                            FilterChip(title: "Sermons", badgeText: "New"),
+                            const SizedBox(width: 10),
+                            FilterChip(title: "Prayers", badgeText: "New"),
+                          ],
+                        ),
+                      ),
                       Gap(20),
-                      Stack(
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.all(16),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(5),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black12,
-                                  spreadRadius: 3,
-                                  blurRadius: 6,
-                                ),
-                              ],
-                            ),
-                            child: Text(
-                              "All",
-                              style: const TextStyle(
-                                fontSize: 18,
-                                fontFamily: 'GolosText',
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            top: 0,
-                            right: 0,
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 4,
-                                horizontal: 8,
-                              ),
-                              decoration: BoxDecoration(
-                                color: Color(0xFFFF0000),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: const Text(
-                                "New",
-                                style: TextStyle(
-                                  fontSize: 8,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
+                      AudioCard(
+                        iconType: "Music",
+                        title: "Amazing Grace",
+                        teamTitle: "Worship Team",
+                        duration: "4:00",
+                      ),
+                      AudioCard(
+                        iconType: "Voice",
+                        title: "Amazing Grace",
+                        teamTitle: "Worship Team",
+                        duration: "5:00",
+                      ),
+                      AudioCard(
+                        iconType: "Reading",
+                        title: "Amazing Grace",
+                        teamTitle: "Worship Team",
+                        duration: "6:00",
+                      ),
+                      AudioCard(
+                        iconType: "Music",
+                        title: "Amazing Grace",
+                        teamTitle: "Worship Team",
+                        duration: "8:00",
                       ),
                       Gap(10),
                     ],
