@@ -1,6 +1,8 @@
 import 'package:bcci_platform/core/widgets/custom_gap.dart';
 import 'package:bcci_platform/presentation/controllers/notifications_page_controller.dart';
+import 'package:bcci_platform/presentation/screens/notification_page/widgets/day_divider.dart';
 import 'package:bcci_platform/presentation/screens/notification_page/widgets/filter_card.dart';
+import 'package:bcci_platform/presentation/screens/notification_page/widgets/notification_card.dart';
 import 'package:flutter/material.dart' hide CarouselController;
 import 'package:provider/provider.dart';
 
@@ -17,6 +19,13 @@ class _NotificationPageState extends State<NotificationPage>
   bool newCourseAlert = false;
   bool useWiFi = true;
   bool autoDownload = false;
+  final ValueNotifier<String?> _selectedFilter = ValueNotifier<String?>(null);
+
+  @override
+  void dispose() {
+    _selectedFilter.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,11 +85,54 @@ class _NotificationPageState extends State<NotificationPage>
                       Gap(20),
                       Row(
                         children: [
-                          FilterCard(title: "All"),
+                          FilterCard(
+                            title: "All",
+                            selectedFilter:
+                                NotificationPageController.selectedFilter,
+                          ),
                           Gap(10, isHorizontal: true),
-                          FilterCard(title: "Unread"),
+                          FilterCard(
+                            title: "Unread",
+                            selectedFilter:
+                                NotificationPageController.selectedFilter,
+                          ),
                         ],
                       ),
+                      Gap(10),
+                      if (NotificationPageController.selectedFilter.value ==
+                              "All" ||
+                          NotificationPageController.selectedFilter.value ==
+                              null) ...[
+                        // if (NotificationPageController.selectedFilter.value ==
+                        //     "Unread")
+                        DayDivider(dayText: "Today"),
+                        NotificationCard(
+                          iconType: "Reminder",
+                          name: "Prayer Request",
+                          message:
+                              "Sarah Williams requested prayer for healing",
+                          timeStamp: "5 mins ago",
+                        ),
+                        NotificationCard(
+                          iconType: "Reminder",
+                          name: "Upcoming Event",
+                          message: "Bible Study tonight at 7 PM",
+                          timeStamp: "Today at 6:00pm",
+                        ),
+                        DayDivider(dayText: "Yesterday"),
+                        NotificationCard(
+                          iconType: "Goal",
+                          name: "Goal Completed",
+                          message: "You completed your daily goal!",
+                          timeStamp: "Yesterday at 6:00pm",
+                        ),
+                        NotificationCard(
+                          iconType: "Goal",
+                          name: "Goal Completed",
+                          message: "You completed your daily goal!",
+                          timeStamp: "Yesterday at 6:00pm",
+                        ),
+                      ],
                       Gap(10),
                     ],
                   ),
