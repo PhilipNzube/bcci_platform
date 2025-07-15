@@ -32,7 +32,7 @@ class SettingsItem extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset(icon, width: 34, height: 34, fit: BoxFit.contain),
+              Image.asset(icon, width: 28, height: 28, fit: BoxFit.contain),
               Gap(15, isHorizontal: true),
 
               Expanded(
@@ -53,8 +53,8 @@ class SettingsItem extends StatelessWidget {
 
               Image.asset(
                 "images/Add.png",
-                width: 34,
-                height: 34,
+                width: 28,
+                height: 28,
                 fit: BoxFit.contain,
               ),
             ],

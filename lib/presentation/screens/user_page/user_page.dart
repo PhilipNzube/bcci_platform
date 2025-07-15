@@ -1,8 +1,11 @@
 import 'package:bcci_platform/core/widgets/custom_gap.dart';
 import 'package:bcci_platform/presentation/controllers/user_page_controller.dart';
 import 'package:bcci_platform/presentation/screens/acheivement_page/acheivement_page.dart';
+import 'package:bcci_platform/presentation/screens/edit_profile/edit_profile.dart';
 import 'package:bcci_platform/presentation/screens/privacy_page/privacy_page.dart';
 import 'package:bcci_platform/presentation/screens/profile_notification_page/profile_notification_page.dart';
+import 'package:bcci_platform/presentation/screens/security_settings_page/security_settings_page.dart';
+import 'package:bcci_platform/presentation/screens/spiritual_goals/spiritual_goals.dart';
 import 'package:bcci_platform/presentation/screens/user_page/widgets/settings_item.dart';
 import 'package:flutter/material.dart' hide CarouselController;
 import 'package:provider/provider.dart';
@@ -156,31 +159,42 @@ class _UserPageState extends State<UserPage>
                                 ],
                               ),
                               Gap(16),
-                              Container(
-                                padding: const EdgeInsets.symmetric(
-                                  vertical: 6,
-                                  horizontal: 14,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: Color.fromARGB(36, 255, 255, 255),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    const Text(
-                                      "Edit Profile",
-                                      style: TextStyle(color: Colors.white),
+                              InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          EditProfile(key: UniqueKey()),
                                     ),
-                                    Gap(5, isHorizontal: true),
-                                    Image.asset(
-                                      "images/Edit_Profile.png",
-                                      width: 30,
-                                      height: 30,
-                                      color: Colors.white,
-                                      fit: BoxFit.contain,
-                                    ),
-                                  ],
+                                  );
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 6,
+                                    horizontal: 14,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: Color.fromARGB(36, 255, 255, 255),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      const Text(
+                                        "Edit Profile",
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                      Gap(5, isHorizontal: true),
+                                      Image.asset(
+                                        "images/Edit_Profile.png",
+                                        width: 30,
+                                        height: 30,
+                                        color: Colors.white,
+                                        fit: BoxFit.contain,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ],
@@ -200,7 +214,15 @@ class _UserPageState extends State<UserPage>
                           SettingsItem(
                             icon: "images/Spiritual_Goal_Settings.png",
                             title: "Spiritual Goals",
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      SpiritualGoals(key: UniqueKey()),
+                                ),
+                              );
+                            },
                           ),
                           SettingsItem(
                             icon: "images/Notification_Settings.png",
@@ -231,7 +253,15 @@ class _UserPageState extends State<UserPage>
                           SettingsItem(
                             icon: "images/Security_Settings.png",
                             title: "Security",
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      SecuritySettingsPage(key: UniqueKey()),
+                                ),
+                              );
+                            },
                           ),
                           SettingsItem(
                             icon: "images/Acheivement_Settings.png",
