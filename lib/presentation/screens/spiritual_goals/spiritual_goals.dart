@@ -103,13 +103,22 @@ class _SpiritualGoalsState extends State<SpiritualGoals>
                         Spacer(),
                         Center(
                           child: CustomButton(
+                            backgroundColor: const Color(0xFFC7002B),
+                            padding: WidgetStateProperty.all(
+                              const EdgeInsets.symmetric(
+                                horizontal: 40,
+                                vertical: 12,
+                              ),
+                            ),
+                            foregroundColor: Colors.white,
+                            gap: 5,
                             img: "images/Edit_Profile.png",
                             text: "Edit",
                             onPressed: () {
-                              if (SpiritualGoalsController.formKey.currentState!
-                                  .validate()) {
-                                // Handle save changes
-                              }
+                              // if (SpiritualGoalsController.formKey.currentState!
+                              //     .validate()) {
+                              //   // Handle save changes
+                              // }
                             },
                           ),
                         ),

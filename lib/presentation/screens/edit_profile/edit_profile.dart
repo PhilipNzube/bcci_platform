@@ -275,16 +275,25 @@ class _EditProfileState extends State<EditProfile>
                             Gap(24),
                             Center(
                               child: CustomButton(
+                                backgroundColor: const Color(0xFFC7002B),
+                                padding: WidgetStateProperty.all(
+                                  const EdgeInsets.symmetric(
+                                    horizontal: 40,
+                                    vertical: 12,
+                                  ),
+                                ),
+                                foregroundColor: Colors.white,
                                 img: "images/save.png",
                                 text: "Save Changes",
                                 onPressed: () {
-                                  if (EditProfileController
-                                      .formKey
-                                      .currentState!
-                                      .validate()) {
-                                    // Handle save changes
-                                  }
+                                  // if (EditProfileController
+                                  //     .formKey
+                                  //     .currentState!
+                                  //     .validate()) {
+                                  //   // Handle save changes
+                                  // }
                                 },
+                                gap: 5,
                               ),
                             ),
                           ],

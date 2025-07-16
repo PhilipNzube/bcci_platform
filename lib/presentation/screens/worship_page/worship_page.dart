@@ -1,4 +1,5 @@
 import 'package:bcci_platform/core/widgets/custom_background.dart';
+import 'package:bcci_platform/core/widgets/custom_button.dart';
 import 'package:bcci_platform/core/widgets/custom_gap.dart';
 import 'package:bcci_platform/presentation/controllers/worship_page_controller.dart';
 import 'package:bcci_platform/presentation/screens/worship_page/widgets/audio_card.dart';
@@ -49,6 +50,7 @@ class _WorshipPageState extends State<WorshipPage>
                       CustomBackground(
                         width: double.infinity,
                         borderRadius: 10,
+                        color: Color(0xFFB80E0E),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -127,66 +129,26 @@ class _WorshipPageState extends State<WorshipPage>
                               ),
                             ),
                             Gap(10),
-                            SizedBox(
+                            CustomButton(
+                              text: "Join Live",
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              img: "images/Live.png",
+                              imgHeight: 30,
+                              imgWidth: 30,
+                              backgroundColor: const Color(0xFFC7002B),
+                              padding: WidgetStateProperty.all(
+                                const EdgeInsets.symmetric(
+                                  horizontal: 40,
+                                  vertical: 12,
+                                ),
+                              ),
+                              foregroundColor: Colors.white,
+                              gap: 5,
                               width: double.infinity,
                               height:
                                   (60 / MediaQuery.of(context).size.height) *
                                   MediaQuery.of(context).size.height,
-                              child: ElevatedButton(
-                                onPressed: () {},
-                                style: ButtonStyle(
-                                  backgroundColor:
-                                      WidgetStateProperty.resolveWith<Color>(
-                                        (states) =>
-                                            states.contains(WidgetState.pressed)
-                                            ? Color(0xFFFF0000)
-                                            : Colors.white,
-                                      ),
-                                  foregroundColor:
-                                      WidgetStateProperty.resolveWith<Color>(
-                                        (states) =>
-                                            states.contains(WidgetState.pressed)
-                                            ? Colors.white
-                                            : Color(0xFFFF0000),
-                                      ),
-                                  elevation: WidgetStateProperty.all<double>(
-                                    4.0,
-                                  ),
-                                  shape:
-                                      WidgetStateProperty.all<
-                                        RoundedRectangleBorder
-                                      >(
-                                        const RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                            Radius.circular(15),
-                                          ),
-                                        ),
-                                      ),
-                                ),
-                                child: WorshipPageController.isLoading
-                                    ? const CircularProgressIndicator(
-                                        color: Colors.white,
-                                      )
-                                    : Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Image.asset(
-                                            "images/Live.png",
-                                            width: 30,
-                                            height: 30,
-                                            fit: BoxFit.contain,
-                                          ),
-                                          Text(
-                                            "Join Live",
-                                            style: const TextStyle(
-                                              fontSize: 15,
-                                              fontFamily: 'GolosText',
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                              ),
                             ),
                           ],
                         ),

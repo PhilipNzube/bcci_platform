@@ -1,4 +1,5 @@
 import 'package:bcci_platform/core/widgets/custom_background.dart';
+import 'package:bcci_platform/core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/widgets/custom_gap.dart';
@@ -34,16 +35,20 @@ class ActiveChallengesCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  title,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                Expanded(
+                  child: Text(
+                    title,
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    overflow: TextOverflow.ellipsis,
+                    softWrap: false,
+                  ),
                 ),
                 Row(
                   children: [
                     Image.asset(
                       "images/Gift.png",
-                      width: 5,
-                      height: 5,
+                      width: 15,
+                      height: 15,
                       color: Colors.black,
                       fit: BoxFit.contain,
                     ),
@@ -56,10 +61,17 @@ class ActiveChallengesCard extends StatelessWidget {
               ],
             ),
             Gap(6),
+            Text(
+              subText,
+              style: TextStyle(color: Color(0xFF757575), fontSize: 14),
+              overflow: TextOverflow.ellipsis,
+              softWrap: false,
+            ),
+            Gap(6),
             Row(
               children: [
                 Text(
-                  title,
+                  "$progressBarTitle Participants",
                   style: TextStyle(
                     fontSize: 14,
                     color: progressColor,
@@ -82,6 +94,25 @@ class ActiveChallengesCard extends StatelessWidget {
                 valueColor: AlwaysStoppedAnimation<Color>(progressColor),
                 minHeight: 10,
               ),
+            ),
+            Gap(6),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Text(
+                    endDate,
+                    style: TextStyle(color: Color(0xFF757575), fontSize: 14),
+                    overflow: TextOverflow.ellipsis,
+                    softWrap: false,
+                  ),
+                ),
+                CustomButton(
+                  text: "Continue",
+                  backgroundColor: Colors.black,
+                  foregroundColor: Colors.white,
+                ),
+              ],
             ),
           ],
         ),

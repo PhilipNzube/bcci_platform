@@ -78,15 +78,24 @@ class _SecuritySettingsPageState extends State<SecuritySettingsPage>
                         Spacer(),
                         Center(
                           child: CustomButton(
+                            backgroundColor: const Color(0xFFC7002B),
+                            padding: WidgetStateProperty.all(
+                              const EdgeInsets.symmetric(
+                                horizontal: 40,
+                                vertical: 12,
+                              ),
+                            ),
+                            foregroundColor: Colors.white,
+                            gap: 5,
                             img: "images/Edit_Profile.png",
                             text: "Edit",
                             onPressed: () {
-                              if (SecuritySettingsPageController
-                                  .formKey
-                                  .currentState!
-                                  .validate()) {
-                                // Handle save changes
-                              }
+                              // if (SecuritySettingsPageController
+                              //     .formKey
+                              //     .currentState!
+                              //     .validate()) {
+                              //   // Handle save changes
+                              // }
                             },
                           ),
                         ),

@@ -105,15 +105,24 @@ class _DataManagementPageState extends State<DataManagementPage>
                         ),
                         Gap(5),
                         CustomButton(
+                          backgroundColor: const Color(0xFFC7002B),
+                          padding: WidgetStateProperty.all(
+                            const EdgeInsets.symmetric(
+                              horizontal: 40,
+                              vertical: 12,
+                            ),
+                          ),
+                          foregroundColor: Colors.white,
+                          gap: 5,
                           img: "images/delete.png",
                           text: "Delete Account",
                           onPressed: () {
-                            if (DataManagementPageController
-                                .formKey
-                                .currentState!
-                                .validate()) {
-                              // Handle save changes
-                            }
+                            // if (DataManagementPageController
+                            //     .formKey
+                            //     .currentState!
+                            //     .validate()) {
+                            //   // Handle save changes
+                            // }
                           },
                         ),
 
