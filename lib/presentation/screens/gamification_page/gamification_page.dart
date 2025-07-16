@@ -1,9 +1,8 @@
 import 'package:bcci_platform/core/widgets/custom_gap.dart';
 import 'package:bcci_platform/presentation/controllers/gamification_page_controller.dart';
-import 'package:bcci_platform/presentation/screens/analytics_dashboard_page/widgets/event_tile.dart';
+import 'package:bcci_platform/presentation/screens/gamification_page/widgets/acheivement_card.dart';
 import 'package:bcci_platform/presentation/screens/gamification_page/widgets/active_challenges_card.dart';
 import 'package:bcci_platform/presentation/screens/gamification_page/widgets/progress_item.dart';
-import 'package:bcci_platform/presentation/screens/home_page/widgets/action_card.dart';
 import 'package:bcci_platform/core/widgets/custom_background.dart';
 import 'package:bcci_platform/presentation/screens/home_page/widgets/info_card.dart';
 import 'package:flutter/material.dart' hide CarouselController;
@@ -183,22 +182,44 @@ class _GamificationPageState extends State<GamificationPage>
                           ],
                         ),
                       ),
-                      Gap(20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          ActionCard(
-                            label: "Daily Reading",
-                            img: "images/Daily_Reading.png",
-                          ),
-                          Gap(10, isHorizontal: true),
-                          ActionCard(label: "Prayer", img: "images/Prayer.png"),
-                          Gap(10, isHorizontal: true),
-                          ActionCard(
-                            label: "Fellowship",
-                            img: "images/Fellowship.png",
-                          ),
-                        ],
+                      Gap(30),
+                      CustomBackground(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // Title Row
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Acheivements",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15,
+                                  ),
+                                ),
+
+                                Text(
+                                  "View All",
+                                  style: TextStyle(color: Colors.black54),
+                                ),
+                              ],
+                            ),
+                            Gap(16),
+                            // Events
+                            AcheivementCard(
+                              iconType: 'Prayer',
+                              title: 'Prayer Warrior',
+                              badgeText: 'Prayer',
+                              subText: 'Completed 30 days of daily prayers',
+                              earnedTimeStamp: 'Earned 2025-05-15',
+                              points: '500',
+                              progressBarTitle: 'Progress to Level 4',
+                              progress: .3,
+                              progressColor: Colors.black,
+                            ),
+                          ],
+                        ),
                       ),
                       Gap(10),
                     ],

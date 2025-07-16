@@ -49,6 +49,7 @@ class _MessagesPageState extends State<MessagesPage>
                       ),
                       Gap(20),
                       CustomBackground(
+                        padding: const EdgeInsets.symmetric(horizontal: 5),
                         child: TextField(
                           decoration: InputDecoration(
                             hintText: "Search Messages",

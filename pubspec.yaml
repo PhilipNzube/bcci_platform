@@ -109,9 +109,11 @@ flutter:
     - images/Calender_Notification.png
     - images/Calender.png
     - images/Cell_Leader_Appointment.png
+    - images/Church.png
     - images/Cluster-Active.png
     - images/Cluster.png
     - images/Community_Service.png
+    - images/Crown.png
     - images/CV_Recognition.png
     - images/Daily_Prayer.png
     - images/Daily_Reading.png
@@ -145,6 +147,7 @@ flutter:
     - images/Prayer.png
     - images/Privacy_Settings.png
     - images/save.png
+    - images/Scripture.png
     - images/Security_Settings.png
     - images/Security.png
     - images/settings-2.png
