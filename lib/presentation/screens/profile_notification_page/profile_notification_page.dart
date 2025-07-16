@@ -14,13 +14,6 @@ class ProfileNotificationPage extends StatefulWidget {
 
 class _ProfileNotificationPageState extends State<ProfileNotificationPage>
     with TickerProviderStateMixin, RouteAware {
-  bool eventReminders = false;
-  bool cellUpdates = false;
-  bool spiritualGoals = true;
-  bool acheivements = true;
-  bool communityNews = false;
-  bool prayerRequest = false;
-
   @override
   Widget build(BuildContext context) {
     //final ProfileNotificationPageController = Provider.of<ProfileNotificationPageController>(context);
@@ -72,56 +65,54 @@ class _ProfileNotificationPageState extends State<ProfileNotificationPage>
                       Gap(20),
                       SettingsOptions(
                         title: "Event Reminders",
-                        value: eventReminders,
+                        value: ProfileNotificationPageController.eventReminders,
                         onChanged: (val) {
-                          setState(() {
-                            eventReminders = val;
-                          });
+                          ProfileNotificationPageController.setEventReminders(
+                            val,
+                          );
                         },
                       ),
                       SettingsOptions(
                         title: "Cell Updates",
-                        value: cellUpdates,
+                        value: ProfileNotificationPageController.cellUpdates,
                         onChanged: (val) {
-                          setState(() {
-                            cellUpdates = val;
-                          });
+                          ProfileNotificationPageController.setCellUpdates(val);
                         },
                       ),
                       SettingsOptions(
                         title: "Spiritual Goals",
-                        value: spiritualGoals,
+                        value: ProfileNotificationPageController.spiritualGoals,
                         onChanged: (val) {
-                          setState(() {
-                            spiritualGoals = val;
-                          });
+                          ProfileNotificationPageController.setSpiritualGoals(
+                            val,
+                          );
                         },
                       ),
                       SettingsOptions(
                         title: "Acheivements",
-                        value: acheivements,
+                        value: ProfileNotificationPageController.acheivements,
                         onChanged: (val) {
-                          setState(() {
-                            acheivements = val;
-                          });
+                          ProfileNotificationPageController.setAcheivements(
+                            val,
+                          );
                         },
                       ),
                       SettingsOptions(
                         title: "Community News",
-                        value: communityNews,
+                        value: ProfileNotificationPageController.communityNews,
                         onChanged: (val) {
-                          setState(() {
-                            communityNews = val;
-                          });
+                          ProfileNotificationPageController.setCommunityNews(
+                            val,
+                          );
                         },
                       ),
                       SettingsOptions(
                         title: "Prayer Request",
-                        value: prayerRequest,
+                        value: ProfileNotificationPageController.prayerRequest,
                         onChanged: (val) {
-                          setState(() {
-                            prayerRequest = val;
-                          });
+                          ProfileNotificationPageController.setPrayerRequest(
+                            val,
+                          );
                         },
                       ),
                       Gap(10),

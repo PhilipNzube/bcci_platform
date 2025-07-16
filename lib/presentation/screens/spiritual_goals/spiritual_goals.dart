@@ -16,18 +16,6 @@ class SpiritualGoals extends StatefulWidget {
 
 class _SpiritualGoalsState extends State<SpiritualGoals>
     with TickerProviderStateMixin, RouteAware {
-  bool pushNotifications = false;
-  bool newCourseAlert = false;
-  bool useWiFi = true;
-  bool autoDownload = false;
-  final ValueNotifier<String?> _selectedFilter = ValueNotifier<String?>(null);
-
-  @override
-  void dispose() {
-    _selectedFilter.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     //final SpiritualGoalsController = Provider.of<SpiritualGoalsController>(context);
@@ -82,7 +70,7 @@ class _SpiritualGoalsState extends State<SpiritualGoals>
                         Gap(20),
                         CustomLabel(title: "Fullname"),
                         CustomTextField(
-                          initialValue: SpiritualGoalsController.fullName,
+                          initialValue: SpiritualGoalsController.fullName.text,
                           onChanged: (value) =>
                               SpiritualGoalsController.setFullName(value),
                           labelText: "Sarmie Phoenix",
@@ -90,7 +78,7 @@ class _SpiritualGoalsState extends State<SpiritualGoals>
                         Gap(16),
                         CustomLabel(title: "Email address"),
                         CustomTextField(
-                          initialValue: SpiritualGoalsController.email,
+                          initialValue: SpiritualGoalsController.email.text,
                           onChanged: (value) =>
                               SpiritualGoalsController.setEmail(value),
                           labelText: "sarmiephoenix@email.com",
@@ -99,14 +87,15 @@ class _SpiritualGoalsState extends State<SpiritualGoals>
                         CustomLabel(title: "Phone number"),
                         CustomPhoneField(
                           initialCountryCode: 'NG',
-                          initialValue: SpiritualGoalsController.phoneNumber,
+                          initialValue:
+                              SpiritualGoalsController.phoneNumber.text,
                           onChanged: (value) =>
                               SpiritualGoalsController.setPhoneNumber(value),
                         ),
                         Gap(16),
                         CustomLabel(title: "Address"),
                         CustomTextField(
-                          initialValue: SpiritualGoalsController.address,
+                          initialValue: SpiritualGoalsController.address.text,
                           onChanged: (value) =>
                               SpiritualGoalsController.setAddress(value),
                           labelText: "Input your address",

@@ -2,31 +2,28 @@ import 'package:flutter/material.dart' hide CarouselController;
 
 class SpiritualGoalsController extends ChangeNotifier {
   final _formKey = GlobalKey<FormState>();
-  String? _fullName;
-  String? _dateOfBirth;
   String _gender = "Male";
-  String? _email;
-  String? _phoneNumber;
-  String? _address;
+
+  final TextEditingController _fullName = TextEditingController();
+  final TextEditingController _dateOfBirth = TextEditingController();
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _phoneNumber = TextEditingController();
+  final TextEditingController _address = TextEditingController();
 
   SpiritualGoalsController();
 
   //public getters
-  GlobalKey<FormState> get formKey => _formKey;
-  String? get fullName => _fullName;
-  String? get dateOfBirth => _dateOfBirth;
   String? get gender => _gender;
-  String? get email => _email;
-  String? get phoneNumber => _phoneNumber;
-  String? get address => _address;
+
+  GlobalKey<FormState> get formKey => _formKey;
+  TextEditingController get fullName => _fullName;
+  TextEditingController get dateOfBirth => _dateOfBirth;
+  TextEditingController get email => _email;
+  TextEditingController get phoneNumber => _phoneNumber;
+  TextEditingController get address => _address;
 
   void setFullName(String value) {
-    _fullName = value;
-    notifyListeners();
-  }
-
-  void setDateOfBirth(String value) {
-    _dateOfBirth = value;
+    _fullName.text = value;
     notifyListeners();
   }
 
@@ -36,17 +33,17 @@ class SpiritualGoalsController extends ChangeNotifier {
   }
 
   void setEmail(String value) {
-    _email = value;
+    _email.text = value;
     notifyListeners();
   }
 
   void setPhoneNumber(String value) {
-    _phoneNumber = value;
+    _phoneNumber.text = value;
     notifyListeners();
   }
 
   void setAddress(String value) {
-    _address = value;
+    _address.text = value;
     notifyListeners();
   }
 }

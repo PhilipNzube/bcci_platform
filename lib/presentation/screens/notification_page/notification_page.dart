@@ -15,18 +15,6 @@ class NotificationPage extends StatefulWidget {
 
 class _NotificationPageState extends State<NotificationPage>
     with TickerProviderStateMixin, RouteAware {
-  bool pushNotifications = false;
-  bool newCourseAlert = false;
-  bool useWiFi = true;
-  bool autoDownload = false;
-  final ValueNotifier<String?> _selectedFilter = ValueNotifier<String?>(null);
-
-  @override
-  void dispose() {
-    _selectedFilter.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     //final NotificationPageController = Provider.of<NotificationPageController>(context);

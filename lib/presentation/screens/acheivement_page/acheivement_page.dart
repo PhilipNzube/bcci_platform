@@ -13,10 +13,6 @@ class AcheivementPage extends StatefulWidget {
 
 class _AcheivementPageState extends State<AcheivementPage>
     with TickerProviderStateMixin, RouteAware {
-  bool showLeaderboard = false;
-  bool acheivementNotification = false;
-  bool weeklyReports = true;
-
   @override
   Widget build(BuildContext context) {
     //final AcheivementPageController = Provider.of<AcheivementPageController>(context);
@@ -68,29 +64,26 @@ class _AcheivementPageState extends State<AcheivementPage>
                       Gap(20),
                       SettingsOptions(
                         title: "Show Leaderboard",
-                        value: showLeaderboard,
+                        value: AcheivementPageController.showLeaderboard,
                         onChanged: (val) {
-                          setState(() {
-                            showLeaderboard = val;
-                          });
+                          AcheivementPageController.setShowLeaderboard(val);
                         },
                       ),
                       SettingsOptions(
                         title: "Acheivement Notification",
-                        value: acheivementNotification,
+                        value:
+                            AcheivementPageController.acheivementNotification,
                         onChanged: (val) {
-                          setState(() {
-                            acheivementNotification = val;
-                          });
+                          AcheivementPageController.setAcheivementNotification(
+                            val,
+                          );
                         },
                       ),
                       SettingsOptions(
                         title: "Weekly Reports",
-                        value: weeklyReports,
+                        value: AcheivementPageController.weeklyReports,
                         onChanged: (val) {
-                          setState(() {
-                            weeklyReports = val;
-                          });
+                          AcheivementPageController.setWeeklyReports(val);
                         },
                       ),
                       Gap(10),

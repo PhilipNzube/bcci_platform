@@ -15,18 +15,6 @@ class SecuritySettingsPage extends StatefulWidget {
 
 class _SecuritySettingsPageState extends State<SecuritySettingsPage>
     with TickerProviderStateMixin, RouteAware {
-  bool pushNotifications = false;
-  bool newCourseAlert = false;
-  bool useWiFi = true;
-  bool autoDownload = false;
-  final ValueNotifier<String?> _selectedFilter = ValueNotifier<String?>(null);
-
-  @override
-  void dispose() {
-    _selectedFilter.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     //final SecuritySettingsPageController = Provider.of<SecuritySettingsPageController>(context);

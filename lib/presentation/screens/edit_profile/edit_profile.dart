@@ -5,10 +5,6 @@ import 'package:bcci_platform/core/widgets/custom_label.dart';
 import 'package:bcci_platform/core/widgets/custom_phone_field.dart';
 import 'package:bcci_platform/core/widgets/custom_radio_button.dart';
 import 'package:bcci_platform/presentation/controllers/edit_profile_controller.dart';
-import 'package:bcci_platform/presentation/screens/acheivement_page/acheivement_page.dart';
-import 'package:bcci_platform/presentation/screens/privacy_page/privacy_page.dart';
-import 'package:bcci_platform/presentation/screens/profile_notification_page/profile_notification_page.dart';
-import 'package:bcci_platform/presentation/screens/user_page/widgets/settings_item.dart';
 import 'package:flutter/material.dart' hide CarouselController;
 import 'package:provider/provider.dart';
 
@@ -179,7 +175,7 @@ class _EditProfileState extends State<EditProfile>
                               color: const Color(0xFFC7002B),
                             ),
                             CustomTextField(
-                              initialValue: EditProfileController.fullName,
+                              initialValue: EditProfileController.fullName.text,
                               onChanged: (value) =>
                                   EditProfileController.setFullName(value),
                               labelText: "Sarmie Phoenix",
@@ -199,16 +195,16 @@ class _EditProfileState extends State<EditProfile>
                                 );
                                 if (picked != null) {
                                   // Format the date in dd/MM/yyyy format before updating the controller
-                                  // EditProfileController.setDobController(
-                                  //   EditProfileController.formatDate(picked),
-                                  // );
+                                  EditProfileController.setDateOfBirth(
+                                    EditProfileController.formatDate(picked),
+                                  );
                                 }
                               },
                               child: AbsorbPointer(
                                 // Prevent TextFormField from opening keyboard
                                 child: CustomTextField(
                                   initialValue:
-                                      EditProfileController.dateOfBirth,
+                                      EditProfileController.dateOfBirth.text,
                                   suffixIcon: Icons.calendar_today,
                                   onChanged: (value) =>
                                       EditProfileController.setDateOfBirth(
@@ -248,7 +244,7 @@ class _EditProfileState extends State<EditProfile>
                               color: const Color(0xFFC7002B),
                             ),
                             CustomTextField(
-                              initialValue: EditProfileController.email,
+                              initialValue: EditProfileController.email.text,
                               onChanged: (value) =>
                                   EditProfileController.setEmail(value),
                               labelText: "sarmiephoenix@email.com",
@@ -260,7 +256,8 @@ class _EditProfileState extends State<EditProfile>
                             ),
                             CustomPhoneField(
                               initialCountryCode: 'NG',
-                              initialValue: EditProfileController.phoneNumber,
+                              initialValue:
+                                  EditProfileController.phoneNumber.text,
                               onChanged: (value) =>
                                   EditProfileController.setPhoneNumber(value),
                             ),
@@ -270,7 +267,7 @@ class _EditProfileState extends State<EditProfile>
                               color: const Color(0xFFC7002B),
                             ),
                             CustomTextField(
-                              initialValue: EditProfileController.location,
+                              initialValue: EditProfileController.location.text,
                               onChanged: (value) =>
                                   EditProfileController.setLocation(value),
                               labelText: "Lagos, Nigeria",

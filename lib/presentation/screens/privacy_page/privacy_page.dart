@@ -13,11 +13,6 @@ class PrivacyPage extends StatefulWidget {
 
 class _PrivacyPageState extends State<PrivacyPage>
     with TickerProviderStateMixin, RouteAware {
-  bool profileVisible = false;
-  bool showAttendance = false;
-  bool shareProgress = true;
-  bool allowMessages = true;
-
   @override
   Widget build(BuildContext context) {
     //final PrivacyPageController = Provider.of<PrivacyPageController>(context);
@@ -69,38 +64,30 @@ class _PrivacyPageState extends State<PrivacyPage>
                       Gap(20),
                       SettingsOptions(
                         title: "Profile Visible",
-                        value: profileVisible,
+                        value: PrivacyPageController.profileVisible,
                         onChanged: (val) {
-                          setState(() {
-                            profileVisible = val;
-                          });
+                          PrivacyPageController.setProfileVisible(val);
                         },
                       ),
                       SettingsOptions(
                         title: "Show Attendance",
-                        value: showAttendance,
+                        value: PrivacyPageController.showAttendance,
                         onChanged: (val) {
-                          setState(() {
-                            showAttendance = val;
-                          });
+                          PrivacyPageController.setShowAttendance(val);
                         },
                       ),
                       SettingsOptions(
                         title: "Share Progress",
-                        value: shareProgress,
+                        value: PrivacyPageController.shareProgress,
                         onChanged: (val) {
-                          setState(() {
-                            shareProgress = val;
-                          });
+                          PrivacyPageController.setShareProgress(val);
                         },
                       ),
                       SettingsOptions(
                         title: "Allow Messages",
-                        value: allowMessages,
+                        value: PrivacyPageController.allowMessages,
                         onChanged: (val) {
-                          setState(() {
-                            allowMessages = val;
-                          });
+                          PrivacyPageController.setAllowMessages(val);
                         },
                       ),
                       Gap(10),

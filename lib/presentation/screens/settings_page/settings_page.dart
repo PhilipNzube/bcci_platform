@@ -13,11 +13,6 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage>
     with TickerProviderStateMixin, RouteAware {
-  bool pushNotifications = false;
-  bool newCourseAlert = false;
-  bool useWiFi = true;
-  bool autoDownload = false;
-
   @override
   Widget build(BuildContext context) {
     //final SettingsPageController = Provider.of<SettingsPageController>(context);
@@ -65,43 +60,35 @@ class _SettingsPageState extends State<SettingsPage>
                       SettingsOptions(
                         title: "Push Notifications",
                         subTitle: "Get notified of app alerts",
-                        value: pushNotifications,
+                        value: SettingsPageController.pushNotifications,
                         onChanged: (val) {
-                          setState(() {
-                            pushNotifications = val;
-                          });
+                          SettingsPageController.setPushNotifications(val);
                         },
                       ),
                       SettingsOptions(
                         title: "New course alerts",
                         subTitle: "Know when instructors upload",
-                        value: newCourseAlert,
+                        value: SettingsPageController.newCourseAlert,
                         onChanged: (val) {
-                          setState(() {
-                            newCourseAlert = val;
-                          });
+                          SettingsPageController.setNewCourseAlert(val);
                         },
                       ),
                       Gap(70),
                       SettingsOptions(
                         title: "Use WiFi ",
                         subTitle: "App will use wifi over data",
-                        value: useWiFi,
+                        value: SettingsPageController.useWiFi,
                         onChanged: (val) {
-                          setState(() {
-                            useWiFi = val;
-                          });
+                          SettingsPageController.setUseWiFi(val);
                         },
                       ),
                       SettingsOptions(
                         title: "Auto-download",
                         subTitle:
                             "Courses will automatically save to your device",
-                        value: autoDownload,
+                        value: SettingsPageController.autoDownload,
                         onChanged: (val) {
-                          setState(() {
-                            autoDownload = val;
-                          });
+                          SettingsPageController.setAutoDownload(val);
                         },
                       ),
                       Gap(10),

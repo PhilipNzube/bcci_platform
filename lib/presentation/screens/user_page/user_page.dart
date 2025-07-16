@@ -1,6 +1,7 @@
 import 'package:bcci_platform/core/widgets/custom_gap.dart';
 import 'package:bcci_platform/presentation/controllers/user_page_controller.dart';
 import 'package:bcci_platform/presentation/screens/acheivement_page/acheivement_page.dart';
+import 'package:bcci_platform/presentation/screens/data_management_page/data_management_page.dart';
 import 'package:bcci_platform/presentation/screens/edit_profile/edit_profile.dart';
 import 'package:bcci_platform/presentation/screens/privacy_page/privacy_page.dart';
 import 'package:bcci_platform/presentation/screens/profile_notification_page/profile_notification_page.dart';
@@ -279,7 +280,15 @@ class _UserPageState extends State<UserPage>
                           SettingsItem(
                             icon: "images/Data_Management_Settings.png",
                             title: "Data Management",
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      DataManagementPage(key: UniqueKey()),
+                                ),
+                              );
+                            },
                           ),
                         ],
                       ),
