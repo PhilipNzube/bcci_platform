@@ -1,12 +1,10 @@
 import 'package:bcci_platform/core/widgets/custom_gap.dart';
 import 'package:bcci_platform/presentation/controllers/digital_transformation_page_controller.dart';
-import 'package:bcci_platform/presentation/controllers/gamification_page_controller.dart';
 import 'package:bcci_platform/presentation/screens/digital_transformation_page/widgets/info_card.dart';
-import 'package:bcci_platform/presentation/screens/gamification_page/widgets/acheivement_card.dart';
-import 'package:bcci_platform/presentation/screens/gamification_page/widgets/active_challenges_card.dart';
-import 'package:bcci_platform/presentation/screens/gamification_page/widgets/leaderboard_card.dart';
-import 'package:bcci_platform/presentation/screens/gamification_page/widgets/progress_item.dart';
 import 'package:bcci_platform/core/widgets/custom_background.dart';
+import 'package:bcci_platform/presentation/screens/digital_transformation_page/widgets/quick_action.dart';
+import 'package:bcci_platform/presentation/screens/digital_transformation_page/widgets/recent_card.dart';
+import 'package:bcci_platform/presentation/screens/digital_transformation_page/widgets/transformation_card.dart';
 import 'package:flutter/material.dart' hide CarouselController;
 import 'package:provider/provider.dart';
 
@@ -109,204 +107,161 @@ class _DigitalTransformationPageState extends State<DigitalTransformationPage>
                         ],
                       ),
                       Gap(30),
+
                       CustomBackground(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // Title and View All
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Level Progress",
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    vertical: 6,
-                                    horizontal: 14,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFFDCFCE7),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  child: Text(
-                                    "Level 3",
-                                    style: TextStyle(color: Color(0xFF008000)),
-                                  ),
-                                ),
-                              ],
+                            Text(
+                              "Transformation Areas",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                              ),
                             ),
-                            Gap(20),
-
-                            ProgressItem(
-                              title: "Progress to Level 4",
-                              progress: .750,
-                              color: Colors.black,
-                            ),
-                          ],
-                        ),
-                      ),
-                      Gap(30),
-                      CustomBackground(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            // Title Row
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Active Challenges",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 15,
-                                  ),
-                                ),
-
-                                Text(
-                                  "View All",
-                                  style: TextStyle(color: Colors.black54),
-                                ),
-                              ],
+                            Gap(5),
+                            Text(
+                              "Track progress across key digital transformation initiatives",
+                              style: TextStyle(
+                                color: Colors.black54,
+                                fontSize: 15,
+                              ),
                             ),
                             Gap(16),
-                            // Events
-                            ActiveChallengesCard(
-                              title: "7 Days of Gratitude",
+                            TransformationCard(
+                              title: 'Digital Engagement',
+                              img: 'images/Phone.png',
                               subText:
-                                  "Write down 3 things you’re grateful for each day",
-                              progressBarTitle: "45",
+                                  'Online worship, streaming, and digital community building',
+                              progressBarTitle: '1250/1500',
+                              progress: .75,
+                              progressColor: Colors.black,
+                              progressBarSuffixTitle: 'active users',
+                              status: "In Progress",
+                            ),
+                            TransformationCard(
+                              title: 'Data Analytics',
+                              img: 'images/Stats.png',
+                              subText:
+                                  'Member insights, attendance tracking, and growth analytics',
+                              progressBarTitle: '8/12',
                               progress: .60,
                               progressColor: Colors.black,
-                              giftPoints: "500",
-                              endDate: "Ends 2025-06-25",
+                              progressBarSuffixTitle: 'key metrics',
+                              status: "In Progress",
                             ),
-                            ActiveChallengesCard(
-                              title: "Scripture Memory Challenge",
-                              subText: "Memorize 5 Bible verses this month",
-                              progressBarTitle: "32",
-                              progress: .40,
+                            TransformationCard(
+                              title: 'Global Connectivity',
+                              img: 'images/Global.png',
+                              subText:
+                                  'Multi-location coordination and remote participation',
+                              progressBarTitle: '3/8',
+                              progress: .45,
                               progressColor: Colors.black,
-                              giftPoints: "500",
-                              endDate: "Ends 2025-06-25",
+                              progressBarSuffixTitle: 'location',
+                              status: "Planning",
+                            ),
+                            TransformationCard(
+                              title: 'Automation',
+                              img: 'images/Efficiency.png',
+                              subText:
+                                  'Streamlined processes and automated workflows',
+                              progressBarTitle: '2/10',
+                              progress: .30,
+                              progressColor: Colors.black,
+                              progressBarSuffixTitle: 'processes',
+                              status: "Planning",
                             ),
                           ],
                         ),
                       ),
                       Gap(30),
+
                       CustomBackground(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // Title Row
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Acheivements",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 15,
-                                  ),
-                                ),
-
-                                Text(
-                                  "View All",
-                                  style: TextStyle(color: Colors.black54),
-                                ),
-                              ],
+                            Text(
+                              "Recent Initiatives",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                              ),
+                            ),
+                            Gap(5),
+                            Text(
+                              "Latest digital transformation projects and their impact",
+                              style: TextStyle(
+                                color: Colors.black54,
+                                fontSize: 15,
+                              ),
                             ),
                             Gap(16),
+                            RecentCard(
+                              title: 'Mobile App Launch',
+                              subText: 'Increased engagement by 40%',
 
-                            AcheivementCard(
-                              title: 'Prayer Warrior',
-                              badgeText: 'Prayer',
-                              subText: 'Completed 30 days of daily prayers',
-                              earnedTimeStamp: 'Earned 2025-05-15',
-                              points: '500',
-                              progressBarTitle: 'Progress to Level 4',
-                              progress: .3,
-                              progressColor: Colors.black,
+                              status: "Completed",
+                              timeStamp: "2024-01-05",
                             ),
-                            AcheivementCard(
-                              title: 'Scripture Scholar',
-                              badgeText: 'Reading',
-                              subText: 'Read 10 Complete books of the Bible',
-                              earnedTimeStamp: 'Earned 2025-05-15',
-                              points: '700',
-                              progressBarTitle: 'Progress to Level 4',
-                              progress: .3,
-                              progressColor: Colors.black,
+                            RecentCard(
+                              title: 'Digital Discipleship Platform',
+                              subText: 'Increased engagement by 40%',
+                              status: "In Progress",
+                              timeStamp: "2024-01-05",
                             ),
-                            AcheivementCard(
-                              title: 'Faithful Attendee',
-                              badgeText: 'Attendance',
-                              subText: 'Attended 20 consecutive services',
-                              earnedTimeStamp: 'Earned 2025-05-15',
-                              points: '800',
-                              progressBarTitle: 'Progress to Level 4',
-                              progress: .3,
-                              progressColor: Colors.black,
+                            RecentCard(
+                              title: 'AI-Powered Analytics',
+                              subText:
+                                  'Predictive insights for growth strategies',
+                              status: "In Progress",
+                              timeStamp: "2024-01-05",
                             ),
                           ],
                         ),
                       ),
                       Gap(30),
+
                       CustomBackground(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // Title Row
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Expanded(
-                                  flex: 4,
-                                  child: Text(
-                                    "Community Leaderboard",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15,
-                                    ),
-                                    overflow: TextOverflow.ellipsis,
-                                    softWrap: false,
-                                  ),
-                                ),
-                                Text(
-                                  "Full Rankings",
-                                  style: TextStyle(color: Colors.black54),
-                                ),
-                              ],
+                            Text(
+                              "Quick Actions",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                              ),
+                            ),
+                            Gap(5),
+                            Text(
+                              "Key actions to accelerate digital transformation",
+                              style: TextStyle(
+                                color: Colors.black54,
+                                fontSize: 15,
+                              ),
                             ),
                             Gap(16),
-                            LeaderboardCard(
-                              points: '2850',
-                              position: 1,
-                              name: 'Sarmie Phoenix',
+                            QuickAction(
+                              title: 'Launch New Initiative',
+                              subText: 'Start a new transformation project',
                             ),
-                            LeaderboardCard(
-                              points: '2850',
-                              position: 2,
-                              name: 'Sarmie Phoenix',
+                            QuickAction(
+                              title: 'View Analysis',
+                              subText: 'Detailed transformation metrics',
                             ),
-                            LeaderboardCard(
-                              points: '2850',
-                              position: 3,
-                              name: 'Sarmie Phoenix',
+                            QuickAction(
+                              title: 'Resource Planning',
+                              subText: 'Allocate resources effectively',
                             ),
-                            LeaderboardCard(
-                              points: '2850',
-                              position: 4,
-                              name: 'Sarmie Phoenix',
+                            QuickAction(
+                              title: 'Training Programs',
+                              subText: 'Digital skills development',
                             ),
                           ],
                         ),
                       ),
+
                       Gap(10),
                     ],
                   ),
