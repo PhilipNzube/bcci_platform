@@ -1,3 +1,4 @@
+import 'package:bcci_platform/core/widgets/custom_background.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/widgets/custom_gap.dart';
@@ -20,15 +21,9 @@ class AudioCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 20),
-      child: Container(
+      child: CustomBackground(
         padding: const EdgeInsets.all(14),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
-          boxShadow: [
-            BoxShadow(color: Colors.black12, spreadRadius: 3, blurRadius: 6),
-          ],
-        ),
+        borderRadius: 10,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [

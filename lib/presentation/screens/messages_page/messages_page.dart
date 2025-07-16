@@ -1,3 +1,4 @@
+import 'package:bcci_platform/core/widgets/custom_background.dart';
 import 'package:bcci_platform/core/widgets/custom_gap.dart';
 import 'package:bcci_platform/presentation/controllers/messages_page_controller.dart';
 import 'package:bcci_platform/presentation/screens/messages_page/widgets/new_info_card.dart';
@@ -47,19 +48,7 @@ class _MessagesPageState extends State<MessagesPage>
                         style: TextStyle(color: Colors.black),
                       ),
                       Gap(20),
-
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(5),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black12,
-                              spreadRadius: 3,
-                              blurRadius: 6,
-                            ),
-                          ],
-                        ),
+                      CustomBackground(
                         child: TextField(
                           decoration: InputDecoration(
                             hintText: "Search Messages",

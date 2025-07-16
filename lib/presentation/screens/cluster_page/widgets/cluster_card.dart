@@ -1,3 +1,4 @@
+import 'package:bcci_platform/core/widgets/custom_background.dart';
 import 'package:bcci_platform/presentation/screens/cluster_page/widgets/action_button.dart';
 import 'package:bcci_platform/presentation/screens/cluster_page/widgets/stat_card.dart';
 import 'package:flutter/material.dart';
@@ -22,16 +23,8 @@ class ClusterCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(14),
-        boxShadow: [
-          BoxShadow(color: Colors.black12, spreadRadius: 3, blurRadius: 6),
-        ],
-      ),
+    return CustomBackground(
+      borderRadius: 14,
       child: Column(
         children: [
           // Region Title

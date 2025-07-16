@@ -1,4 +1,8 @@
+import 'package:bcci_platform/presentation/screens/analytics_dashboard_page/analytics_dashboard_page.dart';
 import 'package:bcci_platform/presentation/screens/cluster_page/cluster_page.dart';
+import 'package:bcci_platform/presentation/screens/digital_transformation_page/digital_transformation_page.dart';
+import 'package:bcci_platform/presentation/screens/discipleship_pathways_page/discipleship_pathways_page.dart';
+import 'package:bcci_platform/presentation/screens/gamification_page/gamification_page.dart';
 import 'package:bcci_platform/presentation/screens/home_page/home_page.dart';
 import 'package:bcci_platform/presentation/screens/main_app/widgets/app_side_bar.dart';
 import 'package:bcci_platform/presentation/screens/messages_page/messages_page.dart';
@@ -52,15 +56,17 @@ class _MainAppState extends State<MainApp> with TickerProviderStateMixin {
         key: _scaffoldKey,
         drawer: AppSidebar(
           onItemTap: (label) {
-            Navigator.pop(context); // Always close the drawer first
-            /*
-  if (label == "Analytics Dashboard") {
-    // Navigate to analytics dashboard page
-    Navigator.pushNamed(context, '/analytics');
-  } else if (label == "CV Recognition") {
-  This is how you map the functions for each item, make sure the labels rhyme though.
-  */
-            print('Tapped on $label');
+            Navigator.pop(context); // Close the drawer
+
+            if (label == "Digital Transformation") {
+              navController.setTempIndex(5);
+            } else if (label == "Analytics Dashboard") {
+              navController.setTempIndex(6);
+            } else if (label == "Gamification") {
+              navController.setTempIndex(7);
+            } else if (label == "Discipleship Pathways") {
+              navController.setTempIndex(8);
+            }
           },
         ),
         extendBody: true,
@@ -73,6 +79,10 @@ class _MainAppState extends State<MainApp> with TickerProviderStateMixin {
               WorshipPage(),
               MessagesPage(),
               UserPage(),
+              DigitalTransformationPage(scaffoldKey: _scaffoldKey),
+              AnalyticsDashboardPage(scaffoldKey: _scaffoldKey),
+              GamificationPage(scaffoldKey: _scaffoldKey),
+              DiscipleshipPathwaysPage(scaffoldKey: _scaffoldKey),
             ],
           ),
         ),

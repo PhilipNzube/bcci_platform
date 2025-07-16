@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="bcci_platform"
+        android:label="BCCI"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

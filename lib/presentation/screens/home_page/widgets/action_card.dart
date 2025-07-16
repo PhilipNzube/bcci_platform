@@ -1,3 +1,4 @@
+import 'package:bcci_platform/core/widgets/custom_background.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/widgets/custom_gap.dart';
@@ -11,15 +12,8 @@ class ActionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Container(
+      child: CustomBackground(
         padding: const EdgeInsets.symmetric(vertical: 16),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(5),
-          boxShadow: [
-            BoxShadow(color: Colors.black12, spreadRadius: 3, blurRadius: 6),
-          ],
-        ),
         child: Column(
           children: [
             Image.asset(img, height: 30, width: 30),

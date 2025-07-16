@@ -1,3 +1,4 @@
+import 'package:bcci_platform/core/widgets/custom_background.dart';
 import 'package:bcci_platform/core/widgets/custom_button.dart';
 import 'package:bcci_platform/core/widgets/custom_gap.dart';
 import 'package:bcci_platform/presentation/controllers/data_management_page_controller.dart';
@@ -68,30 +69,23 @@ class _DataManagementPageState extends State<DataManagementPage>
 
                         InkWell(
                           onTap: () {},
-                          child: Container(
-                            padding: const EdgeInsets.all(14),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black12,
-                                  spreadRadius: 3,
-                                  blurRadius: 6,
-                                ),
-                              ],
+                          child: CustomBackground(
+                            width: double.infinity,
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 30,
+                              vertical: 14,
                             ),
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Image.asset(
                                   "images/save.png",
-                                  width: 30,
-                                  height: 30,
+                                  width: 25,
+                                  height: 25,
                                   color: Colors.black,
                                   fit: BoxFit.contain,
                                 ),
-                                Gap(5, isHorizontal: true),
+                                Gap(8, isHorizontal: true),
                                 const Text(
                                   "Export My Data",
                                   style: TextStyle(color: Colors.black),
@@ -100,21 +94,29 @@ class _DataManagementPageState extends State<DataManagementPage>
                             ),
                           ),
                         ),
-                        Gap(24),
-                        Center(
-                          child: CustomButton(
-                            img: "images/delete.png",
-                            text: "Delete Account",
-                            onPressed: () {
-                              if (DataManagementPageController
-                                  .formKey
-                                  .currentState!
-                                  .validate()) {
-                                // Handle save changes
-                              }
-                            },
+                        Gap(54),
+                        const Text(
+                          "Danger Zone",
+                          style: TextStyle(
+                            fontFamily: "GolosText",
+                            fontSize: 18,
+                            color: Color(0xFFFF0000),
                           ),
                         ),
+                        Gap(5),
+                        CustomButton(
+                          img: "images/delete.png",
+                          text: "Delete Account",
+                          onPressed: () {
+                            if (DataManagementPageController
+                                .formKey
+                                .currentState!
+                                .validate()) {
+                              // Handle save changes
+                            }
+                          },
+                        ),
+
                         Gap(10),
                       ],
                     ),

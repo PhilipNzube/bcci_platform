@@ -1,3 +1,4 @@
+import 'package:bcci_platform/core/widgets/custom_background.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/widgets/custom_gap.dart';
@@ -12,15 +13,7 @@ class FilterChip extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(5),
-            boxShadow: [
-              BoxShadow(color: Colors.black12, spreadRadius: 1, blurRadius: 1),
-            ],
-          ),
+        CustomBackground(
           child: Text(
             title,
             style: const TextStyle(fontSize: 18, fontFamily: 'GolosText'),

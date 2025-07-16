@@ -1,3 +1,4 @@
+import 'package:bcci_platform/core/widgets/custom_background.dart';
 import 'package:bcci_platform/core/widgets/custom_gap.dart';
 import 'package:bcci_platform/presentation/controllers/worship_page_controller.dart';
 import 'package:bcci_platform/presentation/screens/worship_page/widgets/audio_card.dart';
@@ -45,21 +46,9 @@ class _WorshipPageState extends State<WorshipPage>
                         style: TextStyle(color: Colors.black),
                       ),
                       Gap(20),
-
-                      Container(
+                      CustomBackground(
                         width: double.infinity,
-                        padding: const EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          color: Color(0xFFFF0000),
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black12,
-                              spreadRadius: 3,
-                              blurRadius: 6,
-                            ),
-                          ],
-                        ),
+                        borderRadius: 10,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [

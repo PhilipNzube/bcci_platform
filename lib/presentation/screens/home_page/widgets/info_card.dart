@@ -1,3 +1,4 @@
+import 'package:bcci_platform/core/widgets/custom_background.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/widgets/custom_gap.dart';
@@ -19,18 +20,17 @@ class InfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Container(
+      child: CustomBackground(
         padding: const EdgeInsets.symmetric(vertical: 16),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(5),
-          boxShadow: [
-            BoxShadow(color: Colors.black12, spreadRadius: 3, blurRadius: 6),
-          ],
-        ),
         child: Column(
           children: [
-            Image.asset(img, width: 34, height: 34, fit: BoxFit.contain),
+            Image.asset(
+              img,
+              width: 34,
+              height: 34,
+              fit: BoxFit.contain,
+              color: iconColor,
+            ),
             Gap(10),
             Text(
               value,

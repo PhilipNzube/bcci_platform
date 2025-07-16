@@ -1,3 +1,4 @@
+import 'package:bcci_platform/core/widgets/custom_background.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/widgets/custom_gap.dart';
@@ -11,16 +12,9 @@ class SummaryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Container(
+      child: CustomBackground(
         margin: const EdgeInsets.symmetric(horizontal: 6),
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(14),
-          boxShadow: [
-            BoxShadow(color: Colors.black12, spreadRadius: 3, blurRadius: 6),
-          ],
-        ),
+        borderRadius: 14,
         child: Column(
           children: [
             Text(

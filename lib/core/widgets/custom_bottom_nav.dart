@@ -11,6 +11,46 @@ class CustomBottomNav extends StatelessWidget {
     final navController = Provider.of<NavigationController>(context);
     final notificationController = Provider.of<NotificationController>(context);
 
+    // Limit to 5 items (excluding AnalyticsDashboardPage)
+    final int itemCount = 5;
+    final List<BottomNavigationBarItem> items = [
+      _buildNavItem(
+        "images/Home-Active.png",
+        "images/Home.png",
+        "Home",
+        notificationController.hasNotification(0),
+        navController.selectedIndex == 0,
+      ),
+      _buildNavItem(
+        "images/Cluster-Active.png",
+        "images/Cluster.png",
+        "Cluster",
+        notificationController.hasNotification(1),
+        navController.selectedIndex == 1,
+      ),
+      _buildNavItem(
+        "images/Worship-Active.png",
+        "images/Worship.png",
+        "Worship",
+        notificationController.hasNotification(2),
+        navController.selectedIndex == 2,
+      ),
+      _buildNavItem(
+        "images/Messages-Active.png",
+        "images/Messages.png",
+        "Messages",
+        notificationController.hasNotification(3),
+        navController.selectedIndex == 3,
+      ),
+      _buildNavItem(
+        "images/User-Active.png",
+        "images/User.png",
+        "User",
+        notificationController.hasNotification(4),
+        navController.selectedIndex == 4,
+      ),
+    ];
+
     return Container(
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
@@ -29,47 +69,21 @@ class CustomBottomNav extends StatelessWidget {
         child: BottomNavigationBar(
           elevation: 0,
           type: BottomNavigationBarType.fixed,
-          items: [
-            _buildNavItem(
-              "images/Home-Active.png",
-              "images/Home.png",
-              "Home",
-              notificationController.hasNotification(0),
-              navController.selectedIndex == 0,
-            ),
-            _buildNavItem(
-              "images/Cluster-Active.png",
-              "images/Cluster.png",
-              "Cluster",
-              notificationController.hasNotification(1),
-              navController.selectedIndex == 1,
-            ),
-            _buildNavItem(
-              "images/Worship-Active.png",
-              "images/Worship.png",
-              "Worship",
-              notificationController.hasNotification(2),
-              navController.selectedIndex == 2,
-            ),
-            _buildNavItem(
-              "images/Messages-Active.png",
-              "images/Messages.png",
-              "Messages",
-              notificationController.hasNotification(3),
-              navController.selectedIndex == 3,
-            ),
-            _buildNavItem(
-              "images/User-Active.png",
-              "images/User.png",
-              "User",
-              notificationController.hasNotification(4),
-              navController.selectedIndex == 4,
-            ),
-          ],
-          currentIndex: navController.selectedIndex,
+          items: items,
+          currentIndex: navController.tempIndex >= 0
+              ? navController.previousIndex < itemCount
+                    ? navController.previousIndex
+                    : 0
+              : navController.selectedIndex < itemCount
+              ? navController.selectedIndex
+              : 0,
           selectedItemColor: Colors.black,
           unselectedItemColor: Colors.grey,
-          onTap: navController.changeTab,
+          onTap: (index) {
+            if (index < itemCount) {
+              navController.changeTab(index);
+            }
+          },
         ),
       ),
     );

@@ -1,3 +1,4 @@
+import 'package:bcci_platform/core/widgets/custom_background.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/widgets/custom_gap.dart';
 
@@ -25,19 +26,8 @@ class RecentChatCard extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 20),
       child: Stack(
         children: [
-          Container(
-            padding: const EdgeInsets.all(14),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: const [
-                BoxShadow(
-                  color: Colors.black12,
-                  spreadRadius: 3,
-                  blurRadius: 6,
-                ),
-              ],
-            ),
+          CustomBackground(
+            borderRadius: 10,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
