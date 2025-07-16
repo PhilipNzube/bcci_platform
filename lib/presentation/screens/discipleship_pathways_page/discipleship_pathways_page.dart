@@ -90,7 +90,7 @@ class _DiscipleshipPathwaysPageState extends State<DiscipleshipPathwaysPage>
                                 fontSize: 15,
                               ),
                             ),
-                            Gap(16),
+                            Gap(10),
                           ],
                         ),
                       ),
