@@ -61,6 +61,7 @@ class AppSidebar extends StatelessWidget {
                         SideBarItem(
                           label: "Discipleship Pathways",
                           iconPath: 'images/Daily_Reading.png',
+                          onItemTap: onItemTap,
                         ),
                         SideBarItem(
                           label: "Spiritual Goals",
