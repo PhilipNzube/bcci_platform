@@ -33,9 +33,7 @@ class _CustomBackHandlerState extends State<CustomBackHandler> {
               navController.previousIndex > 0 ? navController.previousIndex : 0,
             );
           } else if (navController.selectedIndex != 0) {
-            navController.changeTab(
-              navController.previousIndex > 0 ? navController.previousIndex : 0,
-            );
+            navController.changeTab(0);
           } else if (currentBackPressTime == null ||
               now.difference(currentBackPressTime!) >
                   const Duration(seconds: 2)) {

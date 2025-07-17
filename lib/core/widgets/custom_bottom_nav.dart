@@ -11,7 +11,7 @@ class CustomBottomNav extends StatelessWidget {
     final navController = Provider.of<NavigationController>(context);
     final notificationController = Provider.of<NotificationController>(context);
 
-    // Limit to 5 items (excluding AnalyticsDashboardPage)
+    // Limit to 5 items (excluding higher-index pages)
     final int itemCount = 5;
     final List<BottomNavigationBarItem> items = [
       _buildNavItem(
@@ -19,35 +19,40 @@ class CustomBottomNav extends StatelessWidget {
         "images/Home.png",
         "Home",
         notificationController.hasNotification(0),
-        navController.selectedIndex == 0,
+        navController.selectedIndex == 0 ||
+            (navController.tempIndex >= 5 && navController.previousIndex == 0),
       ),
       _buildNavItem(
         "images/Cluster-Active.png",
         "images/Cluster.png",
         "Cluster",
         notificationController.hasNotification(1),
-        navController.selectedIndex == 1,
+        navController.selectedIndex == 1 ||
+            (navController.tempIndex >= 5 && navController.previousIndex == 1),
       ),
       _buildNavItem(
         "images/Worship-Active.png",
         "images/Worship.png",
         "Worship",
         notificationController.hasNotification(2),
-        navController.selectedIndex == 2,
+        navController.selectedIndex == 2 ||
+            (navController.tempIndex >= 5 && navController.previousIndex == 2),
       ),
       _buildNavItem(
         "images/Messages-Active.png",
         "images/Messages.png",
         "Messages",
         notificationController.hasNotification(3),
-        navController.selectedIndex == 3,
+        navController.selectedIndex == 3 ||
+            (navController.tempIndex >= 5 && navController.previousIndex == 3),
       ),
       _buildNavItem(
         "images/User-Active.png",
         "images/User.png",
         "User",
         notificationController.hasNotification(4),
-        navController.selectedIndex == 4,
+        navController.selectedIndex == 4 ||
+            (navController.tempIndex >= 5 && navController.previousIndex == 4),
       ),
     ];
 
@@ -70,7 +75,7 @@ class CustomBottomNav extends StatelessWidget {
           elevation: 0,
           type: BottomNavigationBarType.fixed,
           items: items,
-          currentIndex: navController.tempIndex >= 0
+          currentIndex: navController.tempIndex >= 5
               ? navController.previousIndex < itemCount
                     ? navController.previousIndex
                     : 0
@@ -80,9 +85,8 @@ class CustomBottomNav extends StatelessWidget {
           selectedItemColor: Colors.black,
           unselectedItemColor: Colors.grey,
           onTap: (index) {
-            if (index < itemCount) {
-              navController.changeTab(index);
-            }
+            navController.clearTempIndex(); // Clear tempIndex first
+            navController.changeTab(index); // Switch to the tapped page
           },
         ),
       ),
