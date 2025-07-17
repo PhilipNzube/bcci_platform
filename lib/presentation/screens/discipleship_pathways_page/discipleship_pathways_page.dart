@@ -1,6 +1,6 @@
 import 'package:bcci_platform/core/widgets/custom_gap.dart';
 import 'package:bcci_platform/presentation/controllers/discipleship_pathways_page_controller.dart';
-import 'package:bcci_platform/core/widgets/custom_background.dart';
+import 'package:bcci_platform/presentation/screens/discipleship_pathways_page/widgets/section_card.dart';
 import 'package:flutter/material.dart' hide CarouselController;
 import 'package:provider/provider.dart';
 
@@ -70,31 +70,20 @@ class _DiscipleshipPathwaysPageState extends State<DiscipleshipPathwaysPage>
                         style: TextStyle(fontSize: 18, color: Colors.black),
                       ),
                       Gap(30),
-
-                      CustomBackground(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "New Believer Foundation",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                              ),
-                            ),
-                            Gap(5),
-                            Text(
-                              "Structed learning paths for spiritual growth",
-                              style: TextStyle(
-                                color: Colors.black54,
-                                fontSize: 15,
-                              ),
-                            ),
-                            Gap(10),
-                          ],
-                        ),
+                      SectionCard(
+                        title: 'New Believer Foundation',
+                        subText: 'Structed learning paths for spiritual growth',
+                        isCourseActive: true,
                       ),
-                      Gap(30),
+                      SectionCard(
+                        title: 'Leadership Development',
+                        subText: 'Training for emerging church leaders',
+                      ),
+
+                      SectionCard(
+                        title: 'Evangelism & Outreach',
+                        subText: 'Sharing your faith effectively',
+                      ),
 
                       Gap(10),
                     ],
