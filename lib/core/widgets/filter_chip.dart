@@ -1,7 +1,7 @@
 import 'package:bcci_platform/core/widgets/custom_background.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/widgets/custom_gap.dart';
+import 'custom_gap.dart';
 
 class FilterChip extends StatelessWidget {
   final String title;

@@ -3,7 +3,7 @@ import 'package:bcci_platform/core/widgets/custom_button.dart';
 import 'package:bcci_platform/core/widgets/custom_gap.dart';
 import 'package:bcci_platform/presentation/controllers/worship_page_controller.dart';
 import 'package:bcci_platform/presentation/screens/worship_page/widgets/audio_card.dart';
-import 'package:bcci_platform/presentation/screens/worship_page/widgets/filter_chip.dart';
+import 'package:bcci_platform/core/widgets/filter_chip.dart';
 import 'package:flutter/material.dart' hide CarouselController, FilterChip;
 import 'package:provider/provider.dart';
 

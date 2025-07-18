@@ -1,10 +1,10 @@
 import 'package:bcci_platform/core/widgets/custom_gap.dart';
 import 'package:bcci_platform/presentation/controllers/analytics_dashboard_page_controller.dart';
-import 'package:bcci_platform/presentation/screens/analytics_dashboard_page/widgets/event_tile.dart';
+import 'package:bcci_platform/presentation/screens/analytics_dashboard_page/widgets/cell_group.dart';
+import 'package:bcci_platform/presentation/screens/analytics_dashboard_page/widgets/info_card.dart';
+import 'package:bcci_platform/presentation/screens/analytics_dashboard_page/widgets/progress_item.dart';
 import 'package:bcci_platform/presentation/screens/home_page/widgets/action_card.dart';
 import 'package:bcci_platform/core/widgets/custom_background.dart';
-import 'package:bcci_platform/presentation/screens/home_page/widgets/info_card.dart';
-import 'package:bcci_platform/presentation/screens/home_page/widgets/progress_item.dart';
 import 'package:bcci_platform/presentation/screens/notification_page/notification_page.dart';
 import 'package:bcci_platform/presentation/screens/settings_page/settings_page.dart';
 import 'package:flutter/material.dart' hide CarouselController;
@@ -98,51 +98,25 @@ class _AnalyticsDashboardPageState extends State<AnalyticsDashboardPage>
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Gap(20),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: CustomBackground(
-                              child: TextField(
-                                decoration: InputDecoration(
-                                  hintText: "Search",
-                                  prefixIcon: const Icon(Icons.search),
-                                  suffixIcon: const Icon(
-                                    Icons.mic,
-                                    color: Colors.red,
-                                  ),
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(16),
-                                    borderSide: BorderSide.none,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Gap(10, isHorizontal: true),
-                          InkWell(
-                            onTap: () {},
-                            child: Image.asset('images/filter.png', height: 50),
-                          ),
-                        ],
-                      ),
-                      Gap(30),
+
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           InfoCard(
                             value: "1250",
-                            label: "Points",
-                            img: "images/Trophy.png",
-                            iconColor: Colors.amber,
+                            label: "Total Members",
+                            img: "images/Active_Users.png",
+                            iconColor: Colors.black,
+                            stat: '-12 this month',
                           ),
                           Gap(10, isHorizontal: true),
                           InfoCard(
-                            value: "12",
+                            value: "82",
                             label: "Days Streak",
-                            img: "images/Calender.png",
+                            img: "images/Stats.png",
                             iconColor: Colors.black,
+                            isPercentage: true,
+                            stat: '+5% vs last month',
                           ),
                         ],
                       ),
@@ -151,53 +125,31 @@ class _AnalyticsDashboardPageState extends State<AnalyticsDashboardPage>
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // Title and View All
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Row(
-                                  children: [
-                                    Image.asset(
-                                      "images/Spiritual_Goal.png",
-                                      height: 20,
-                                      width: 20,
+                                Expanded(
+                                  child: Text(
+                                    "Weekly Attendance Trends",
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
                                     ),
-                                    Gap(8, isHorizontal: true),
-                                    Text(
-                                      "Spiritual Goals",
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
+                                    overflow: TextOverflow.ellipsis,
+                                    softWrap: false,
+                                  ),
                                 ),
                                 Text(
-                                  "View All",
+                                  "Last 7 days",
                                   style: TextStyle(color: Colors.black54),
                                 ),
                               ],
                             ),
                             Gap(20),
 
-                            ProgressItem(
-                              title: "Daily Prayer",
-                              img: "images/Daily_Prayer.png",
-                              progress: .85,
-                              color: Colors.green,
-                            ),
-                            ProgressItem(
-                              title: "Bible Reading",
-                              img: "images/Bible_Reading.png",
-                              progress: 0.65,
-                              color: Colors.red,
-                            ),
-                            ProgressItem(
-                              title: "Community Service",
-                              img: "images/Community_Service.png",
-                              progress: 0.65,
-                              color: Colors.purple,
-                            ),
+                            ProgressItem(title: "Jun 15", progress: .85),
+                            ProgressItem(title: "Jun 16", progress: .75),
+                            ProgressItem(title: "Jun 17", progress: .95),
                           ],
                         ),
                       ),
@@ -210,22 +162,16 @@ class _AnalyticsDashboardPageState extends State<AnalyticsDashboardPage>
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Row(
-                                  children: [
-                                    Image.asset(
-                                      "images/Calender.png",
-                                      height: 20,
-                                      width: 20,
+                                Expanded(
+                                  child: Text(
+                                    "Cell Group Performance",
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
                                     ),
-                                    Gap(8, isHorizontal: true),
-                                    Text(
-                                      "Upcoming Events",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                  ],
+                                    overflow: TextOverflow.ellipsis,
+                                    softWrap: false,
+                                  ),
                                 ),
                                 Text(
                                   "View All",
@@ -235,22 +181,23 @@ class _AnalyticsDashboardPageState extends State<AnalyticsDashboardPage>
                             ),
                             Gap(16),
                             // Events
-                            EventTile(
-                              title: "Sunday Service",
-                              date: "Jun 22, 2025",
-                              time: "9:00 AM",
+                            CellGroup(
+                              title: "Victory Cell",
+                              members: "16",
+                              stat: "+1",
+                              growthStat: "85",
                             ),
-                            Gap(10),
-                            EventTile(
-                              title: "Cell Meeting",
-                              date: "Jun 24, 2025",
-                              time: "7:00 AM",
+                            CellGroup(
+                              title: "Grace Cell",
+                              members: "16",
+                              stat: "+1",
+                              growthStat: "85",
                             ),
-                            Gap(10),
-                            EventTile(
-                              title: "Youth Conference",
-                              date: "Jun 28, 2025",
-                              time: "6:00 AM",
+                            CellGroup(
+                              title: "Faith Cell",
+                              members: "16",
+                              stat: "+3",
+                              growthStat: "85",
                             ),
                           ],
                         ),
@@ -271,6 +218,29 @@ class _AnalyticsDashboardPageState extends State<AnalyticsDashboardPage>
                             img: "images/Fellowship.png",
                           ),
                         ],
+                      ),
+                      Gap(30),
+                      CustomBackground(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Engagement by Category",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                              softWrap: false,
+                            ),
+
+                            Gap(20),
+
+                            ProgressItem(title: "Jun 15", progress: .85),
+                            ProgressItem(title: "Jun 16", progress: .75),
+                            ProgressItem(title: "Jun 17", progress: .95),
+                          ],
+                        ),
                       ),
                       Gap(10),
                     ],

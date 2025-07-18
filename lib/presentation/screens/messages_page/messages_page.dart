@@ -4,7 +4,7 @@ import 'package:bcci_platform/presentation/controllers/messages_page_controller.
 import 'package:bcci_platform/presentation/screens/messages_page/widgets/new_info_card.dart';
 import 'package:bcci_platform/presentation/screens/messages_page/widgets/recent_chat_card.dart';
 import 'package:bcci_platform/presentation/screens/worship_page/widgets/audio_card.dart';
-import 'package:bcci_platform/presentation/screens/worship_page/widgets/filter_chip.dart';
+import 'package:bcci_platform/core/widgets/filter_chip.dart';
 import 'package:flutter/material.dart' hide CarouselController, NewInfoCard;
 import 'package:provider/provider.dart';
 

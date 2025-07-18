@@ -4,17 +4,9 @@ import '../../../../core/widgets/custom_gap.dart';
 
 class ProgressItem extends StatelessWidget {
   final String title;
-  final String img;
   final double progress;
-  final Color color;
 
-  const ProgressItem({
-    super.key,
-    required this.title,
-    required this.img,
-    required this.progress,
-    required this.color,
-  });
+  const ProgressItem({super.key, required this.title, required this.progress});
 
   @override
   Widget build(BuildContext context) {
@@ -23,29 +15,32 @@ class ProgressItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Text(
+            title,
+            style: TextStyle(
+              fontSize: 14,
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+
+          Gap(6),
           Row(
             children: [
-              Text(
-                title,
-                style: TextStyle(
-                  fontSize: 14,
-                  color: color,
-                  fontWeight: FontWeight.bold,
+              Expanded(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: LinearProgressIndicator(
+                    value: progress,
+                    backgroundColor: Colors.grey[200],
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
+                    minHeight: 10,
+                  ),
                 ),
               ),
-              const SizedBox(width: 8),
-              Image.asset(img, height: 16, width: 16),
+              Gap(20, isHorizontal: true),
+              Text("/200", style: const TextStyle(fontSize: 12)),
             ],
-          ),
-          Gap(6),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: LinearProgressIndicator(
-              value: progress,
-              backgroundColor: Colors.grey[200],
-              valueColor: AlwaysStoppedAnimation<Color>(color),
-              minHeight: 10,
-            ),
           ),
           Gap(4),
           Text(
