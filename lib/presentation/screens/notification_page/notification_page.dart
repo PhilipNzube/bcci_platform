@@ -1,7 +1,7 @@
 import 'package:bcci_platform/core/widgets/custom_gap.dart';
+import 'package:bcci_platform/core/widgets/filter_chip.dart';
 import 'package:bcci_platform/presentation/controllers/notifications_page_controller.dart';
 import 'package:bcci_platform/presentation/screens/notification_page/widgets/day_divider.dart';
-import 'package:bcci_platform/presentation/screens/notification_page/widgets/filter_card.dart';
 import 'package:bcci_platform/presentation/screens/notification_page/widgets/notification_card.dart';
 import 'package:flutter/material.dart' hide CarouselController;
 import 'package:provider/provider.dart';
@@ -73,13 +73,13 @@ class _NotificationPageState extends State<NotificationPage>
                       Gap(20),
                       Row(
                         children: [
-                          FilterCard(
+                          FilterChipWidget(
                             title: "All",
                             selectedFilter:
                                 NotificationPageController.selectedFilter,
                           ),
                           Gap(10, isHorizontal: true),
-                          FilterCard(
+                          FilterChipWidget(
                             title: "Unread",
                             selectedFilter:
                                 NotificationPageController.selectedFilter,

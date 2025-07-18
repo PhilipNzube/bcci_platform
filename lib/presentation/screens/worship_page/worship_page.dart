@@ -4,7 +4,7 @@ import 'package:bcci_platform/core/widgets/custom_gap.dart';
 import 'package:bcci_platform/presentation/controllers/worship_page_controller.dart';
 import 'package:bcci_platform/presentation/screens/worship_page/widgets/audio_card.dart';
 import 'package:bcci_platform/core/widgets/filter_chip.dart';
-import 'package:flutter/material.dart' hide CarouselController, FilterChip;
+import 'package:flutter/material.dart' hide CarouselController;
 import 'package:provider/provider.dart';
 
 class WorshipPage extends StatefulWidget {
@@ -164,13 +164,33 @@ class _WorshipPageState extends State<WorshipPage>
                         scrollDirection: Axis.horizontal,
                         child: Row(
                           children: [
-                            FilterChip(title: "All", badgeText: "New"),
+                            FilterChipWidget(
+                              title: "All",
+                              badgeText: "New",
+                              selectedFilter:
+                                  WorshipPageController.selectedFilter,
+                            ),
                             Gap(10, isHorizontal: true),
-                            FilterChip(title: "Songs", badgeText: "New"),
+                            FilterChipWidget(
+                              title: "Songs",
+                              badgeText: "New",
+                              selectedFilter:
+                                  WorshipPageController.selectedFilter,
+                            ),
                             Gap(10, isHorizontal: true),
-                            FilterChip(title: "Sermons", badgeText: "New"),
+                            FilterChipWidget(
+                              title: "Sermons",
+                              badgeText: "New",
+                              selectedFilter:
+                                  WorshipPageController.selectedFilter,
+                            ),
                             Gap(10, isHorizontal: true),
-                            FilterChip(title: "Prayers", badgeText: "New"),
+                            FilterChipWidget(
+                              title: "Prayers",
+                              badgeText: "New",
+                              selectedFilter:
+                                  WorshipPageController.selectedFilter,
+                            ),
                           ],
                         ),
                       ),

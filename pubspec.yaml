@@ -110,6 +110,7 @@ flutter:
     - images/Bible_Reading.png
     - images/Calender_Notification.png
     - images/Calender.png
+    - images/Calender2.png
     - images/Cell_Leader_Appointment.png
     - images/Church.png
     - images/circle-tick.png
@@ -140,6 +141,7 @@ flutter:
     - images/Like.png
     - images/Live.png
     - images/Log-out.png
+    - images/Marker.png
     - images/Medal.png
     - images/Menu.png
     - images/Messages-Active.png
@@ -155,6 +157,7 @@ flutter:
     - images/Prayer_Team.png
     - images/Prayer.png
     - images/Privacy_Settings.png
+    - images/reverse_digital_adoption.png
     - images/save.png
     - images/Scripture.png
     - images/Security_Settings.png

@@ -1,14 +1,15 @@
+import 'package:bcci_platform/core/widgets/custom_button.dart';
 import 'package:bcci_platform/core/widgets/custom_gap.dart';
 import 'package:bcci_platform/presentation/controllers/analytics_dashboard_page_controller.dart';
+import 'package:bcci_platform/presentation/screens/analytics_dashboard_page/widgets/action_card.dart';
 import 'package:bcci_platform/presentation/screens/analytics_dashboard_page/widgets/cell_group.dart';
+import 'package:bcci_platform/presentation/screens/analytics_dashboard_page/widgets/engagement_progress.dart';
 import 'package:bcci_platform/presentation/screens/analytics_dashboard_page/widgets/info_card.dart';
 import 'package:bcci_platform/presentation/screens/analytics_dashboard_page/widgets/progress_item.dart';
-import 'package:bcci_platform/presentation/screens/home_page/widgets/action_card.dart';
 import 'package:bcci_platform/core/widgets/custom_background.dart';
-import 'package:bcci_platform/presentation/screens/notification_page/notification_page.dart';
-import 'package:bcci_platform/presentation/screens/settings_page/settings_page.dart';
 import 'package:flutter/material.dart' hide CarouselController;
 import 'package:provider/provider.dart';
+import 'package:bcci_platform/core/widgets/filter_chip.dart';
 
 class AnalyticsDashboardPage extends StatefulWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
@@ -58,34 +59,6 @@ class _AnalyticsDashboardPageState extends State<AnalyticsDashboardPage>
                         ),
                       ),
                       const Spacer(),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  NotificationPage(key: UniqueKey()),
-                            ),
-                          );
-                        },
-                        child: Image.asset(
-                          'images/notifications_active.png',
-                          height: 25,
-                        ),
-                      ),
-                      Gap(20, isHorizontal: true),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  SettingsPage(key: UniqueKey()),
-                            ),
-                          );
-                        },
-                        child: Image.asset('images/settings.png', height: 25),
-                      ),
                     ],
                   ),
                 ),
@@ -98,7 +71,47 @@ class _AnalyticsDashboardPageState extends State<AnalyticsDashboardPage>
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Gap(20),
+                      SingleChildScrollView(
+                        padding: const EdgeInsets.only(
+                          left: 1,
+                          right: 1,
+                          top: 2,
+                          bottom: 2,
+                        ),
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            FilterChipWidget(
+                              title: "Week",
+                              selectedFilter: AnalyticsDashboardPageController
+                                  .selectedFilter,
+                            ),
 
+                            FilterChipWidget(
+                              title: "Month",
+                              selectedFilter: AnalyticsDashboardPageController
+                                  .selectedFilter,
+                            ),
+
+                            FilterChipWidget(
+                              title: "Year",
+                              selectedFilter: AnalyticsDashboardPageController
+                                  .selectedFilter,
+                            ),
+                            CustomButton(
+                              text: "Export",
+                              backgroundColor: Colors.white,
+                              foregroundColor: Colors.black,
+                              img: "images/save.png",
+                              imgColor: Colors.black,
+                              imgHeight: 20,
+                              height: 50,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Gap(20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -202,23 +215,6 @@ class _AnalyticsDashboardPageState extends State<AnalyticsDashboardPage>
                           ],
                         ),
                       ),
-                      Gap(20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          ActionCard(
-                            label: "Daily Reading",
-                            img: "images/Daily_Reading.png",
-                          ),
-                          Gap(10, isHorizontal: true),
-                          ActionCard(label: "Prayer", img: "images/Prayer.png"),
-                          Gap(10, isHorizontal: true),
-                          ActionCard(
-                            label: "Fellowship",
-                            img: "images/Fellowship.png",
-                          ),
-                        ],
-                      ),
                       Gap(30),
                       CustomBackground(
                         child: Column(
@@ -236,12 +232,40 @@ class _AnalyticsDashboardPageState extends State<AnalyticsDashboardPage>
 
                             Gap(20),
 
-                            ProgressItem(title: "Jun 15", progress: .85),
-                            ProgressItem(title: "Jun 16", progress: .75),
-                            ProgressItem(title: "Jun 17", progress: .95),
+                            EngagementProgress(
+                              title: "Sunday Service",
+                              progress: .85,
+                              isIncreasing: true,
+                              upImagePath: "images/digital_adoption.png",
+                              downImagePath:
+                                  "images/reverse_digital_adoption.png",
+                            ),
+                            EngagementProgress(
+                              title: "Call Meetings",
+                              progress: .45,
+                              isIncreasing: false,
+                              upImagePath: "images/digital_adoption.png",
+                              downImagePath:
+                                  "images/reverse_digital_adoption.png",
+                            ),
                           ],
                         ),
                       ),
+                      Gap(30),
+                      Row(
+                        children: const [
+                          ActionCard(
+                            label: "8 Events This Month",
+                            img: "images/Calender2.png",
+                          ),
+
+                          ActionCard(
+                            label: "16/18 Active Cell Groups",
+                            img: "images/Marker.png",
+                          ),
+                        ],
+                      ),
+
                       Gap(10),
                     ],
                   ),

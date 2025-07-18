@@ -6,6 +6,7 @@ import 'package:bcci_platform/presentation/screens/edit_profile/edit_profile.dar
 import 'package:bcci_platform/presentation/screens/privacy_page/privacy_page.dart';
 import 'package:bcci_platform/presentation/screens/profile_notification_page/profile_notification_page.dart';
 import 'package:bcci_platform/presentation/screens/security_settings_page/security_settings_page.dart';
+import 'package:bcci_platform/presentation/screens/settings_page/settings_page.dart';
 import 'package:bcci_platform/presentation/screens/spiritual_goals/spiritual_goals.dart';
 import 'package:bcci_platform/presentation/screens/user_page/widgets/settings_item.dart';
 import 'package:flutter/material.dart' hide CarouselController;
@@ -63,12 +64,23 @@ class _UserPageState extends State<UserPage>
                                 fit: BoxFit.contain,
                               ),
                               Gap(20, isHorizontal: true),
-                              Image.asset(
-                                "images/settings-2.png",
-                                width: 30,
-                                height: 30,
-                                color: Colors.white,
-                                fit: BoxFit.contain,
+                              InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          SettingsPage(key: UniqueKey()),
+                                    ),
+                                  );
+                                },
+                                child: Image.asset(
+                                  "images/settings-2.png",
+                                  width: 30,
+                                  height: 30,
+                                  color: Colors.white,
+                                  fit: BoxFit.contain,
+                                ),
                               ),
                             ],
                           ),
