@@ -94,7 +94,7 @@ class CustomButton extends StatelessWidget {
                     style: TextStyle(
                       fontFamily: fontFamily,
                       fontWeight: fontWeight,
-                      fontSize: 16,
+                      fontSize: fontSize,
                     ),
                   ),
                   if (reverseTextAndImgOrder == true)
