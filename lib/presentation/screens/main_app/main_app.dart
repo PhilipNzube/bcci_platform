@@ -1,11 +1,14 @@
 import 'package:bcci_platform/presentation/screens/analytics_dashboard_page/analytics_dashboard_page.dart';
+import 'package:bcci_platform/presentation/screens/cell_leader_appointment/cell_leader_appointment.dart';
 import 'package:bcci_platform/presentation/screens/cluster_page/cluster_page.dart';
+import 'package:bcci_platform/presentation/screens/cv_recognition_system/cv_recognition_system.dart';
 import 'package:bcci_platform/presentation/screens/digital_transformation_page/digital_transformation_page.dart';
 import 'package:bcci_platform/presentation/screens/discipleship_pathways_page/discipleship_pathways_page.dart';
 import 'package:bcci_platform/presentation/screens/gamification_page/gamification_page.dart';
 import 'package:bcci_platform/presentation/screens/home_page/home_page.dart';
 import 'package:bcci_platform/presentation/screens/main_app/widgets/app_side_bar.dart';
 import 'package:bcci_platform/presentation/screens/messages_page/messages_page.dart';
+import 'package:bcci_platform/presentation/screens/sidebar_spiritual_goals/sidebar_spiritual_goals.dart';
 import 'package:bcci_platform/presentation/screens/user_page/user_page.dart';
 import 'package:bcci_platform/presentation/screens/worship_page/worship_page.dart';
 import 'package:flutter/material.dart';
@@ -56,16 +59,21 @@ class _MainAppState extends State<MainApp> with TickerProviderStateMixin {
         key: _scaffoldKey,
         drawer: AppSidebar(
           onItemTap: (label) {
-            Navigator.pop(context); // Close the drawer
-
+            Navigator.pop(context);
             if (label == "Digital Transformation") {
               navController.setTempIndex(5);
             } else if (label == "Analytics Dashboard") {
               navController.setTempIndex(6);
-            } else if (label == "Gamification") {
+            } else if (label == "CV Recognition") {
               navController.setTempIndex(7);
-            } else if (label == "Discipleship Pathways") {
+            } else if (label == "Gamification") {
               navController.setTempIndex(8);
+            } else if (label == "Discipleship Pathways") {
+              navController.setTempIndex(9);
+            } else if (label == "Spiritual Goals") {
+              navController.setTempIndex(10);
+            } else if (label == "Cell Leader Appointment") {
+              navController.setTempIndex(11);
             }
           },
         ),
@@ -81,8 +89,11 @@ class _MainAppState extends State<MainApp> with TickerProviderStateMixin {
               UserPage(),
               DigitalTransformationPage(scaffoldKey: _scaffoldKey),
               AnalyticsDashboardPage(scaffoldKey: _scaffoldKey),
+              CvRecognitionSystem(scaffoldKey: _scaffoldKey),
               GamificationPage(scaffoldKey: _scaffoldKey),
               DiscipleshipPathwaysPage(scaffoldKey: _scaffoldKey),
+              SidebarSpiritualGoals(scaffoldKey: _scaffoldKey),
+              CellLeaderAppointment(scaffoldKey: _scaffoldKey),
             ],
           ),
         ),
