@@ -1,9 +1,8 @@
-import 'package:flutter/material.dart' hide CarouselController;
-import 'dart:async';
+import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 
 class CvRecognitionSystemController extends ChangeNotifier {
-  CvRecognitionSystemController();
+  List<PlatformFile> selectedFiles = [];
 
   Future<void> pickFiles(BuildContext context) async {
     final result = await FilePicker.platform.pickFiles(
@@ -14,28 +13,36 @@ class CvRecognitionSystemController extends ChangeNotifier {
     );
 
     if (result != null) {
+      bool allFilesValid = true;
+
       for (final file in result.files) {
-        final fileSizeMB = file.size / (1024 * 1024); // Convert to MB
+        final fileSizeMB = file.size / (1024 * 1024);
         if (fileSizeMB > 10) {
+          allFilesValid = false;
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text('${file.name} exceeds the 10MB limit.'),
               backgroundColor: Colors.red,
             ),
           );
-          return;
+        } else {
+          selectedFiles.add(file);
         }
+      }
 
-        // ✅ You can handle valid file upload here
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              'Selected: ${file.name} (${fileSizeMB.toStringAsFixed(2)} MB)',
-            ),
-            backgroundColor: Colors.green,
-          ),
-        );
+      if (allFilesValid) {
+        notifyListeners();
       }
     }
+  }
+
+  void removeFileAt(int index) {
+    selectedFiles.removeAt(index);
+    notifyListeners();
+  }
+
+  void clearAllFiles() {
+    selectedFiles.clear();
+    notifyListeners();
   }
 }
