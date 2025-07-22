@@ -8,6 +8,7 @@ import 'package:bcci_platform/presentation/screens/gamification_page/gamificatio
 import 'package:bcci_platform/presentation/screens/home_page/home_page.dart';
 import 'package:bcci_platform/presentation/screens/main_app/widgets/app_side_bar.dart';
 import 'package:bcci_platform/presentation/screens/messages_page/messages_page.dart';
+import 'package:bcci_platform/presentation/screens/settings_page/settings_page.dart';
 import 'package:bcci_platform/presentation/screens/sidebar_spiritual_goals/sidebar_spiritual_goals.dart';
 import 'package:bcci_platform/presentation/screens/user_page/user_page.dart';
 import 'package:bcci_platform/presentation/screens/worship_page/worship_page.dart';
@@ -74,6 +75,8 @@ class _MainAppState extends State<MainApp> with TickerProviderStateMixin {
               navController.setTempIndex(10);
             } else if (label == "Cell Leader Appointment") {
               navController.setTempIndex(11);
+            } else if (label == "Settings") {
+              navController.setTempIndex(12);
             }
           },
         ),
@@ -94,6 +97,7 @@ class _MainAppState extends State<MainApp> with TickerProviderStateMixin {
               DiscipleshipPathwaysPage(scaffoldKey: _scaffoldKey),
               SidebarSpiritualGoals(scaffoldKey: _scaffoldKey),
               CellLeaderAppointment(scaffoldKey: _scaffoldKey),
+              SettingsPage(),
             ],
           ),
         ),
