@@ -30,7 +30,14 @@ class _SettingsPageState extends State<SettingsPage>
                   child: Row(
                     children: [
                       InkWell(
-                        onTap: () => Navigator.pop(context),
+                        onTap: () {
+                          if (Navigator.canPop(context)) {
+                            Navigator.pop(context);
+                          } else {
+                            // Optionally show a message or do nothing
+                            debugPrint("Nothing to go back to.");
+                          }
+                        },
                         child: Image.asset('images/Back.png', height: 35),
                       ),
 

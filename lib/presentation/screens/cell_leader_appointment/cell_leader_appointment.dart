@@ -1,6 +1,7 @@
 import 'package:bcci_platform/core/widgets/custom_background.dart';
 import 'package:bcci_platform/core/widgets/custom_button.dart';
 import 'package:bcci_platform/core/widgets/custom_gap.dart';
+import 'package:bcci_platform/core/widgets/custom_tab_selector.dart';
 import 'package:bcci_platform/presentation/controllers/cell_leader_appointment_controller.dart';
 import 'package:bcci_platform/presentation/screens/cell_leader_appointment/widgets/info_card.dart';
 import 'package:bcci_platform/presentation/screens/cell_leader_appointment/widgets/appointment_card.dart';
@@ -127,95 +128,15 @@ class _CellLeaderAppointmentState extends State<CellLeaderAppointment>
 
                       Gap(5),
                       // Tab Selector
-                      Row(
-                        children: [
-                          Expanded(
-                            child: GestureDetector(
-                              onTap: () {
-                                CellLeaderAppointmentController.setSelectedTabIndex(
-                                  0,
-                                );
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color:
-                                      CellLeaderAppointmentController
-                                              .selectedTabIndex ==
-                                          0
-                                      ? Colors.white
-                                      : const Color(0xFFD9D9D9),
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(10),
-                                    bottomLeft: Radius.circular(10),
-                                  ),
-                                  border: Border.all(
-                                    color: const Color(0xFFBFBFBF),
-                                  ),
-                                ),
-                                padding: const EdgeInsets.symmetric(
-                                  vertical: 14,
-                                ),
-                                alignment: Alignment.center,
-                                child: Text(
-                                  "Candidates",
-                                  style: TextStyle(
-                                    fontFamily: 'GolosText',
-                                    fontWeight: FontWeight.bold,
-                                    color:
-                                        CellLeaderAppointmentController
-                                                .selectedTabIndex ==
-                                            0
-                                        ? Colors.black
-                                        : Colors.grey,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: GestureDetector(
-                              onTap: () {
-                                CellLeaderAppointmentController.setSelectedTabIndex(
-                                  1,
-                                );
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color:
-                                      CellLeaderAppointmentController
-                                              .selectedTabIndex ==
-                                          1
-                                      ? Colors.white
-                                      : const Color(0xFFD9D9D9),
-                                  borderRadius: const BorderRadius.only(
-                                    topRight: Radius.circular(10),
-                                    bottomRight: Radius.circular(10),
-                                  ),
-                                  border: Border.all(
-                                    color: const Color(0xFFBFBFBF),
-                                  ),
-                                ),
-                                padding: const EdgeInsets.symmetric(
-                                  vertical: 14,
-                                ),
-                                alignment: Alignment.center,
-                                child: Text(
-                                  "Open Positions",
-                                  style: TextStyle(
-                                    fontFamily: 'GolosText',
-                                    fontWeight: FontWeight.bold,
-                                    color:
-                                        CellLeaderAppointmentController
-                                                .selectedTabIndex ==
-                                            1
-                                        ? Colors.black
-                                        : Colors.grey,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
+                      CustomTabSelector(
+                        tabs: ["Candidates", "Open Positions"],
+                        selectedIndex:
+                            CellLeaderAppointmentController.selectedTabIndex,
+                        onTabSelected: (index) {
+                          CellLeaderAppointmentController.setSelectedTabIndex(
+                            index,
+                          );
+                        },
                       ),
 
                       Gap(30),

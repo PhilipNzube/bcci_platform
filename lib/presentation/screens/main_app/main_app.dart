@@ -1,5 +1,7 @@
 import 'package:bcci_platform/presentation/screens/analytics_dashboard_page/analytics_dashboard_page.dart';
 import 'package:bcci_platform/presentation/screens/cell_leader_appointment/cell_leader_appointment.dart';
+import 'package:bcci_platform/presentation/screens/cell_management_page/cell_management_page.dart';
+import 'package:bcci_platform/presentation/screens/cluster_management_page/cluster_management_page.dart';
 import 'package:bcci_platform/presentation/screens/cluster_page/cluster_page.dart';
 import 'package:bcci_platform/presentation/screens/cv_recognition_system/cv_recognition_system.dart';
 import 'package:bcci_platform/presentation/screens/digital_transformation_page/digital_transformation_page.dart';
@@ -75,8 +77,12 @@ class _MainAppState extends State<MainApp> with TickerProviderStateMixin {
               navController.setTempIndex(10);
             } else if (label == "Cell Leader Appointment") {
               navController.setTempIndex(11);
-            } else if (label == "Settings") {
+            } else if (label == "Cluster Management") {
               navController.setTempIndex(12);
+            } else if (label == "Cell Management") {
+              navController.setTempIndex(13);
+            } else if (label == "Settings") {
+              navController.setTempIndex(14);
             }
           },
         ),
@@ -97,6 +103,8 @@ class _MainAppState extends State<MainApp> with TickerProviderStateMixin {
               DiscipleshipPathwaysPage(scaffoldKey: _scaffoldKey),
               SidebarSpiritualGoals(scaffoldKey: _scaffoldKey),
               CellLeaderAppointment(scaffoldKey: _scaffoldKey),
+              ClusterManagementPage(scaffoldKey: _scaffoldKey),
+              CellManagementPage(scaffoldKey: _scaffoldKey),
               SettingsPage(),
             ],
           ),
