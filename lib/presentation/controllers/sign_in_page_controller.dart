@@ -1,7 +1,9 @@
 import 'dart:convert';
 
+import 'package:bcci_platform/core/services/graphql_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/services.dart';
@@ -23,6 +25,7 @@ class SignInPageController extends ChangeNotifier {
   bool _isPasswordVisible = false;
   bool _rememberMe = false;
   bool isGoogleLoading = false;
+  final _formKey = GlobalKey<FormState>();
 
   SignInPageController() {
     initialize();
@@ -31,6 +34,7 @@ class SignInPageController extends ChangeNotifier {
   //public getters
   bool get isLoading => _isLoading;
   bool get rememberMe => _rememberMe;
+  GlobalKey<FormState> get formKey => _formKey;
 
   TextEditingController get emailController => _emailController;
   TextEditingController get passwordController => _passwordController;
@@ -65,132 +69,6 @@ class SignInPageController extends ChangeNotifier {
     prefs = await SharedPreferences.getInstance();
   }
 
-  // final GoogleSignIn _googleSignIn = GoogleSignIn(
-  //   scopes: [
-  //     'email',
-  //     'profile',
-  //     'https://www.googleapis.com/auth/user.gender.read',
-  //     'https://www.googleapis.com/auth/user.birthday.read',
-  //   ],
-  // );
-
-  // Future<void> handleSignIn(BuildContext context) async {
-  //   try {
-  //     print('Initializing Google Sign-In...');
-  //     await signIn.initialize();
-
-  //     print('Authenticating user...');
-  //     final GoogleSignInAccount user = await signIn.authenticate();
-
-  //     // Request or verify authorization for required scopes
-  //     final GoogleSignInClientAuthorization? auth =
-  //         await user.authorizationClient.authorizationForScopes(scopes);
-
-  //     if (auth == null) {
-  //       final GoogleSignInClientAuthorization? granted =
-  //           await user.authorizationClient.authorizeScopes(scopes);
-  //       if (granted == null) {
-  //         print('Required scopes not granted');
-  //         return;
-  //       }
-  //     }
-
-  //     final GoogleSignInClientAuthorization? finalAuth =
-  //         auth ?? await user.authorizationClient.authorizationForScopes(scopes);
-
-  //     final String? accessToken = finalAuth!.accessToken;
-  //     final GoogleSignInAuthentication googleAuth = await user.authentication;
-  //     final String? idToken = googleAuth.idToken;
-
-  //     print('Tokens obtained: accessToken present? ${accessToken != null}');
-  //     print('Authentication Token (idToken): $idToken');
-
-  //     final AuthCredential credential = GoogleAuthProvider.credential(
-  //       accessToken: accessToken,
-  //       idToken: idToken,
-  //     );
-
-  //     await FirebaseAuth.instance.signInWithCredential(credential);
-  //     isGoogleLoading = true;
-  //     notifyListeners();
-
-  //     // Extracting additional info from the old version
-  //     final String? fullName = user.displayName;
-  //     final String? email = user.email;
-
-  //     final List<String>? nameParts = fullName?.split(' ');
-  //     final String? firstName = nameParts?.first;
-  //     final String surname = nameParts!.length > 1 ? nameParts.last : '';
-
-  //     print('User signed in: $email');
-  //     print('Full name: $fullName');
-  //     print('First name: $firstName');
-  //     print('Surname: $surname');
-  //   } on PlatformException catch (e) {
-  //     print('PlatformException: $e');
-  //     if (e.code == 'sign_in_required') {
-  //       promptUserForPermission(
-  //           e, context, handlePermissionGranted, handlePermissionDenied);
-  //     } else {
-  //       showSignInErrorDialog(e, context, setIsGoogleLoading);
-  //     }
-  //   } catch (error) {
-  //     isGoogleLoading = false;
-  //     notifyListeners();
-  //     print('Error during Google Sign-In: $error');
-  //     showSignInErrorDialog(error, context, setIsGoogleLoading);
-  //   }
-  // }
-
-  // Future<void> handleSignIn(BuildContext context) async {
-  //   try {
-  //     print('Attempting Google Sign-In...');
-  //     // final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
-  //     await signIn.initialize(
-  //   );
-
-  //     if (googleUser != null) {
-  //       isGoogleLoading = true;
-  //       notifyListeners();
-  //       print('Google Sign-In successful. Retrieving authentication token...');
-  //       final GoogleSignInAuthentication googleAuth =
-  //           await googleUser.authentication;
-  //       String authToken = googleAuth.idToken!;
-  //       print('Authentication Token: $authToken');
-
-  //       final AuthCredential credential = GoogleAuthProvider.credential(
-  //         accessToken: googleAuth.accessToken,
-  //         idToken: googleAuth.idToken,
-  //       );
-  //       await FirebaseAuth.instance.signInWithCredential(credential);
-
-  //       final String? fullName = googleUser.displayName;
-  //       final String? email = googleUser.email;
-
-  //       final List<String>? nameParts = fullName?.split(' ');
-  //       final String? firstName = nameParts?.first;
-  //       final String surname = nameParts!.length > 1 ? nameParts.last : '';
-  //     } else {
-  //       isGoogleLoading = false;
-  //       notifyListeners();
-  //       print('Google Sign-In canceled.');
-  //     }
-  //   } on PlatformException catch (e) {
-  //     print('PlatformException: $e');
-  //     if (e.code == 'sign_in_required') {
-  //       promptUserForPermission(
-  //           e, context, handlePermissionGranted, handlePermissionDenied);
-  //     } else {
-  //       showSignInErrorDialog(e, context, setIsGoogleLoading);
-  //     }
-  //   } catch (error) {
-  //     isGoogleLoading = false;
-  //     notifyListeners();
-  //     print('Error during Google Sign-In: $error');
-  //     showSignInErrorDialog(error, context, setIsGoogleLoading);
-  //   }
-  // }
-
   void handlePermissionGranted(BuildContext context) {
     print('User granted permission.');
   }
@@ -199,118 +77,86 @@ class SignInPageController extends ChangeNotifier {
     print('User denied permission.');
   }
 
-  // Future<void> submitForm(BuildContext context) async {
-  //   if (prefs == null) {
-  //     await _initializePrefs();
-  //   }
+  Future<void> submitForm(BuildContext context) async {
+    final String email = emailController.text.trim();
+    final String password = passwordController.text.trim();
 
-  //   final String username = emailController.text.trim();
-  //   final String password = passwordController.text.trim();
+    if (email.isEmpty || password.isEmpty) {
+      CustomSnackbar.show(context, 'All fields are required.', isError: true);
+      return;
+    }
 
-  //   if (username.isEmpty || password.isEmpty) {
-  //     CustomSnackbar.show(context, 'All fields are required.', isError: true);
-  //     return;
-  //   }
+    final RegExp emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+$');
+    if (!emailRegex.hasMatch(email)) {
+      CustomSnackbar.show(
+        context,
+        'Please enter a valid email address.',
+        isError: true,
+      );
+      return;
+    }
 
-  //   // Validate password length
-  //   if (password.length < 6) {
-  //     CustomSnackbar.show(
-  //       context,
-  //       'Password must be at least 6 characters.',
-  //       isError: true,
-  //     );
-  //     return;
-  //   }
+    if (password.length < 6) {
+      CustomSnackbar.show(
+        context,
+        'Password must be at least 6 characters.',
+        isError: true,
+      );
+      return;
+    }
 
-  //   _isLoading = true;
-  //   notifyListeners();
+    _isLoading = true;
+    notifyListeners();
 
-  //   try {
-  //     // Fetch the current FCM token
-  //     final FirebaseMessaging messaging = FirebaseMessaging.instance;
-  //     final String? currentFCMToken = await messaging.getToken();
+    try {
+      final String loginMutation = r'''
+      mutation LoginUser($user: LoginUserInput!) {
+        loginUser(user: $user) {
+          message
+        }
+      }
+    ''';
 
-  //     // Fetch the stored FCM token
-  //     final String? storedFCMToken = prefs.getString('fcmToken');
+      final Map<String, dynamic> variables = {
+        "user": {"email": email, "password": password},
+      };
 
-  //     // Determine if the token needs to be sent
-  //     final bool shouldSendFCMToken =
-  //         storedFCMToken == null || currentFCMToken != storedFCMToken;
+      final QueryResult result = await GraphQLService.client.mutate(
+        MutationOptions(document: gql(loginMutation), variables: variables),
+      );
 
-  //     // Prepare the request body
-  //     final Map<String, dynamic> requestBody = {
-  //       'username': username,
-  //       'password': password,
-  //     };
+      if (result.hasException) {
+        print('GraphQL Exception: ${result.exception}');
 
-  //     if (shouldSendFCMToken && currentFCMToken != null) {
-  //       requestBody['firebaseToken'] = currentFCMToken;
-  //     }
+        final String? errorMessage =
+            result.exception?.graphqlErrors.isNotEmpty == true
+            ? result.exception!.graphqlErrors.first.message
+            : 'Login failed. Please check your credentials.';
 
-  //     // Send the POST request
-  //     final response = await http.post(
-  //       Uri.parse('https://yarnapi-fuu0.onrender.com/api/auth/sign-in'),
-  //       headers: {'Content-Type': 'application/json'},
-  //       body: jsonEncode(requestBody),
-  //     );
-  //     print('Response Status: ${response.statusCode}');
-  //     print('Response Body Length: ${response.body.length}');
-  //     print('Response Body: "${response.body}"');
-  //     final responseData = json.decode(response.body);
+        CustomSnackbar.show(context, errorMessage!, isError: true);
+        return;
+      }
 
-  //     if (response.statusCode == 200) {
-  //       // The response format: {status, data: {userId, token, username}}
-  //       final Map<String, dynamic> data = responseData['data'];
-  //       final String token = data['token'];
-  //       final int userId = data['userId'];
-  //       final String userName = data['username'];
+      final String message =
+          result.data?['loginUser']['message'] ?? 'Login successful!';
+      print('Full response: ${result.data}');
+      CustomSnackbar.show(context, message, isError: false);
 
-  //       // Store the token and user information
-  //       await storage.write(key: 'yarnAccessToken', value: token);
-  //       await prefs.setString(
-  //         'user',
-  //         jsonEncode({'userId': userId, 'username': userName}),
-  //       );
-
-  //       // Update the stored FCM token if it was sent
-  //       if (shouldSendFCMToken && currentFCMToken != null) {
-  //         await prefs.setString('fcmToken', currentFCMToken);
-  //       }
-
-  //       // Show success message
-  //       CustomSnackbar.show('Sign In Successful!', isError: false);
-
-  //       Navigator.pushReplacement(
-  //         context,
-  //         MaterialPageRoute(
-  //           builder: (context) => MainApp(
-  //             key: UniqueKey(),
-  //             onToggleDarkMode: onToggleDarkMode,
-  //             isDarkMode: isDarkMode,
-  //           ),
-  //         ),
-  //       );
-  //     } else if (response.statusCode == 400) {
-  //       _isLoading = false;
-  //       notifyListeners();
-  //       final String message = responseData['message'];
-
-  //       // Handle validation error
-  //       CustomSnackbar.show('Error: $message', isError: true);
-  //     } else {
-  //       _isLoading = false;
-  //       notifyListeners();
-  //       // Handle other unexpected responses
-  //       CustomSnackbar.show('An unexpected error occurred.', isError: true);
-  //     }
-  //   } catch (e) {
-  //     _isLoading = false;
-  //     notifyListeners();
-  //     print('Error: $e');
-  //     CustomSnackbar.show(
-  //       'An error occurred. Please try again later.',
-  //       isError: true,
-  //     );
-  //   }
-  // }
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => MainApp(key: UniqueKey())),
+      );
+    } catch (e, stackTrace) {
+      print('Unexpected error: $e');
+      print('Stack trace: $stackTrace');
+      CustomSnackbar.show(
+        context,
+        'Something went wrong. Please try again.',
+        isError: true,
+      );
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
+  }
 }

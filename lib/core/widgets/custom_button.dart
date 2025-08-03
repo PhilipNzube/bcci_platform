@@ -55,7 +55,7 @@ class CustomButton extends StatelessWidget {
       width: width,
       height: height,
       child: ElevatedButton(
-        onPressed: onPressed,
+        onPressed: isLoading == false ? onPressed : null,
         style: ButtonStyle(
           backgroundColor: WidgetStateProperty.resolveWith<Color>(
             (states) => states.contains(WidgetState.pressed)

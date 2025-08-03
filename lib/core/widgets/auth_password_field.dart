@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class AuthPasswordField extends StatefulWidget {
   final TextEditingController controller;
   final FocusNode focusNode;
+  final String? Function(String?)? validator;
 
   const AuthPasswordField({
     super.key,
     required this.controller,
     required this.focusNode,
+    this.validator,
   });
 
   @override
@@ -57,6 +59,7 @@ class _AuthPasswordFieldState extends State<AuthPasswordField> {
           ),
         ),
         cursorColor: Theme.of(context).colorScheme.onSurface,
+        validator: widget.validator,
       ),
     );
   }

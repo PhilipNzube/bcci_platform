@@ -11,6 +11,7 @@ class AuthTextField extends StatelessWidget {
   final bool isPaddingActive;
   final FloatingLabelBehavior floatingLabelBehavior;
   final double labelFontSize;
+  final String? Function(String?)? validator;
 
   const AuthTextField({
     super.key,
@@ -23,6 +24,7 @@ class AuthTextField extends StatelessWidget {
     this.isPaddingActive = true,
     this.floatingLabelBehavior = FloatingLabelBehavior.never,
     this.labelFontSize = 12.0,
+    this.validator,
   });
 
   @override
@@ -54,6 +56,7 @@ class AuthTextField extends StatelessWidget {
         cursorColor: Theme.of(context).colorScheme.onSurface,
         keyboardType: keyboardType,
         inputFormatters: inputFormatters,
+        validator: validator,
       ),
     );
   }

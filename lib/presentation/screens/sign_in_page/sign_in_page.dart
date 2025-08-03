@@ -195,14 +195,9 @@ class _SignInPageState extends State<SignInPage> with WidgetsBindingObserver {
                               text: "Login",
                               backgroundColor: Color(0xFFC7002B),
                               foregroundColor: Colors.white,
+                              isLoading: signInPageController.isLoading,
                               onPressed: () {
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        MainApp(key: UniqueKey()),
-                                  ),
-                                );
+                                signInPageController.submitForm(context);
                               },
                             ),
                           ),

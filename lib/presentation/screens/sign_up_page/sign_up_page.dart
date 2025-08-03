@@ -148,14 +148,9 @@ class _SignUpPageState extends State<SignUpPage> with WidgetsBindingObserver {
                             text: "Sign Up",
                             backgroundColor: Color(0xFFC7002B),
                             foregroundColor: Colors.white,
+                            isLoading: signUpPageController.isLoading,
                             onPressed: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      MainApp(key: UniqueKey()),
-                                ),
-                              );
+                              signUpPageController.submitForm(context);
                             },
                           ),
                         ),
