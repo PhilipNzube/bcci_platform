@@ -35,10 +35,11 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   shared_preferences: ^2.5.3
-  carousel_slider:
-    git:
-      url: https://github.com/sampaio96/flutter_carousel_slider.git
-      ref: master
+  carousel_slider: ^5.1.1
+  # carousel_slider:
+  #   git:
+  #     url: https://github.com/sampaio96/flutter_carousel_slider.git
+  #     ref: master
   webview_flutter: ^4.0.4
   local_auth: ^2.3.0
   http: ^1.2.2
@@ -127,6 +128,7 @@ flutter:
     - images/delete.png
     - images/digital_adoption.png
     - images/Digital_Transformation.png
+    - images/DoneTick.png
     - images/Edit_Profile.png
     - images/Efficiency.png
     - images/Fellowship.png
@@ -179,6 +181,10 @@ flutter:
     - images/User-Active.png
     - images/User.png
     - images/Voice_Record.png
+    - images/WelcomeImg.png
+    - images/WelcomeImg2.png
+    - images/WelcomeImg3.png
+    - images/WelcomeNextButton.png
     - images/Worship-Active.png
     - images/Worship.png
     - images/Write_Message.png

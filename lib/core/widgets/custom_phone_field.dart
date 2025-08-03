@@ -5,31 +5,39 @@ class CustomPhoneField extends StatelessWidget {
   final String initialCountryCode;
   final String? initialValue;
   final ValueChanged<String>? onChanged;
+  final double borderRadius;
+  final bool filled;
+  final EdgeInsetsGeometry padding;
+  final BorderSide borderSide;
 
   const CustomPhoneField({
     super.key,
     required this.initialCountryCode,
     this.initialValue,
     this.onChanged,
+    this.borderRadius = 15,
+    this.filled = true,
+    this.padding = const EdgeInsets.symmetric(horizontal: 0.0),
+    this.borderSide = BorderSide.none,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 0.0),
+      padding: padding,
       child: IntlPhoneField(
         initialValue: initialValue,
         initialCountryCode: initialCountryCode,
         onChanged: (phone) => onChanged?.call(phone.completeNumber),
         decoration: InputDecoration(
-          filled: true,
+          filled: filled,
           fillColor: Colors.grey[50],
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(15),
-            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(borderRadius),
+            borderSide: borderSide,
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(borderRadius),
             borderSide: const BorderSide(color: Colors.black),
           ),
           counterText: '',

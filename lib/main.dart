@@ -1,3 +1,4 @@
+import 'package:bcci_platform/presentation/screens/intro_page/intro_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:provider/provider.dart';
@@ -49,7 +50,7 @@ class MyApp extends StatelessWidget {
             themeMode: themeController.isDarkMode
                 ? ThemeMode.dark
                 : ThemeMode.light,
-            home: const MainApp(),
+            home: isLoggedIn ? MainApp() : IntroPage(),
           );
         },
       ),

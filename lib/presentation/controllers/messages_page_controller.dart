@@ -17,7 +17,7 @@ class MessagesPageController extends ChangeNotifier {
     "images/Banner.png",
   ];
   int _current = 0;
-  final CarouselController _controller = CarouselController();
+  final CarouselSliderController _controller = CarouselSliderController();
   Map<String, bool> _isLikedMap = {};
   int? _selectedRadioValue = 0;
   final storage = const FlutterSecureStorage();
@@ -98,7 +98,7 @@ class MessagesPageController extends ChangeNotifier {
   // Future<void> get userData => _userData;
 
   TextEditingController get searchController => _searchController;
-  CarouselController get controller => _controller;
+  CarouselSliderController get controller => _controller;
   ScrollController get scrollController => _scrollController;
 
   FocusNode get searchFocusNode => _searchFocusNode;

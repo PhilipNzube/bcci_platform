@@ -32,9 +32,7 @@ class _AuthPasswordFieldState extends State<AuthPasswordField> {
         focusNode: widget.focusNode,
         obscureText: !_isPasswordVisible,
         obscuringCharacter: "*",
-        style: const TextStyle(
-          fontSize: 16.0,
-        ),
+        style: const TextStyle(fontSize: 16.0),
         decoration: InputDecoration(
           labelText: '*******************',
           labelStyle: const TextStyle(
@@ -44,11 +42,9 @@ class _AuthPasswordFieldState extends State<AuthPasswordField> {
             decoration: TextDecoration.none,
           ),
           floatingLabelBehavior: FloatingLabelBehavior.never,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(15),
-          ),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(8),
             borderSide: BorderSide(
               color: Theme.of(context).colorScheme.onSurface,
             ),
