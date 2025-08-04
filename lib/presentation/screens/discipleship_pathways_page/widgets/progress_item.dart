@@ -7,12 +7,14 @@ class ProgressItem extends StatelessWidget {
   final String week;
   final double progress;
   final String level;
+  final VoidCallback? onPressed;
 
   const ProgressItem({
     super.key,
     required this.week,
     required this.progress,
     required this.level,
+    this.onPressed,
   });
 
   Map<String, dynamic> _getLevelStyle(String level) {
@@ -127,6 +129,7 @@ class ProgressItem extends StatelessWidget {
                 text: "Hide Modules",
                 backgroundColor: Colors.black,
                 foregroundColor: Colors.white,
+                onPressed: onPressed,
               ),
               Gap(5, isHorizontal: true),
               CustomButton(

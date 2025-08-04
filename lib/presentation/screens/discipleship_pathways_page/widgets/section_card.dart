@@ -9,12 +9,14 @@ class SectionCard extends StatelessWidget {
   final String title;
   final String subText;
   final bool isCourseActive;
+  final VoidCallback? onToggleActive;
 
   const SectionCard({
     super.key,
     required this.title,
     required this.subText,
     this.isCourseActive = false,
+    this.onToggleActive,
   });
 
   @override
@@ -35,7 +37,12 @@ class SectionCard extends StatelessWidget {
               style: TextStyle(color: Colors.black54, fontSize: 15),
             ),
             Gap(16),
-            ProgressItem(week: '4', progress: .60, level: 'Beginner'),
+            ProgressItem(
+              week: '4',
+              progress: .60,
+              level: 'Beginner',
+              onPressed: onToggleActive,
+            ),
             if (isCourseActive) ...[
               Gap(16),
               CourseModules(

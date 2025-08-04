@@ -5,6 +5,7 @@ import 'package:bcci_platform/core/widgets/custom_label.dart';
 import 'package:bcci_platform/core/widgets/custom_phone_field.dart';
 import 'package:bcci_platform/core/widgets/custom_radio_button.dart';
 import 'package:bcci_platform/presentation/controllers/edit_profile_controller.dart';
+import 'package:bcci_platform/presentation/screens/settings_page/settings_page.dart';
 import 'package:flutter/material.dart' hide CarouselController;
 import 'package:provider/provider.dart';
 
@@ -60,12 +61,23 @@ class _EditProfileState extends State<EditProfile>
                                 fit: BoxFit.contain,
                               ),
                               Gap(20, isHorizontal: true),
-                              Image.asset(
-                                "images/settings-2.png",
-                                width: 30,
-                                height: 30,
-                                color: Colors.white,
-                                fit: BoxFit.contain,
+                              InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          SettingsPage(key: UniqueKey()),
+                                    ),
+                                  );
+                                },
+                                child: Image.asset(
+                                  "images/settings-2.png",
+                                  width: 30,
+                                  height: 30,
+                                  color: Colors.white,
+                                  fit: BoxFit.contain,
+                                ),
                               ),
                             ],
                           ),

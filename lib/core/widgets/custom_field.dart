@@ -5,6 +5,11 @@ class CustomTextField extends StatelessWidget {
   final ValueChanged<String>? onChanged;
   final IconData? suffixIcon;
   final String? labelText;
+  final double borderRadius;
+  final bool filled;
+  final Color? fillColor;
+  final bool hasShadow;
+  final Color shadowColor;
 
   const CustomTextField({
     super.key,
@@ -12,12 +17,27 @@ class CustomTextField extends StatelessWidget {
     this.onChanged,
     this.suffixIcon,
     this.labelText,
+    this.borderRadius = 15,
+    this.filled = true,
+    this.fillColor = const Color(0xFFFAFAFA),
+    this.hasShadow = true,
+    this.shadowColor = const Color(0x1F000000), // default subtle shadow
   });
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 0.0),
+    return Container(
+      decoration: hasShadow
+          ? BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: shadowColor,
+                  blurRadius: 6,
+                  offset: Offset(0, 2),
+                ),
+              ],
+            )
+          : null,
       child: TextFormField(
         initialValue: initialValue,
         onChanged: onChanged,
@@ -30,14 +50,14 @@ class CustomTextField extends StatelessWidget {
             fontSize: 12.0,
             decoration: TextDecoration.none,
           ),
-          filled: true,
-          fillColor: Colors.grey[50],
+          filled: filled,
+          fillColor: fillColor,
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(borderRadius),
             borderSide: BorderSide.none,
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(borderRadius),
             borderSide: const BorderSide(color: Colors.black),
           ),
           suffixIcon: suffixIcon != null

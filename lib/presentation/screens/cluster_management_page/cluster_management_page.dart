@@ -3,6 +3,7 @@ import 'package:bcci_platform/core/widgets/custom_gap.dart';
 import 'package:bcci_platform/core/widgets/custom_tab_selector.dart';
 import 'package:bcci_platform/presentation/controllers/cluster_management_page_controller.dart';
 import 'package:bcci_platform/presentation/screens/cluster_management_page/widgets/all_cell_card.dart';
+import 'package:bcci_platform/presentation/screens/cluster_management_page/widgets/cluster_form.dart';
 import 'package:bcci_platform/presentation/screens/cluster_management_page/widgets/cluster_overview_card.dart';
 import 'package:bcci_platform/presentation/screens/cluster_management_page/widgets/info_card.dart';
 import 'package:bcci_platform/presentation/screens/cluster_management_page/widgets/search_bar.dart';
@@ -81,6 +82,19 @@ class _ClusterManagementPageState extends State<ClusterManagementPage>
                         text: "New Cluster",
                         backgroundColor: Colors.black,
                         foregroundColor: Colors.white,
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            barrierDismissible: true,
+                            barrierColor: Colors.black.withOpacity(0.6),
+                            builder: (_) => Dialog(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: CreateClusterForm(),
+                            ),
+                          );
+                        },
                       ),
                       Gap(30),
                       Column(

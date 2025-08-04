@@ -1,6 +1,7 @@
 import 'package:bcci_platform/core/widgets/custom_gap.dart';
 import 'package:bcci_platform/presentation/controllers/discipleship_pathways_page_controller.dart';
 import 'package:bcci_platform/presentation/screens/discipleship_pathways_page/widgets/section_card.dart';
+import 'package:bcci_platform/presentation/screens/discipleship_pathways_page/widgets/section_card_wrapper.dart';
 import 'package:flutter/material.dart' hide CarouselController;
 import 'package:provider/provider.dart';
 
@@ -70,17 +71,16 @@ class _DiscipleshipPathwaysPageState extends State<DiscipleshipPathwaysPage>
                         style: TextStyle(fontSize: 18, color: Colors.black),
                       ),
                       Gap(30),
-                      SectionCard(
+                      SectionCardWrapper(
                         title: 'New Believer Foundation',
                         subText: 'Structed learning paths for spiritual growth',
-                        isCourseActive: true,
                       ),
-                      SectionCard(
+                      SectionCardWrapper(
                         title: 'Leadership Development',
                         subText: 'Training for emerging church leaders',
                       ),
 
-                      SectionCard(
+                      SectionCardWrapper(
                         title: 'Evangelism & Outreach',
                         subText: 'Sharing your faith effectively',
                       ),

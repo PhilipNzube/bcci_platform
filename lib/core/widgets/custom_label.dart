@@ -4,16 +4,22 @@ class CustomLabel extends StatelessWidget {
   final String title;
   final String? fontFamily;
   final FontWeight? fontWeight;
+  final double? fontSize;
   final bool isPaddingActive;
   final Color? color;
+  final bool? softWrap;
+  final TextOverflow? overflow;
 
   const CustomLabel({
     super.key,
     required this.title,
     this.fontFamily = 'GolosText',
     this.fontWeight,
+    this.fontSize = 16.0,
     this.isPaddingActive = false,
     this.color,
+    this.softWrap,
+    this.overflow,
   });
 
   @override
@@ -29,9 +35,11 @@ class CustomLabel extends StatelessWidget {
         style: TextStyle(
           fontWeight: fontWeight ?? FontWeight.bold,
           fontFamily: fontFamily,
-          fontSize: 16.0,
+          fontSize: fontSize,
           color: color,
         ),
+        softWrap: softWrap,
+        overflow: overflow,
       ),
     );
   }

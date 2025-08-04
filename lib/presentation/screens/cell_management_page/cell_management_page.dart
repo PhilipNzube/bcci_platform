@@ -2,6 +2,7 @@ import 'package:bcci_platform/core/widgets/custom_button.dart';
 import 'package:bcci_platform/core/widgets/custom_gap.dart';
 import 'package:bcci_platform/core/widgets/custom_tab_selector.dart';
 import 'package:bcci_platform/presentation/controllers/cell_management_page_controller.dart';
+import 'package:bcci_platform/presentation/screens/cell_management_page/widgets/cell_form.dart';
 import 'package:bcci_platform/presentation/screens/cell_management_page/widgets/cell_overview_card.dart';
 import 'package:bcci_platform/presentation/screens/cell_management_page/widgets/info_card.dart';
 import 'package:bcci_platform/presentation/screens/cell_management_page/widgets/search_bar.dart';
@@ -80,6 +81,19 @@ class _CellManagementPageState extends State<CellManagementPage>
                         text: "New Cell",
                         backgroundColor: Colors.black,
                         foregroundColor: Colors.white,
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            barrierDismissible: true,
+                            barrierColor: Colors.black.withOpacity(0.6),
+                            builder: (_) => Dialog(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: CreateCellForm(),
+                            ),
+                          );
+                        },
                       ),
                       Gap(30),
                       Column(

@@ -89,12 +89,16 @@ class CustomButton extends StatelessWidget {
                       fit: BoxFit.contain,
                     ),
                   Gap(gap, isHorizontal: true),
-                  Text(
-                    text,
-                    style: TextStyle(
-                      fontFamily: fontFamily,
-                      fontWeight: fontWeight,
-                      fontSize: fontSize,
+                  Flexible(
+                    child: Text(
+                      text,
+                      style: TextStyle(
+                        fontFamily: fontFamily,
+                        fontWeight: fontWeight,
+                        fontSize: fontSize,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                      softWrap: false,
                     ),
                   ),
                   if (reverseTextAndImgOrder == true)

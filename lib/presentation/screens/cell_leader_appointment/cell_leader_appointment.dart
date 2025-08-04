@@ -5,6 +5,7 @@ import 'package:bcci_platform/core/widgets/custom_tab_selector.dart';
 import 'package:bcci_platform/presentation/controllers/cell_leader_appointment_controller.dart';
 import 'package:bcci_platform/presentation/screens/cell_leader_appointment/widgets/info_card.dart';
 import 'package:bcci_platform/presentation/screens/cell_leader_appointment/widgets/appointment_card.dart';
+import 'package:bcci_platform/presentation/screens/cell_leader_appointment/widgets/nomination_form.dart';
 import 'package:bcci_platform/presentation/screens/cell_leader_appointment/widgets/search_bar.dart';
 import 'package:flutter/material.dart' hide CarouselController;
 import 'package:provider/provider.dart';
@@ -81,6 +82,19 @@ class _CellLeaderAppointmentState extends State<CellLeaderAppointment>
                         text: "Nominate",
                         backgroundColor: Colors.black,
                         foregroundColor: Colors.white,
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            barrierDismissible: true,
+                            barrierColor: Colors.black.withOpacity(0.6),
+                            builder: (_) => Dialog(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: NominationForm(),
+                            ),
+                          );
+                        },
                       ),
                       Gap(30),
                       Column(
