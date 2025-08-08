@@ -98,6 +98,7 @@ class _SignInPageState extends State<SignInPage> with WidgetsBindingObserver {
                             controller: signInPageController.emailController,
                             focusNode: signInPageController.emailFocusNode,
                             label: "example@gmail.com",
+                            borderRadius: 8,
                           ),
 
                           Gap(

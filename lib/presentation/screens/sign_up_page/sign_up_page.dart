@@ -65,6 +65,7 @@ class _SignUpPageState extends State<SignUpPage> with WidgetsBindingObserver {
                         AuthTextField(
                           controller: signUpPageController.userNameController,
                           focusNode: signUpPageController.userNameFocusNode,
+                          borderRadius: 8,
                         ),
 
                         Gap(
@@ -77,6 +78,7 @@ class _SignUpPageState extends State<SignUpPage> with WidgetsBindingObserver {
                           controller: signUpPageController.emailController,
                           focusNode: signUpPageController.emailFocusNode,
                           label: "example@gmail.com",
+                          borderRadius: 8,
                         ),
 
                         Gap(
@@ -106,6 +108,7 @@ class _SignUpPageState extends State<SignUpPage> with WidgetsBindingObserver {
                           controller: signUpPageController.stateController,
                           focusNode: signUpPageController.stateFocusNode,
                           label: "Select your state",
+                          borderRadius: 8,
                         ),
 
                         Gap(

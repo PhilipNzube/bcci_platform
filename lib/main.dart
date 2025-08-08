@@ -50,7 +50,8 @@ class MyApp extends StatelessWidget {
             themeMode: themeController.isDarkMode
                 ? ThemeMode.dark
                 : ThemeMode.light,
-            home: isLoggedIn ? MainApp() : IntroPage(),
+            // home: isLoggedIn ? MainApp() : IntroPage(),
+            home: const MainApp(),
           );
         },
       ),

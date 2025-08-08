@@ -11,31 +11,32 @@ class AuthTextField extends StatelessWidget {
   final bool isPaddingActive;
   final FloatingLabelBehavior floatingLabelBehavior;
   final double labelFontSize;
+  final double borderRadius;
 
-  const AuthTextField(
-      {super.key,
-      required this.controller,
-      required this.focusNode,
-      this.label,
-      this.fontFamily = 'Poppins',
-      this.keyboardType = TextInputType.text,
-      this.inputFormatters,
-      this.isPaddingActive = true,
-      this.floatingLabelBehavior = FloatingLabelBehavior.never,
-      this.labelFontSize = 12.0});
+  const AuthTextField({
+    super.key,
+    required this.controller,
+    required this.focusNode,
+    this.label,
+    this.fontFamily = 'Poppins',
+    this.keyboardType = TextInputType.text,
+    this.inputFormatters,
+    this.isPaddingActive = true,
+    this.floatingLabelBehavior = FloatingLabelBehavior.never,
+    this.labelFontSize = 12.0,
+    this.borderRadius = 15,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:
-          EdgeInsets.symmetric(horizontal: isPaddingActive == true ? 20.0 : 0),
+      padding: EdgeInsets.symmetric(
+        horizontal: isPaddingActive == true ? 20.0 : 0,
+      ),
       child: TextFormField(
         controller: controller,
         focusNode: focusNode,
-        style: const TextStyle(
-          fontSize: 16.0,
-          decoration: TextDecoration.none,
-        ),
+        style: const TextStyle(fontSize: 16.0, decoration: TextDecoration.none),
         decoration: InputDecoration(
           labelText: label,
           labelStyle: TextStyle(
@@ -45,10 +46,10 @@ class AuthTextField extends StatelessWidget {
           ),
           floatingLabelBehavior: floatingLabelBehavior,
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(borderRadius),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(borderRadius),
             borderSide: BorderSide(
               color: Theme.of(context).colorScheme.onSurface,
             ),

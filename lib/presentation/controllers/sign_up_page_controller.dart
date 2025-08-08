@@ -68,16 +68,19 @@ class SignUpPageController extends ChangeNotifier {
   }
 
   Future<void> submitForm(BuildContext context) async {
+    final String username = userNameController.text.trim();
     final String email = emailController.text.trim();
     final String password = passwordController.text.trim();
-    final String firstName = userNameController.text.trim();
-    final String surname = userNameController.text.trim();
-    final String otherNames = userNameController.text.trim();
+    final String confirmPassword = retypePasswordController.text.trim();
+    final String state = stateController.text.trim();
+    final String phone = _phoneNumber.trim();
 
-    if (email.isEmpty ||
+    if (username.isEmpty ||
+        email.isEmpty ||
         password.isEmpty ||
-        firstName.isEmpty ||
-        surname.isEmpty) {
+        confirmPassword.isEmpty ||
+        state.isEmpty ||
+        phone.isEmpty) {
       CustomSnackbar.show(
         context,
         'All required fields must be filled.',
@@ -112,11 +115,10 @@ class SignUpPageController extends ChangeNotifier {
       const String createUserMutation = r'''
       mutation CreateUser($user: UserInput!) {
         createUser(user: $user) {
-          id
-          firstName
-          surname
-          otherNames
           email
+          roles
+          id
+          username
           roles
         }
       }
@@ -124,11 +126,12 @@ class SignUpPageController extends ChangeNotifier {
 
       final Map<String, dynamic> variables = {
         "user": {
-          "firstName": firstName,
-          "surname": surname,
-          "otherNames": otherNames,
+          "username": username,
           "email": email,
           "password": password,
+          "confirmPassword": confirmPassword,
+          "state": state,
+          "phone": phone,
           "roles": ["USER"],
         },
       };
