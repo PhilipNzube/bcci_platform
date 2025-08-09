@@ -297,13 +297,23 @@ class _EditProfileState extends State<EditProfile>
                                 foregroundColor: Colors.white,
                                 img: "images/save.png",
                                 text: "Save Changes",
-                                onPressed: () {
-                                  // if (EditProfileController
-                                  //     .formKey
-                                  //     .currentState!
-                                  //     .validate()) {
-                                  //   // Handle save changes
-                                  // }
+                                isLoading: EditProfileController.isLoading,
+                                onPressed: () async {
+                                  await EditProfileController.updateUserProfile(
+                                    fullName: EditProfileController
+                                        .fullName
+                                        .text
+                                        .trim(),
+                                    phone: EditProfileController
+                                        .phoneNumber
+                                        .text
+                                        .trim(),
+                                    username: EditProfileController
+                                        .fullName
+                                        .text
+                                        .trim(),
+                                    context: context,
+                                  );
                                 },
                                 gap: 5,
                               ),

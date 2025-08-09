@@ -76,7 +76,7 @@ class CustomButton extends StatelessWidget {
           padding: padding,
         ),
         child: isLoading
-            ? CircularProgressIndicator(color: loaderColor)
+            ? CircularProgressIndicator(color: foregroundColor)
             : Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [

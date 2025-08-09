@@ -113,15 +113,15 @@ class SignUpPageController extends ChangeNotifier {
 
     try {
       const String createUserMutation = r'''
-      mutation CreateUser($user: UserInput!) {
-        createUser(user: $user) {
-          email
-          roles
-          id
-          username
-          roles
-        }
+    mutation CreateUser($user: UserInput!) {
+      createUser(user: $user) {
+        email
+        roles
+        id
+        username
+        token
       }
+    }
     ''';
 
       final Map<String, dynamic> variables = {
@@ -143,23 +143,39 @@ class SignUpPageController extends ChangeNotifier {
         ),
       );
 
+      // Log full response like Postman
+      print("===== SIGN UP RESPONSE =====");
+      print(result.data);
+
       if (result.hasException) {
         print('GraphQL Exception: ${result.exception}');
-
-        final String? errorMessage =
+        final String errorMessage =
             result.exception?.graphqlErrors.isNotEmpty == true
             ? result.exception!.graphqlErrors.first.message
             : 'Registration failed. Please try again.';
-
-        CustomSnackbar.show(context, errorMessage!, isError: true);
+        CustomSnackbar.show(context, errorMessage, isError: true);
         return;
       }
 
       final user = result.data?['createUser'];
-      print('Full response: ${result.data}');
+
+      // Save token securely
+      final String? token = user?['token'];
+      if (token != null) {
+        await storage.write(key: "accessToken", value: token);
+        print("Access token saved: $token");
+      }
+
+      // Save userId securely
+      final String? userId = user?['id'];
+      if (userId != null) {
+        await storage.write(key: "userId", value: userId);
+        print("User ID saved: $userId");
+      }
+
       CustomSnackbar.show(
         context,
-        'Welcome, ${user['firstName']}! Your account has been created.',
+        'Welcome, ${user?['username']}! Your account has been created.',
         isError: false,
       );
 

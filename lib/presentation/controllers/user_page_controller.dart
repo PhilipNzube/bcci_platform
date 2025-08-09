@@ -1,6 +1,10 @@
+import 'package:bcci_platform/core/services/graphql_service.dart';
+import 'package:bcci_platform/core/widgets/custom_snackbar.dart';
+import 'package:bcci_platform/main.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart' hide CarouselController;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
@@ -158,11 +162,88 @@ class UserPageController extends ChangeNotifier {
   }
 
   void initialize() async {
-    await initializePrefs();
+    await fetchUserProfile(navigatorKey.currentContext!);
   }
 
   Future<void> initializePrefs() async {
     prefs = await SharedPreferences.getInstance();
     notifyListeners();
+  }
+
+  Future<void> fetchUserProfile(BuildContext context) async {
+    // Get stored ID and token
+    final String? userId = await storage.read(key: "userId");
+    final String? token = await storage.read(key: "accessToken");
+
+    if (userId == null || userId.trim().isEmpty) {
+      CustomSnackbar.show(context, 'No user ID found.', isError: true);
+      return;
+    }
+    if (token == null || token.trim().isEmpty) {
+      CustomSnackbar.show(context, 'No access token found.', isError: true);
+      return;
+    }
+
+    _isLoading = true;
+    notifyListeners();
+
+    try {
+      const String userQuery = r'''
+    query User($id: String) {
+      user(id: $id) {
+        id
+        fullName
+        phone
+        username
+      }
+    }
+    ''';
+
+      final Map<String, dynamic> variables = {"id": userId};
+
+      final QueryResult result = await GraphQLService.client.mutate(
+        MutationOptions(document: gql(userQuery), variables: variables),
+      );
+
+      print("===== USER PROFILE RESPONSE =====");
+      print(result.data);
+
+      if (result.hasException) {
+        print('GraphQL Exception: ${result.exception}');
+        final String errorMessage =
+            result.exception?.graphqlErrors.isNotEmpty == true
+            ? result.exception!.graphqlErrors.first.message
+            : 'Failed to fetch profile.';
+        CustomSnackbar.show(context, errorMessage, isError: true);
+        return;
+      }
+
+      final userData = result.data?['user'];
+      if (userData == null) {
+        CustomSnackbar.show(context, 'User not found.', isError: true);
+        return;
+      }
+
+      CustomSnackbar.show(
+        context,
+        'Welcome back, ${userData['username']}!',
+        isError: false,
+      );
+
+      // You can store/update local profile state here
+      // Example:
+      // _currentUser = User.fromJson(userData);
+    } catch (e, stackTrace) {
+      print('Unexpected error: $e');
+      print('Stack trace: $stackTrace');
+      CustomSnackbar.show(
+        context,
+        'Something went wrong. Please try again.',
+        isError: true,
+      );
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
   }
 }

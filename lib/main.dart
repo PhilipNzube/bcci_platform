@@ -17,7 +17,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   const storage = FlutterSecureStorage();
-  final accessToken = await storage.read(key: 'passcodeNotActive');
+  final accessToken = await storage.read(key: 'accessToken');
   final prefs = await SharedPreferences.getInstance();
   bool? isDarkMode = prefs.getBool('isDarkMode') ?? false;
 
@@ -50,8 +50,8 @@ class MyApp extends StatelessWidget {
             themeMode: themeController.isDarkMode
                 ? ThemeMode.dark
                 : ThemeMode.light,
-            // home: isLoggedIn ? MainApp() : IntroPage(),
-            home: const MainApp(),
+            home: isLoggedIn ? MainApp() : IntroPage(),
+            //home: const MainApp(),
           );
         },
       ),

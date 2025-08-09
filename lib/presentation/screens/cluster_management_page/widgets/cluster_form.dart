@@ -26,10 +26,11 @@ class CreateClusterForm extends StatelessWidget {
                 Gap(16, isHorizontal: true),
                 Expanded(
                   child: _buildDropdownField('Region', 'Selection Region', [
-                    'North',
-                    'East',
-                    'West',
-                    'South',
+                    'Northern District',
+                    'Eastern District',
+                    'Western District',
+                    'Southern District'
+                        'Central District',
                   ]),
                 ),
               ],

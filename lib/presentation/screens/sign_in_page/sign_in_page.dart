@@ -93,7 +93,7 @@ class _SignInPageState extends State<SignInPage> with WidgetsBindingObserver {
                             MediaQuery.of(context).size.height * 0.05,
                             useMediaQuery: true,
                           ),
-                          AuthLabel(title: 'Email / Phone Number'),
+                          AuthLabel(title: 'Email'),
                           AuthTextField(
                             controller: signInPageController.emailController,
                             focusNode: signInPageController.emailFocusNode,

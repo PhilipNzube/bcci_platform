@@ -108,13 +108,16 @@ class SignInPageController extends ChangeNotifier {
     _isLoading = true;
     notifyListeners();
 
+    print("GRAPHQL ENDPOINT: ${GraphQLService.client.link}");
+
     try {
-      final String loginMutation = r'''
-      mutation LoginUser($user: LoginUserInput!) {
-        loginUser(user: $user) {
-          message
-        }
+      const String loginMutation = r'''
+    mutation LoginUser($user: LoginUserInput!) {
+      loginUser(user: $user) {
+        message
+        token
       }
+    }
     ''';
 
       final Map<String, dynamic> variables = {
@@ -125,21 +128,30 @@ class SignInPageController extends ChangeNotifier {
         MutationOptions(document: gql(loginMutation), variables: variables),
       );
 
+      // Log full response like Postman
+      print("===== LOGIN RESPONSE =====");
+      print(result.data);
+
       if (result.hasException) {
         print('GraphQL Exception: ${result.exception}');
-
-        final String? errorMessage =
+        final String errorMessage =
             result.exception?.graphqlErrors.isNotEmpty == true
             ? result.exception!.graphqlErrors.first.message
             : 'Login failed. Please check your credentials.';
-
-        CustomSnackbar.show(context, errorMessage!, isError: true);
+        CustomSnackbar.show(context, errorMessage, isError: true);
         return;
       }
 
-      final String message =
-          result.data?['loginUser']['message'] ?? 'Login successful!';
-      print('Full response: ${result.data}');
+      final loginUser = result.data?['loginUser'];
+      final String? token = loginUser?['token'];
+
+      // Save token securely
+      if (token != null) {
+        await storage.write(key: "accessToken", value: token);
+        print("Access token saved: $token");
+      }
+
+      final String message = loginUser?['message'] ?? 'Login successful!';
       CustomSnackbar.show(context, message, isError: false);
 
       Navigator.pushReplacement(

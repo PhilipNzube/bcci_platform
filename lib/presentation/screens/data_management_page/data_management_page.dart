@@ -116,13 +116,11 @@ class _DataManagementPageState extends State<DataManagementPage>
                           gap: 5,
                           img: "images/delete.png",
                           text: "Delete Account",
-                          onPressed: () {
-                            // if (DataManagementPageController
-                            //     .formKey
-                            //     .currentState!
-                            //     .validate()) {
-                            //   // Handle save changes
-                            // }
+                          isLoading: DataManagementPageController.isLoading,
+                          onPressed: () async {
+                            await DataManagementPageController.deleteUserAccount(
+                              context,
+                            );
                           },
                         ),
 

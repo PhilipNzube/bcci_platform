@@ -27,9 +27,11 @@ class CreateCellForm extends StatelessWidget {
                 Gap(16, isHorizontal: true),
                 Expanded(
                   child: _buildDropdownField('Cell Type', 'Select Type', [
-                    'Type A',
-                    'Type B',
-                    'Type C',
+                    'General',
+                    'Youth',
+                    'Seniors',
+                    'Couples',
+                    'Children',
                   ]),
                 ),
               ],
