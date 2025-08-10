@@ -88,7 +88,9 @@ class DataManagementPageController extends ChangeNotifier {
 
       final Map<String, dynamic> variables = {"id": userId};
 
-      final QueryResult result = await GraphQLService.client.mutate(
+      final client = await GraphQLService.getClient();
+
+      final QueryResult result = await client.mutate(
         MutationOptions(
           document: gql(deleteUserMutation),
           variables: variables,

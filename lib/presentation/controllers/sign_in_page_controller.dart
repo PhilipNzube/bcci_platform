@@ -108,8 +108,6 @@ class SignInPageController extends ChangeNotifier {
     _isLoading = true;
     notifyListeners();
 
-    print("GRAPHQL ENDPOINT: ${GraphQLService.client.link}");
-
     try {
       const String loginMutation = r'''
     mutation LoginUser($user: LoginUserInput!) {
@@ -124,7 +122,9 @@ class SignInPageController extends ChangeNotifier {
         "user": {"email": email, "password": password},
       };
 
-      final QueryResult result = await GraphQLService.client.mutate(
+      final client = await GraphQLService.getClient();
+
+      final QueryResult result = await client.mutate(
         MutationOptions(document: gql(loginMutation), variables: variables),
       );
 

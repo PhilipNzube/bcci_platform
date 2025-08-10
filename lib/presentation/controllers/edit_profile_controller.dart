@@ -95,7 +95,9 @@ class EditProfileController extends ChangeNotifier {
         "user": {"fullName": fullName, "phone": phone, "username": username},
       };
 
-      final QueryResult result = await GraphQLService.client.mutate(
+      final client = await GraphQLService.getClient();
+
+      final QueryResult result = await client.mutate(
         MutationOptions(
           document: gql(updateUserMutation),
           variables: variables,

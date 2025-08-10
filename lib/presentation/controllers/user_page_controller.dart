@@ -175,6 +175,8 @@ class UserPageController extends ChangeNotifier {
     final String? userId = await storage.read(key: "userId");
     final String? token = await storage.read(key: "accessToken");
 
+    print("User ID: $userId");
+
     if (userId == null || userId.trim().isEmpty) {
       CustomSnackbar.show(context, 'No user ID found.', isError: true);
       return;
@@ -193,15 +195,24 @@ class UserPageController extends ChangeNotifier {
       user(id: $id) {
         id
         fullName
-        phone
         username
+        email
+        phone
+        roles
+        country
+        state
+        city
+        bookmarkedContent
+        spiritualGoals
       }
     }
     ''';
 
       final Map<String, dynamic> variables = {"id": userId};
 
-      final QueryResult result = await GraphQLService.client.mutate(
+      final client = await GraphQLService.getClient();
+
+      final QueryResult result = await client.mutate(
         MutationOptions(document: gql(userQuery), variables: variables),
       );
 

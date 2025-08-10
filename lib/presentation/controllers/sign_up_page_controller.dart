@@ -136,7 +136,9 @@ class SignUpPageController extends ChangeNotifier {
         },
       };
 
-      final QueryResult result = await GraphQLService.client.mutate(
+      final client = await GraphQLService.getClient();
+
+      final QueryResult result = await client.mutate(
         MutationOptions(
           document: gql(createUserMutation),
           variables: variables,
