@@ -6,90 +6,90 @@ import 'package:bcci_platform/core/widgets/custom_label.dart';
 import 'package:bcci_platform/core/widgets/custom_text_area.dart';
 import 'package:flutter/material.dart';
 
-class NominationForm extends StatelessWidget {
-  const NominationForm({super.key});
+class CreateCellForm extends StatelessWidget {
+  const CreateCellForm({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: BoxConstraints(maxWidth: 600),
+      constraints: BoxConstraints(maxWidth: 650),
       child: SingleChildScrollView(
         padding: const EdgeInsets.all(24),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // Full Name and Email
+            // Cell Name & Cell Type
             Row(
               children: [
                 Expanded(
-                  child: _buildTextField(
-                    'Full Name',
-                    'Enter Candidate\'s name',
-                  ),
+                  child: _buildTextField('Cell Name', 'Enter Cell Name'),
                 ),
                 Gap(16, isHorizontal: true),
                 Expanded(
-                  child: _buildTextField('Email', 'candidate@email.com'),
+                  child: _buildDropdownField('Cell Type', 'Select Type', [
+                    'General',
+                    'Youth',
+                    'Seniors',
+                    'Couples',
+                    'Children',
+                  ]),
                 ),
               ],
             ),
             Gap(16),
 
-            // Phone Number and Current Role
+            // Cluster & Cell Leader
             Row(
               children: [
                 Expanded(
-                  child: _buildTextField('Phone Number', '+234 1234 567 890'),
+                  child: _buildDropdownField('Cluster', 'Select Cluster', [
+                    'Cluster 1',
+                    'Cluster 2',
+                  ]),
                 ),
                 Gap(16, isHorizontal: true),
                 Expanded(
-                  child: _buildDropdownField(
-                    'Current Role',
-                    'Select Current Role',
-                    ['Leader', 'Assistant', 'Coordinator'],
-                  ),
+                  child: _buildDropdownField('Cell Leader', 'Select Leader', [
+                    'Leader A',
+                    'Leader B',
+                  ]),
                 ),
               ],
             ),
             Gap(16),
 
-            // Cell/Location
-            _buildTextField('Cell/Location', 'Current cell group or location'),
+            // Meeting Location
+            _buildTextField('Meeting Location', 'Enter full address'),
             Gap(16),
 
-            // Years of Experience
-            _buildDropdownField(
-              'Years of Experience',
-              'Select experience level',
-              ['<1', '1-3', '4-6', '7+'],
+            // Meeting Time & Max Capacity
+            Row(
+              children: [
+                Expanded(
+                  child: _buildTextField('Meeting Time', 'e.g. Wednesday'),
+                ),
+                Gap(16, isHorizontal: true),
+                Expanded(child: _buildTextField('Max Capacity', 'e.g. 20')),
+              ],
             ),
             Gap(16),
 
-            // Candidate Bio
+            // Membership Target & Monthly Budget
+            Row(
+              children: [
+                Expanded(
+                  child: _buildTextField('Membership Target', 'e.g. 100'),
+                ),
+                Gap(16, isHorizontal: true),
+                Expanded(child: _buildTextField('Monthly Budget', 'e.g. 8')),
+              ],
+            ),
+            Gap(16),
+
+            // Description
             _buildTextArea(
-              'Candidate Bio',
-              'Describe the candidate’s background, strengths, and why they would be a good leader',
-            ),
-            Gap(16),
-
-            // Key Skills & Gifts
-            _buildTextField(
-              'Key Skills & Gifts',
-              'e.g. Leadership, Teaching, Pastoral',
-            ),
-            Gap(16),
-
-            // References
-            _buildTextArea(
-              'References',
-              'List 2–3 references who can speak to the candidate’s character and leadership potential',
-            ),
-            Gap(16),
-
-            // Additional Comments
-            _buildTextArea(
-              'Additional Comments',
-              'Any additional information or specific reasons for nomination.',
+              'Description',
+              'Describe the cell\'s focus and purpose',
             ),
             Gap(24),
 
@@ -98,7 +98,7 @@ class NominationForm extends StatelessWidget {
               children: [
                 Expanded(
                   child: CustomButton(
-                    text: "Submit Nomination",
+                    text: "Create Cell",
                     backgroundColor: Colors.black,
                     foregroundColor: Colors.white,
                     onPressed: () {
@@ -129,10 +129,15 @@ class NominationForm extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CustomLabel(title: label, fontSize: 13),
+        CustomLabel(
+          title: label,
+          fontSize: 13,
+          softWrap: false,
+          overflow: TextOverflow.ellipsis,
+        ),
         Gap(6),
         CustomTextField(
-          initialValue: hint,
+          hintText: hint,
           labelText: label,
           fillColor: Colors.white,
           borderRadius: 8,

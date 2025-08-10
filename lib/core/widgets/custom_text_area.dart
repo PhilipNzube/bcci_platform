@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CustomTextArea extends StatelessWidget {
-  final String? initialValue;
+  final TextEditingController? controller;
   final String? labelText;
   final ValueChanged<String>? onChanged;
   final double borderRadius;
@@ -12,7 +12,7 @@ class CustomTextArea extends StatelessWidget {
 
   const CustomTextArea({
     super.key,
-    this.initialValue,
+    this.controller,
     this.labelText,
     this.onChanged,
     this.borderRadius = 12,
@@ -37,7 +37,7 @@ class CustomTextArea extends StatelessWidget {
             )
           : null,
       child: TextFormField(
-        initialValue: initialValue,
+        controller: controller,
         maxLines: maxLines,
         onChanged: onChanged,
         decoration: InputDecoration(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class CustomDropdownField extends StatelessWidget {
   final String label;
   final List<String> items;
+  final String? value;
   final ValueChanged<String?>? onChanged;
   final double borderRadius;
   final bool hasShadow;
@@ -13,6 +14,7 @@ class CustomDropdownField extends StatelessWidget {
     super.key,
     required this.label,
     required this.items,
+    this.value,
     this.onChanged,
     this.borderRadius = 12,
     this.hasShadow = true,
@@ -35,6 +37,7 @@ class CustomDropdownField extends StatelessWidget {
             )
           : null,
       child: DropdownButtonFormField<String>(
+        value: value,
         decoration: InputDecoration(
           labelText: label,
           floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -54,7 +57,7 @@ class CustomDropdownField extends StatelessWidget {
           ),
         ),
         items: items
-            .map((e) => DropdownMenuItem<String>(value: e, child: Text(e)))
+            .map((e) => DropdownMenuItem(value: e, child: Text(e)))
             .toList(),
         onChanged: onChanged,
       ),

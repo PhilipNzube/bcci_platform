@@ -70,7 +70,7 @@ class _SpiritualGoalsState extends State<SpiritualGoals>
                         Gap(20),
                         CustomLabel(title: "Fullname"),
                         CustomTextField(
-                          initialValue: SpiritualGoalsController.fullName.text,
+                          //initialValue: SpiritualGoalsController.fullName.text,
                           onChanged: (value) =>
                               SpiritualGoalsController.setFullName(value),
                           labelText: "Sarmie Phoenix",
@@ -78,7 +78,7 @@ class _SpiritualGoalsState extends State<SpiritualGoals>
                         Gap(16),
                         CustomLabel(title: "Email address"),
                         CustomTextField(
-                          initialValue: SpiritualGoalsController.email.text,
+                          //initialValue: SpiritualGoalsController.email.text,
                           onChanged: (value) =>
                               SpiritualGoalsController.setEmail(value),
                           labelText: "sarmiephoenix@email.com",
@@ -95,7 +95,7 @@ class _SpiritualGoalsState extends State<SpiritualGoals>
                         Gap(16),
                         CustomLabel(title: "Address"),
                         CustomTextField(
-                          initialValue: SpiritualGoalsController.address.text,
+                          //initialValue: SpiritualGoalsController.address.text,
                           onChanged: (value) =>
                               SpiritualGoalsController.setAddress(value),
                           labelText: "Input your address",

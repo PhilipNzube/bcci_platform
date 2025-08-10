@@ -2,7 +2,7 @@ import 'package:bcci_platform/core/widgets/custom_button.dart';
 import 'package:bcci_platform/core/widgets/custom_gap.dart';
 import 'package:bcci_platform/core/widgets/custom_tab_selector.dart';
 import 'package:bcci_platform/presentation/controllers/cell_management_page_controller.dart';
-import 'package:bcci_platform/presentation/screens/cell_management_page/widgets/cell_form.dart';
+import 'package:bcci_platform/presentation/screens/cell_management_page/widgets/dialogs/cell_form.dart';
 import 'package:bcci_platform/presentation/screens/cell_management_page/widgets/cell_overview_card.dart';
 import 'package:bcci_platform/presentation/screens/cell_management_page/widgets/info_card.dart';
 import 'package:bcci_platform/presentation/screens/cell_management_page/widgets/search_bar.dart';

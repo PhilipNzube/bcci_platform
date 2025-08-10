@@ -70,7 +70,7 @@ class _SecuritySettingsPageState extends State<SecuritySettingsPage>
 
                         CustomLabel(title: "Change Password"),
                         CustomTextField(
-                          initialValue: SecuritySettingsPageController.password,
+                          //initialValue: SecuritySettingsPageController.password,
                           onChanged: (value) =>
                               SecuritySettingsPageController.setPassword(value),
                           labelText: "Change Your Password",

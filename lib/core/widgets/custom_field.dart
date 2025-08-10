@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
-  final String? initialValue;
+  final TextEditingController? controller;
   final ValueChanged<String>? onChanged;
   final IconData? suffixIcon;
   final String? labelText;
+  final String? hintText;
   final double borderRadius;
   final bool filled;
   final Color? fillColor;
@@ -13,15 +14,16 @@ class CustomTextField extends StatelessWidget {
 
   const CustomTextField({
     super.key,
-    this.initialValue,
+    this.controller,
     this.onChanged,
     this.suffixIcon,
     this.labelText,
+    this.hintText,
     this.borderRadius = 15,
     this.filled = true,
     this.fillColor = const Color(0xFFFAFAFA),
     this.hasShadow = true,
-    this.shadowColor = const Color(0x1F000000), // default subtle shadow
+    this.shadowColor = const Color(0x1F000000),
   });
 
   @override
@@ -39,16 +41,16 @@ class CustomTextField extends StatelessWidget {
             )
           : null,
       child: TextFormField(
-        initialValue: initialValue,
+        controller: controller,
         onChanged: onChanged,
         decoration: InputDecoration(
           floatingLabelBehavior: FloatingLabelBehavior.never,
           labelText: labelText,
+          hintText: hintText,
           labelStyle: const TextStyle(
             color: Colors.grey,
             fontFamily: 'GolosText',
             fontSize: 12.0,
-            decoration: TextDecoration.none,
           ),
           filled: filled,
           fillColor: fillColor,

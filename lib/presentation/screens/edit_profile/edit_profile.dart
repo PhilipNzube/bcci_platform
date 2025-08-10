@@ -187,7 +187,7 @@ class _EditProfileState extends State<EditProfile>
                               color: const Color(0xFFC7002B),
                             ),
                             CustomTextField(
-                              initialValue: EditProfileController.fullName.text,
+                              //initialValue: EditProfileController.fullName.text,
                               onChanged: (value) =>
                                   EditProfileController.setFullName(value),
                               labelText: "Sarmie Phoenix",
@@ -215,8 +215,7 @@ class _EditProfileState extends State<EditProfile>
                               child: AbsorbPointer(
                                 // Prevent TextFormField from opening keyboard
                                 child: CustomTextField(
-                                  initialValue:
-                                      EditProfileController.dateOfBirth.text,
+                                  //initialValue: EditProfileController.dateOfBirth.text,
                                   suffixIcon: Icons.calendar_today,
                                   onChanged: (value) =>
                                       EditProfileController.setDateOfBirth(
@@ -256,7 +255,7 @@ class _EditProfileState extends State<EditProfile>
                               color: const Color(0xFFC7002B),
                             ),
                             CustomTextField(
-                              initialValue: EditProfileController.email.text,
+                              //initialValue: EditProfileController.email.text,
                               onChanged: (value) =>
                                   EditProfileController.setEmail(value),
                               labelText: "sarmiephoenix@email.com",
@@ -268,8 +267,7 @@ class _EditProfileState extends State<EditProfile>
                             ),
                             CustomPhoneField(
                               initialCountryCode: 'NG',
-                              initialValue:
-                                  EditProfileController.phoneNumber.text,
+                              //initialValue:EditProfileController.phoneNumber.text,
                               onChanged: (value) =>
                                   EditProfileController.setPhoneNumber(value),
                             ),
@@ -279,7 +277,7 @@ class _EditProfileState extends State<EditProfile>
                               color: const Color(0xFFC7002B),
                             ),
                             CustomTextField(
-                              initialValue: EditProfileController.location.text,
+                              ////initialValue: EditProfileController.location.text,
                               onChanged: (value) =>
                                   EditProfileController.setLocation(value),
                               labelText: "Lagos, Nigeria",
