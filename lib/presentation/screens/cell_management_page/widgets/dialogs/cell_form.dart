@@ -4,10 +4,12 @@ import 'package:bcci_platform/core/widgets/custom_field.dart';
 import 'package:bcci_platform/core/widgets/custom_gap.dart';
 import 'package:bcci_platform/core/widgets/custom_label.dart';
 import 'package:bcci_platform/core/widgets/custom_text_area.dart';
+import 'package:bcci_platform/presentation/controllers/cell_management_page_controller.dart';
 import 'package:flutter/material.dart';
 
 class CreateCellForm extends StatelessWidget {
-  const CreateCellForm({super.key});
+  final CellManagementPageController controller;
+  const CreateCellForm({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -22,17 +24,21 @@ class CreateCellForm extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: _buildTextField('Cell Name', 'Enter Cell Name'),
+                  child: _buildTextField(
+                    'Cell Name',
+                    'Enter Cell Name',
+                    controller.cellNameController,
+                  ),
                 ),
                 Gap(16, isHorizontal: true),
                 Expanded(
-                  child: _buildDropdownField('Cell Type', 'Select Type', [
-                    'General',
-                    'Youth',
-                    'Seniors',
-                    'Couples',
-                    'Children',
-                  ]),
+                  child: _buildDropdownField(
+                    'Cell Type',
+                    'Select Type',
+                    ['General', 'Youth', 'Seniors', 'Couples', 'Children'],
+                    controller.selectedCellType,
+                    controller.setSelectedCellType,
+                  ),
                 ),
               ],
             ),
@@ -42,34 +48,65 @@ class CreateCellForm extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: _buildDropdownField('Cluster', 'Select Cluster', [
-                    'Cluster 1',
-                    'Cluster 2',
-                  ]),
+                  child: _buildDropdownField(
+                    'Cluster',
+                    'Select Cluster',
+                    controller.clusterOptions
+                        .map((e) => e['name']!)
+                        .toList(), // display only names
+                    controller.selectedClusterName,
+                    (value) {
+                      final cluster = controller.clusterOptions.firstWhere(
+                        (e) => e['name'] == value,
+                      );
+                      controller.setSelectedCluster(
+                        cluster['id'],
+                      ); // store the ObjectId in controller
+                      controller.setSelectedClusterName(cluster['name']!);
+                    },
+                  ),
                 ),
+
                 Gap(16, isHorizontal: true),
                 Expanded(
-                  child: _buildDropdownField('Cell Leader', 'Select Leader', [
-                    'Leader A',
-                    'Leader B',
-                  ]),
+                  child: _buildDropdownField(
+                    'Cell Leader',
+                    'Select Leader',
+                    ['Leader A', 'Leader B'],
+                    controller.cellLeader,
+                    controller.setCellLeader,
+                  ),
                 ),
               ],
             ),
             Gap(16),
 
             // Meeting Location
-            _buildTextField('Meeting Location', 'Enter full address'),
+            _buildTextField(
+              'Meeting Location',
+              'Enter full address',
+              controller.meetingLocationController,
+            ),
             Gap(16),
 
             // Meeting Time & Max Capacity
             Row(
               children: [
                 Expanded(
-                  child: _buildTextField('Meeting Time', 'e.g. Wednesday'),
+                  child: _buildTextField(
+                    'Meeting Time',
+                    'e.g. Wednesday',
+                    controller.meetingTimeController,
+                  ),
                 ),
                 Gap(16, isHorizontal: true),
-                Expanded(child: _buildTextField('Max Capacity', 'e.g. 20')),
+                Expanded(
+                  child: _buildTextField(
+                    'Max Capacity',
+                    'e.g. 20',
+                    controller.maxCapacityController,
+                  ),
+                ),
               ],
             ),
             Gap(16),
@@ -78,10 +115,20 @@ class CreateCellForm extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: _buildTextField('Membership Target', 'e.g. 100'),
+                  child: _buildTextField(
+                    'Membership Target',
+                    'e.g. 100',
+                    controller.membershipTargetController,
+                  ),
                 ),
                 Gap(16, isHorizontal: true),
-                Expanded(child: _buildTextField('Monthly Budget', 'e.g. 8')),
+                Expanded(
+                  child: _buildTextField(
+                    'Monthly Budget',
+                    'e.g. 8',
+                    controller.monthlyBudgetController,
+                  ),
+                ),
               ],
             ),
             Gap(16),
@@ -90,6 +137,7 @@ class CreateCellForm extends StatelessWidget {
             _buildTextArea(
               'Description',
               'Describe the cell\'s focus and purpose',
+              controller.descriptionController,
             ),
             Gap(24),
 
@@ -101,9 +149,8 @@ class CreateCellForm extends StatelessWidget {
                     text: "Create Cell",
                     backgroundColor: Colors.black,
                     foregroundColor: Colors.white,
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
+                    isLoading: controller.isLoading,
+                    onPressed: () => controller.createCell(context),
                   ),
                 ),
                 Gap(16, isHorizontal: true),
@@ -125,7 +172,11 @@ class CreateCellForm extends StatelessWidget {
     );
   }
 
-  Widget _buildTextField(String label, String hint) {
+  Widget _buildTextField(
+    String label,
+    String hint,
+    TextEditingController controller,
+  ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -137,6 +188,7 @@ class CreateCellForm extends StatelessWidget {
         ),
         Gap(6),
         CustomTextField(
+          controller: controller,
           hintText: hint,
           labelText: label,
           fillColor: Colors.white,
@@ -146,7 +198,13 @@ class CreateCellForm extends StatelessWidget {
     );
   }
 
-  Widget _buildDropdownField(String label, String label2, List<String> items) {
+  Widget _buildDropdownField(
+    String label,
+    String label2,
+    List<String> items,
+    String? selectedValue,
+    Function(String?) onChanged,
+  ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -156,19 +214,28 @@ class CreateCellForm extends StatelessWidget {
           label: label2,
           items: items,
           borderRadius: 8,
-          onChanged: (value) {},
+          value: selectedValue,
+          onChanged: onChanged,
         ),
       ],
     );
   }
 
-  Widget _buildTextArea(String label, String hint) {
+  Widget _buildTextArea(
+    String label,
+    String hint,
+    TextEditingController controller,
+  ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CustomLabel(title: label, fontSize: 13),
         Gap(6),
-        CustomTextArea(labelText: hint, borderRadius: 8),
+        CustomTextArea(
+          controller: controller,
+          labelText: hint,
+          borderRadius: 8,
+        ),
       ],
     );
   }

@@ -114,6 +114,10 @@ class SignInPageController extends ChangeNotifier {
       loginUser(user: $user) {
         message
         token
+        user {
+            id
+            email
+        }
       }
     }
     ''';
@@ -149,6 +153,13 @@ class SignInPageController extends ChangeNotifier {
       if (token != null) {
         await storage.write(key: "accessToken", value: token);
         print("Access token saved: $token");
+      }
+
+      // Save userId securely
+      final String? userId = loginUser?['user']['id'];
+      if (userId != null) {
+        await storage.write(key: "userId", value: userId);
+        print("User ID saved: $userId");
       }
 
       final String message = loginUser?['message'] ?? 'Login successful!';

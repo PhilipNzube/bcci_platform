@@ -1,3 +1,4 @@
+import 'package:bcci_platform/presentation/controllers/main_app_controller.dart';
 import 'package:bcci_platform/presentation/screens/intro_page/intro_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => ThemeController()),
         ChangeNotifierProvider(create: (_) => NavigationController()),
         ChangeNotifierProvider(create: (_) => NotificationController()),
+        ChangeNotifierProvider(create: (_) => MainAppController()),
       ],
       child: Consumer<ThemeController>(
         builder: (context, themeController, child) {

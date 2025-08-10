@@ -1,3 +1,4 @@
+import 'package:bcci_platform/presentation/controllers/main_app_controller.dart';
 import 'package:bcci_platform/presentation/screens/analytics_dashboard_page/analytics_dashboard_page.dart';
 import 'package:bcci_platform/presentation/screens/cell_leader_appointment/cell_leader_appointment.dart';
 import 'package:bcci_platform/presentation/screens/cell_management_page/cell_management_page.dart';
@@ -8,6 +9,7 @@ import 'package:bcci_platform/presentation/screens/digital_transformation_page/d
 import 'package:bcci_platform/presentation/screens/discipleship_pathways_page/discipleship_pathways_page.dart';
 import 'package:bcci_platform/presentation/screens/gamification_page/gamification_page.dart';
 import 'package:bcci_platform/presentation/screens/home_page/home_page.dart';
+import 'package:bcci_platform/presentation/screens/intro_page/intro_page.dart';
 import 'package:bcci_platform/presentation/screens/main_app/widgets/app_side_bar.dart';
 import 'package:bcci_platform/presentation/screens/messages_page/messages_page.dart';
 import 'package:bcci_platform/presentation/screens/settings_page/settings_page.dart';
@@ -56,6 +58,7 @@ class _MainAppState extends State<MainApp> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     final navController = Provider.of<NavigationController>(context);
+    final mainAppController = Provider.of<MainAppController>(context);
 
     return CustomBackHandler(
       child: Scaffold(
@@ -83,6 +86,8 @@ class _MainAppState extends State<MainApp> with TickerProviderStateMixin {
               navController.setTempIndex(13);
             } else if (label == "Settings") {
               navController.setTempIndex(14);
+            } else if (label == "Logout Account") {
+              mainAppController.logout(context, IntroPage(key: UniqueKey()));
             }
           },
         ),

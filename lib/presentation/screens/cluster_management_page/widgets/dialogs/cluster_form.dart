@@ -9,11 +9,11 @@ import 'package:bcci_platform/core/widgets/custom_label.dart';
 import 'package:bcci_platform/core/widgets/custom_text_area.dart';
 
 class CreateClusterForm extends StatelessWidget {
-  final controller;
+  final ClusterManagementPageController controller;
   final BuildContext dialogContext;
   const CreateClusterForm({
     super.key,
-    this.controller,
+    required this.controller,
     required this.dialogContext,
   });
 
@@ -95,6 +95,7 @@ class CreateClusterForm extends StatelessWidget {
                     text: "Create Cluster",
                     backgroundColor: Colors.black,
                     foregroundColor: Colors.white,
+                    isLoading: controller.isLoading,
                     onPressed: () => controller.createCluster(dialogContext),
                   ),
                 ),

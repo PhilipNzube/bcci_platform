@@ -102,8 +102,8 @@ class _UserPageState extends State<UserPage>
                                   ),
                                 ),
                                 Gap(10),
-                                const Text(
-                                  "Philip Onwubalili",
+                                Text(
+                                  UserPageController.userName ?? "User",
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 20,
@@ -111,8 +111,8 @@ class _UserPageState extends State<UserPage>
                                   ),
                                 ),
                                 Gap(4),
-                                const Text(
-                                  "philip@example.com",
+                                Text(
+                                  UserPageController.email ?? "Loading...",
                                   style: TextStyle(
                                     color: Colors.white70,
                                     fontSize: 14,

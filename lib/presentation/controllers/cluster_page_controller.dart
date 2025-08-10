@@ -1,168 +1,144 @@
-import 'package:carousel_slider/carousel_slider.dart';
+import 'dart:math';
+
+import 'package:bcci_platform/core/services/graphql_service.dart';
 import 'package:flutter/material.dart' hide CarouselController;
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 import 'dart:async';
-import 'package:connectivity_plus/connectivity_plus.dart';
 
 class ClusterPageController extends ChangeNotifier {
-  final TextEditingController _searchController = TextEditingController();
-  final FocusNode _searchFocusNode = FocusNode();
-  List _searchResults = [];
-  bool _searchLoading = false;
-  bool _isSearching = false;
-  List<String> _imagePaths = [
-    "images/Banner.png",
-    "images/Banner.png",
-    "images/Banner.png",
-  ];
-  int _current = 0;
-  final CarouselSliderController _controller = CarouselSliderController();
-  Map<String, bool> _isLikedMap = {};
-  int? _selectedRadioValue = 0;
-  final storage = const FlutterSecureStorage();
-  ValueNotifier<String?> _selectedFilter = ValueNotifier<String?>(null);
-  bool _isFilterActive = false;
-  int? userId;
-  String? _fullName;
-  String? _userName;
-  String? _profileImage;
-  String? _email;
-  String? _address;
-  String? _city;
-  String? _state;
-  String? _storeName;
-  String? _storeWebsiteUrl;
-  String? _storeDescription;
-  String? _walletBalance;
-  String? _phone;
-  String? _gender;
-  String? _role;
-  List<Map<String, dynamic>> products = [];
+  int _selectedTabIndex = 0;
   bool _isLoading = false;
-  late SharedPreferences prefs;
-  Timer? _timer;
-  int _remainingTime = 0;
-  bool _isLoading2 = false;
-  bool _isRefreshing = false;
-  StreamSubscription<ConnectivityResult>? connectivitySubscription;
-  late ScrollController _scrollController;
-  int pageNum = 1;
-  bool _isFetchingMore = false;
-  String _userRole = "";
-  String _url = "";
-  bool _isMoved = false;
-  bool _isLoggedOut = false;
-  String _previousRole = "Customer";
-  String _currentRole = "Customer";
-  bool _activateFabForCustomerView = false;
-  // late Future<void> _userData;
+  List<Map<String, dynamic>> _clusterData = [];
+  int _calculateAvgPerCell(Map<String, dynamic> cluster) {
+    final members =
+        int.tryParse(
+          cluster['stats'].firstWhere((s) => s['label'] == 'Members')['value'],
+        ) ??
+        0;
+
+    final cells =
+        int.tryParse(
+          cluster['stats'].firstWhere((s) => s['label'] == 'Cells')['value'],
+        ) ??
+        1; // avoid division by zero
+
+    return (members / cells).round();
+  }
+
+  // Form controllers
+  final TextEditingController _clusterNameController = TextEditingController();
+  final TextEditingController _clusterLeaderController =
+      TextEditingController();
+  final TextEditingController _membershipTargetController =
+      TextEditingController();
+  final TextEditingController _cellTargetController = TextEditingController();
+  final TextEditingController _descriptionController = TextEditingController();
+
+  // Dropdown values
+  String? _selectedRegion;
+  String? _selectedState;
+  String? _selectedCountry;
 
   ClusterPageController() {
     initialize();
   }
 
-  //public getters
-  String? get fullName => _fullName;
-  String? get userName => _userName;
-  String? get phone => _phone;
-  String? get email => _email;
-  String? get profileImage => _profileImage;
-  String? get address => _address;
-  String? get city => _city;
-  String? get state => _state;
-  String? get storeName => _storeName;
-  String? get storeWebsiteUrl => _storeWebsiteUrl;
-  String? get storeDescription => _storeDescription;
-  String? get walletBalance => _walletBalance;
-  String? get gender => _gender;
-  String? get role => _role;
-  int get remainingTime => _remainingTime;
-  bool get isSearching => _isSearching;
+  // Getters
+  int get selectedTabIndex => _selectedTabIndex;
   bool get isLoading => _isLoading;
-  bool get isLoading2 => _isLoading2;
-  bool get searchLoading => _searchLoading;
-  List<dynamic> get searchResults => _searchResults;
-  int get current => _current;
-  bool get isFetchingMore => _isFetchingMore;
-  List<String> get imagePaths => _imagePaths;
-  bool get isFilterActive => _isFilterActive;
-  ValueNotifier<String?> get selectedFilter => _selectedFilter;
-  int? get selectedRadioValue => _selectedRadioValue;
-  String get userRole => _userRole;
-  bool get isMoved => _isMoved;
-  bool get isLoggedOut => _isLoggedOut;
-  String get previousRole => _previousRole;
-  String get currentRole => _currentRole;
-  bool get activateFabForCustomerView => _activateFabForCustomerView;
-  // Future<void> get userData => _userData;
+  List<Map<String, dynamic>> get clusterData => _clusterData;
+  int Function(Map<String, dynamic> cluster) get calculateAvgPerCell =>
+      _calculateAvgPerCell;
+  TextEditingController get clusterNameController => _clusterNameController;
+  TextEditingController get clusterLeaderController => _clusterLeaderController;
+  TextEditingController get membershipTargetController =>
+      _membershipTargetController;
+  TextEditingController get cellTargetController => _cellTargetController;
+  TextEditingController get descriptionController => _descriptionController;
 
-  TextEditingController get searchController => _searchController;
-  CarouselSliderController get controller => _controller;
-  ScrollController get scrollController => _scrollController;
+  String? get selectedRegion => _selectedRegion;
+  String? get selectedState => _selectedState;
+  String? get selectedCountry => _selectedCountry;
 
-  FocusNode get searchFocusNode => _searchFocusNode;
-
-  void setActivateFabForCustomerView(bool value) {
-    _activateFabForCustomerView = value;
+  // Setters
+  void setSelectedTabIndex(int value) {
+    _selectedTabIndex = value;
     notifyListeners();
   }
 
-  void setCurrentRole(String value) {
-    _currentRole = value;
+  void setSelectedRegion(String? value) {
+    _selectedRegion = value;
     notifyListeners();
   }
 
-  void setPreviousRole(String value) {
-    _previousRole = value;
+  void setSelectedState(String? value) {
+    _selectedState = value;
     notifyListeners();
   }
 
-  void refreshController() {
-    notifyListeners();
-  }
-
-  void setIsLoading(bool value) {
-    _isLoading = value;
-    notifyListeners();
-  }
-
-  void setIsLoggedOut(bool value) {
-    _isLoggedOut = value;
-    notifyListeners();
-  }
-
-  void setIsSearching(bool value) {
-    _isSearching = value;
-    notifyListeners();
-  }
-
-  void setCurrent(int value) {
-    _current = value;
-    notifyListeners();
-  }
-
-  void setIsFilterActive(bool value) {
-    _isFilterActive = value;
-    notifyListeners();
-  }
-
-  void setSelectedRadioValue(int value) {
-    _selectedRadioValue = value;
-    notifyListeners();
-  }
-
-  void setIsMoved(bool value) {
-    _isMoved = value;
+  void setSelectedCountry(String? value) {
+    _selectedCountry = value;
     notifyListeners();
   }
 
   void initialize() async {
-    await initializePrefs();
+    _clusterData = await fetchClusters();
+    notifyListeners();
   }
 
-  Future<void> initializePrefs() async {
-    prefs = await SharedPreferences.getInstance();
+  Future<void> refreshClusters() async {
+    _clusterData = await fetchClusters();
     notifyListeners();
+  }
+
+  Future<List<Map<String, dynamic>>> fetchClusters() async {
+    const String query = r'''
+    query Clusters {
+      getClusters {
+        id
+        clusterName
+      }
+    }
+  ''';
+
+    try {
+      final client = await GraphQLService.getClient();
+      final result = await client.query(QueryOptions(document: gql(query)));
+
+      if (result.hasException) {
+        print("GraphQL Error: ${result.exception}");
+        return [];
+      }
+
+      final clusters = result.data?['getClusters'] ?? [];
+
+      return clusters.map<Map<String, dynamic>>((c) {
+        return {
+          // API values
+          'id': c['id'],
+          'title': c['clusterName'] ?? 'Unnamed Cluster',
+
+          // Dummy placeholders (replace when backend provides real values)
+          'cluster': 'Unknown Region',
+          'leader': 'No Leader Assigned',
+          'stats': [
+            {'label': 'Members', 'value': '${Random().nextInt(150)}'},
+            {'label': 'Cells', 'value': '${Random().nextInt(15)}'},
+            {
+              'label': 'Health',
+              'value': '+${(Random().nextDouble() * 20).toStringAsFixed(1)}%',
+              'colorize': true,
+            },
+          ],
+          'nextTime': 'TBD',
+          'progressCurrent': Random().nextInt(150),
+          'progressTotal': 150,
+          'tags': ['Pending Setup'],
+        };
+      }).toList();
+    } catch (e) {
+      print("Exception: $e");
+      return [];
+    }
   }
 }

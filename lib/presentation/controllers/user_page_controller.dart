@@ -161,6 +161,16 @@ class UserPageController extends ChangeNotifier {
     notifyListeners();
   }
 
+  void setUserName(String value) {
+    _userName = value;
+    notifyListeners();
+  }
+
+  void setEmail(String value) {
+    _email = value;
+    notifyListeners();
+  }
+
   void initialize() async {
     await fetchUserProfile(navigatorKey.currentContext!);
   }
@@ -235,11 +245,14 @@ class UserPageController extends ChangeNotifier {
         return;
       }
 
-      CustomSnackbar.show(
-        context,
-        'Welcome back, ${userData['username']}!',
-        isError: false,
-      );
+      setUserName(userData['username']);
+      setEmail(userData['email']);
+
+      // CustomSnackbar.show(
+      //   context,
+      //   'Welcome back, ${userData['username']}!',
+      //   isError: false,
+      // );
 
       // You can store/update local profile state here
       // Example:
