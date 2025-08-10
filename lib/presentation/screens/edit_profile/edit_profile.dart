@@ -97,8 +97,8 @@ class _EditProfileState extends State<EditProfile>
                                 ),
                               ),
                               Gap(10),
-                              const Text(
-                                "Philip Onwubalili",
+                              Text(
+                                EditProfileController.userName ?? "User",
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 20,
@@ -106,8 +106,8 @@ class _EditProfileState extends State<EditProfile>
                                 ),
                               ),
                               Gap(4),
-                              const Text(
-                                "philip@example.com",
+                              Text(
+                                EditProfileController.email.text.trim(),
                                 style: TextStyle(
                                   color: Colors.white70,
                                   fontSize: 14,
