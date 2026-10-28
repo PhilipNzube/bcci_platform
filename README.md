@@ -38,7 +38,3 @@ The codebase provides a starting point for examining the application's structure
 Depending on the project's direction, the platform could be extended with features such as community announcements, event information, spiritual resources, member profiles, and other tools for community engagement.
 
 These are possible areas for expansion rather than a claim that every feature is already implemented.
-
-## Repository
-
-Source code: https://github.com/PhilipNzube/bcci_platform
