@@ -42,7 +42,3 @@ These are possible areas for expansion rather than a claim that every feature is
 ## Repository
 
 Source code: https://github.com/PhilipNzube/bcci_platform
-
-## About the Developer
-
-Built by Philip Nzube Onwubalili as a software project exploring the use of mobile technology to support spiritual communities and digital engagement.
